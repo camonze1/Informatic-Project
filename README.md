@@ -3,7 +3,7 @@ DOROBO
 Scénario
 
 Introduction: 
-Vous jouez le rôle d'un cambrioleur, qui vole des maisons pour gagner de l'argent. Le but du jeu est de vous infiltrer dans des maisons luxueuses et de collecter autant d'argent que possible avant de vous échapper sans vous faire attraper par les propriétaires ou la police. 
+Vous jouez le rôle d'un cambrioleur, qui vole des maisons pour gagner de l'argent. Le but du jeu est de vous infiltrer dans des maisons et de collecter autant d'argent que possible avant de vous échapper sans vous faire attraper par les propriétaires ou la police. 
 
 Déroulement du jeu: 
 Le jeu commence par une introduction qui vous explique le jeu. Il vous propose ensuite un outil afin de vous aider dans votre cambriolage puis vous demande par où vous voulez entrer. Vous pouvez vous déplacer dans les différentes pièces et interagir avec les objets tels que les portes, les coffres-forts, les tiroirs, les placards au travers de questions à choix. Vous devez éviter les pièges et les alarmes, ainsi que les propriétaires de la maison qui peuvent vous attraper et appeler la police.
