@@ -46,16 +46,39 @@ public class Game {
         grenier = new Room("dans le grenier");
 
         // initialise room exits
-        outside.setExits(bedRoom, kitchen, hall, gameRoom, null, null);
-        hall.setExits(outside, salon, null, diningRoom, grenier, null);
-        salon.setExits(null, null, gameRoom, hall, null, null);
-        gameRoom.setExits(salon, outside, office, null, null, null);
-        office.setExits(gameRoom, null, null, bedRoom, null, null);
-        bedRoom.setExits(null, office, outside, bathRoom, null, null);
-        bathRoom.setExits(null, bedRoom, null, null, null, null);
-        kitchen.setExits(diningRoom, null, null, outside, null, null);
-        diningRoom.setExits(null, hall, diningRoom, null, null, null);
-        grenier.setExits(null, null, null, null, null, hall);
+        outside.setExit("1", bedRoom);
+        outside.setExit("2", kitchen);
+        outside.setExit("3", hall);
+        outside.setExit("4", gameRoom);
+
+        hall.setExit("1", outside);
+        hall.setExit("2", salon);
+        hall.setExit("4", diningRoom);
+        hall.setExit("5", grenier);
+
+        salon.setExit("3", gameRoom);
+        salon.setExit("4", hall);
+
+        gameRoom.setExit("1", salon);
+        gameRoom.setExit("2", outside);
+        gameRoom.setExit("3", office);
+
+        office.setExit("1", gameRoom);
+        office.setExit("4", bedRoom);
+
+        bedRoom.setExit("2", office);
+        bedRoom.setExit("3", outside);
+        bedRoom.setExit("4", bathRoom);
+
+        bathRoom.setExit("2", bedRoom);
+
+        kitchen.setExit("1", diningRoom);
+        kitchen.setExit("4", outside);
+
+        diningRoom.setExit("2", hall);
+        diningRoom.setExit("3", diningRoom);
+
+        grenier.setExit("6", hall);
 
         currentRoom = outside; // start game outside
     }
@@ -88,23 +111,23 @@ public class Game {
         System.out.println();
         System.out.println("Tu es " + currentRoom.getDescription());
         System.out.print("Sorties: \n");
-        if (currentRoom.getExit("north") != null) {
-            System.out.print("Devant, " + currentRoom.getExit("north").getDescription() + " (1) \n");
+        if (currentRoom.getExit("1") != null) {
+            System.out.print("Devant, " + currentRoom.getExit("1").getDescription() + " (1) \n");
         }
-        if (currentRoom.getExit("east") != null) {
-            System.out.print("A droite, " + currentRoom.getExit("east").getDescription() + " (2) \n");
+        if (currentRoom.getExit("2") != null) {
+            System.out.print("A droite, " + currentRoom.getExit("2").getDescription() + " (2) \n");
         }
-        if (currentRoom.getExit("south") != null) {
-            System.out.print("Derrière, " + currentRoom.getExit("south").getDescription() + " (3) \n");
+        if (currentRoom.getExit("3") != null) {
+            System.out.print("Derrière, " + currentRoom.getExit("3").getDescription() + " (3) \n");
         }
-        if (currentRoom.getExit("west") != null) {
-            System.out.print("A gauche, " + currentRoom.getExit("west").getDescription() + " (4) \n");
+        if (currentRoom.getExit("4") != null) {
+            System.out.print("A gauche, " + currentRoom.getExit("4").getDescription() + " (4) \n");
         }
-        if (currentRoom.getExit("up") != null) {
-            System.out.print("En haut, " + currentRoom.getExit("up").getDescription() + " (5) \n");
+        if (currentRoom.getExit("5") != null) {
+            System.out.print("En haut, " + currentRoom.getExit("5").getDescription() + " (5) \n");
         }
-        if (currentRoom.getExit("down") != null) {
-            System.out.print("En bas, " + currentRoom.getExit("down").getDescription() + " (6) \n");
+        if (currentRoom.getExit("6") != null) {
+            System.out.print("En bas, " + currentRoom.getExit("6").getDescription() + " (6) \n");
         }
         System.out.println();
     }
@@ -164,26 +187,8 @@ public class Game {
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = null;
-        // Room nextRoom = currentRoom.getExit(direction);
-        if (direction.equals("1")) {
-            nextRoom = currentRoom.getExit("north");
-        }
-        if (direction.equals("2")) {
-            nextRoom = currentRoom.getExit("east");
-        }
-        if (direction.equals("3")) {
-            nextRoom = currentRoom.getExit("south");
-        }
-        if (direction.equals("4")) {
-            nextRoom = currentRoom.getExit("west");
-        }
-        if (direction.equals("5")) {
-            nextRoom = currentRoom.getExit("up");
-        }
-        if (direction.equals("6")) {
-            nextRoom = currentRoom.getExit("down");
-        }
+        // Room nextRoom = null;
+        Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("Il n'y a pas de porte!");
@@ -191,23 +196,23 @@ public class Game {
             currentRoom = nextRoom;
             System.out.println("Tu es " + currentRoom.getDescription());
             System.out.print("Sorties: \n");
-            if (currentRoom.getExit("north") != null) {
-                System.out.print("Devant, " + currentRoom.getExit("north").getDescription() + " (1) \n");
+            if (currentRoom.getExit("1") != null) {
+                System.out.print("Devant, " + currentRoom.getExit("1").getDescription() + " (1) \n");
             }
-            if (currentRoom.getExit("east") != null) {
-                System.out.print("A droite, " + currentRoom.getExit("east").getDescription() + " (2) \n");
+            if (currentRoom.getExit("2") != null) {
+                System.out.print("A droite, " + currentRoom.getExit("2").getDescription() + " (2) \n");
             }
-            if (currentRoom.getExit("south") != null) {
-                System.out.print("Derrière, " + currentRoom.getExit("south").getDescription() + " (3) \n");
+            if (currentRoom.getExit("3") != null) {
+                System.out.print("Derrière, " + currentRoom.getExit("3").getDescription() + " (3) \n");
             }
-            if (currentRoom.getExit("west") != null) {
-                System.out.print("A gauche, " + currentRoom.getExit("west").getDescription() + " (4) \n");
+            if (currentRoom.getExit("4") != null) {
+                System.out.print("A gauche, " + currentRoom.getExit("4").getDescription() + " (4) \n");
             }
-            if (currentRoom.getExit("up") != null) {
-                System.out.print("En haut, " + currentRoom.getExit("up").getDescription() + " (5) \n");
+            if (currentRoom.getExit("5") != null) {
+                System.out.print("En haut, " + currentRoom.getExit("5").getDescription() + " (5) \n");
             }
-            if (currentRoom.getExit("down") != null) {
-                System.out.print("En bas, " + currentRoom.getExit("down").getDescription() + " (6) \n");
+            if (currentRoom.getExit("6") != null) {
+                System.out.print("En bas, " + currentRoom.getExit("6").getDescription() + " (6) \n");
             }
             System.out.println();
         }

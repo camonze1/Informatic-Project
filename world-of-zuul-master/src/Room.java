@@ -1,3 +1,4 @@
+
 /**
  * Class Room - a room in an adventure game.
  *
@@ -12,14 +13,12 @@
  * @author Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
+
+import java.util.HashMap;
+
 public class Room {
     private String description;
-    private Room northExit;
-    private Room southExit;
-    private Room eastExit;
-    private Room westExit;
-    private Room upExit;
-    private Room downExit;
+    private HashMap<String, Room> exits;
 
     /**
      * Create a room described "description". Initially, it has
@@ -30,66 +29,26 @@ public class Room {
      */
     public Room(String description) {
         this.description = description;
+        exits = new HashMap<>();
     }
 
     /**
      * Define the exits of this room. Every direction either leads
      * to another room or is null (no exit there).
      * 
-     * @param north The north exit.
-     * @param east  The east east.
-     * @param south The south exit.
-     * @param west  The west exit.
-     * @param up    The up exit.
-     * @param down  The down exit.
+     * @param direction The exit number.
+     * @param neighbor  The room exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west, Room up, Room down) {
-        if (north != null) {
-            northExit = north;
-        }
-        if (east != null) {
-            eastExit = east;
-        }
-        if (south != null) {
-            southExit = south;
-        }
-        if (west != null) {
-            westExit = west;
-        }
-        if (up != null) {
-            upExit = up;
-        }
-        if (down != null) {
-            downExit = down;
-        }
+    public void setExit(String direction, Room neighbor) {
+        exits.put(direction, neighbor);
     }
 
+    /**
+     * @param direction The exit number.
+     * @return The room of the direction exit.
+     */
     public Room getExit(String direction) {
-        if (direction.equals("north")) {
-            return northExit;
-        }
-
-        if (direction.equals("east")) {
-            return eastExit;
-        }
-
-        if (direction.equals("south")) {
-            return southExit;
-        }
-
-        if (direction.equals("west")) {
-            return westExit;
-        }
-
-        if (direction.equals("up")) {
-            return upExit;
-        }
-
-        if (direction.equals("down")) {
-            return downExit;
-        }
-
-        return null;
+        return exits.get(direction);
     }
 
     /**
