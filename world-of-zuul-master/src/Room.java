@@ -58,4 +58,34 @@ public class Room {
         return description;
     }
 
+    /**
+     * Return a description of the room’s exits,
+     * for example, "Exits: north west".
+     * 
+     * @return A description of the available exits.
+     */
+    public String getExitString() {
+        String string_exit = "Sorties: \n";
+
+        if (this.exits.get("1") != null) {
+            string_exit += ("Devant, " + this.exits.get("1").getDescription() + " (1) \n");
+        }
+        if (this.exits.get("2") != null) {
+            string_exit += ("A droite, " + this.exits.get("2").getDescription() + " (2) \n");
+        }
+        if (this.exits.get("3") != null) {
+            string_exit += ("Derrière, " + this.exits.get("3").getDescription() + " (3) \n");
+        }
+        if (this.exits.get("4") != null) {
+            string_exit += ("A gauche, " + this.exits.get("4").getDescription() + " (4) \n");
+        }
+        if (this.exits.get("5") != null) {
+            string_exit += ("En haut, " + this.exits.get("5").getDescription() + " (5) \n");
+        }
+        if (this.exits.get("6") != null) {
+            string_exit += ("En bas, " + this.exits.get("6").getDescription() + " (6) \n");
+        }
+        return string_exit;
+    }
+
 }

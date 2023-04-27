@@ -183,26 +183,7 @@ public class Game {
      */
     private void printLocationInfo() {
         System.out.println("Tu es " + currentRoom.getDescription());
-        System.out.print("Sorties: \n");
-        if (currentRoom.getExit("1") != null) {
-            System.out.print("Devant, " + currentRoom.getExit("1").getDescription() + " (1) \n");
-        }
-        if (currentRoom.getExit("2") != null) {
-            System.out.print("A droite, " + currentRoom.getExit("2").getDescription() + " (2) \n");
-        }
-        if (currentRoom.getExit("3") != null) {
-            System.out.print("Derrière, " + currentRoom.getExit("3").getDescription() + " (3) \n");
-        }
-        if (currentRoom.getExit("4") != null) {
-            System.out.print("A gauche, " + currentRoom.getExit("4").getDescription() + " (4) \n");
-        }
-        if (currentRoom.getExit("5") != null) {
-            System.out.print("En haut, " + currentRoom.getExit("5").getDescription() + " (5) \n");
-        }
-        if (currentRoom.getExit("6") != null) {
-            System.out.print("En bas, " + currentRoom.getExit("6").getDescription() + " (6) \n");
-        }
-        System.out.println();
+        System.out.println(currentRoom.getExitString());
     }
 
     /**
