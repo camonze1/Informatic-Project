@@ -76,7 +76,7 @@ public class Game {
         kitchen.setExit("4", outside);
 
         diningRoom.setExit("2", hall);
-        diningRoom.setExit("3", diningRoom);
+        diningRoom.setExit("3", kitchen);
 
         grenier.setExit("6", hall);
 
@@ -182,8 +182,7 @@ public class Game {
      * prints the information about the current location
      */
     private void printLocationInfo() {
-        System.out.println("Tu es " + currentRoom.getDescription());
-        System.out.println(currentRoom.getExitString());
+        System.out.println(currentRoom.getLongDescription());
     }
 
     /**
