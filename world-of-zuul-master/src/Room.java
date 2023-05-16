@@ -19,6 +19,7 @@ import java.util.HashMap;
 public class Room {
     private String description;
     private HashMap<String, Room> exits;
+    public Item[] items;
 
     /**
      * Create a room described "description". Initially, it has
