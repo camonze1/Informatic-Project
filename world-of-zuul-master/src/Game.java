@@ -18,6 +18,7 @@
 public class Game {
     private Parser parser;
     private Room currentRoom;
+    private Room previousRoom;
 
     /**
      * Create the game and initialise its internal map.
@@ -177,6 +178,8 @@ public class Game {
             goRoom(command);
         } else if (commandWord.equals("look")) {
             look();
+        } else if (commandWord.equals("back")) {
+            back();
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
@@ -219,7 +222,9 @@ public class Game {
         if (nextRoom == null) {
             System.out.println("Il n'y a pas de porte!");
         } else {
+            previousRoom = currentRoom;
             currentRoom = nextRoom;
+
             printLocationInfo();
         }
     }
@@ -229,7 +234,6 @@ public class Game {
      */
     private void printLocationInfo() {
         System.out.println(currentRoom.getLongDescription());
-        System.out.println(currentRoom.getItemsString());
     }
 
     /**
@@ -252,5 +256,13 @@ public class Game {
      */
     private void look() {
         System.out.println(currentRoom.getLongDescription());
+    }
+
+    /**
+     * "back" takes the player into the previous room he/she was in was entered
+     */
+    private void back() {
+        currentRoom = previousRoom;
+        printLocationInfo();
     }
 }

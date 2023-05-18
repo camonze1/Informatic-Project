@@ -99,7 +99,7 @@ public class Room {
      * @return A description of the room, including exits.
      */
     public String getLongDescription() {
-        return "Tu es " + description + ".\n" + getExitString();
+        return "Tu es " + description + ".\n" + getExitString() + "\n" + getItemsString();
     }
 
     /**
@@ -119,7 +119,7 @@ public class Room {
     public String getItemsString() {
         String string_items = "Objets: \n";
         for (int i = 0; i < items.size(); i++) {
-            string_items += items.get(i).getDescription() + "\n";
+            string_items += items.get(i).getDescription() + " (" + (i + 1) + ") " + "\n";
         }
         return string_items;
 
