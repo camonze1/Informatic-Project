@@ -80,6 +80,50 @@ public class Game {
 
         grenier.setExit("6", hall);
 
+        // initialise items
+        Item tableau = new Item("un tableau", 7.75, 890);
+        hall.addItem(tableau);
+        Item portefeuille = new Item("un porte-feuille", 0.05, 67);
+        hall.addItem(portefeuille);
+
+        Item console = new Item("une console de jeux vidéos", 0.5, 300);
+        salon.addItem(console);
+        Item tele = new Item("une télé", 8.0, 700);
+        salon.addItem(tele);
+        Item montre = new Item("une montre", 0.02, 150);
+        salon.addItem(montre);
+
+        Item reveil = new Item("un radio-réveil", 0.5, 50);
+        bedRoom.addItem(reveil);
+        Item coffre_fort = new Item("un coffre-fort fermé", 32.0, 700);
+        bedRoom.addItem(coffre_fort);
+        Item lunettes = new Item("des lunettes", 0.01, 117);
+        bedRoom.addItem(lunettes);
+
+        Item collier = new Item("un collier en or", 0.16, 1200);
+        bathRoom.addItem(collier);
+        Item bague = new Item("une bague en argent", 0.015, 77);
+        bathRoom.addItem(bague);
+
+        Item ordinateur = new Item("un ordinateur portable", 3.0, 800);
+        office.addItem(ordinateur);
+        Item radio = new Item("une radio", 0.5, 30);
+        office.addItem(radio);
+
+        Item machine_cafe = new Item("une machine à café", 4.0, 99);
+        kitchen.addItem(machine_cafe);
+        Item grille_pain = new Item("un grille pain", 3.5, 75);
+        kitchen.addItem(grille_pain);
+
+        Item argenterie = new Item("l’argenterie", 22.0, 54);
+        diningRoom.addItem(argenterie);
+
+        Item cartouches = new Item("des cartouches de jeux vidéos", 0.15, 70);
+        gameRoom.addItem(cartouches);
+
+        Item vase = new Item("un vase", 7.2, 27);
+        grenier.addItem(vase);
+
         currentRoom = outside; // start game outside
     }
 
@@ -185,6 +229,7 @@ public class Game {
      */
     private void printLocationInfo() {
         System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.getItemsString());
     }
 
     /**

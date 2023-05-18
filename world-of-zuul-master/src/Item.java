@@ -12,7 +12,7 @@
 
 public class Item {
     private String description;
-    private Integer weight;
+    private Double weight;
     private Integer value;
 
     /**
@@ -20,9 +20,11 @@ public class Item {
      * description is a description of the object as a book
      * weight is the weight of the object
      * 
-     * @param description The room's description.
+     * @param description The item's description.
+     * @param weight      The item's weight.
+     * @param value       The item's value.
      */
-    public Item(String description, Integer weight, Integer value) {
+    public Item(String description, Double weight, Integer value) {
         this.description = description;
         this.weight = weight;
         this.value = value;
@@ -31,7 +33,7 @@ public class Item {
     /**
      * @return The weight of the item.
      */
-    public Integer getWeight() {
+    public Double getWeight() {
         return this.weight;
     }
 

@@ -15,11 +15,12 @@
  */
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Room {
     private String description;
     private HashMap<String, Room> exits;
-    public Item[] items;
+    private ArrayList<Item> items;
 
     /**
      * Create a room described "description". Initially, it has
@@ -31,6 +32,7 @@ public class Room {
     public Room(String description) {
         this.description = description;
         exits = new HashMap<>();
+        items = new ArrayList();
     }
 
     /**
@@ -98,6 +100,29 @@ public class Room {
      */
     public String getLongDescription() {
         return "Tu es " + description + ".\n" + getExitString();
+    }
+
+    /**
+     * Add a item in a room
+     */
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    /**
+     * Return a long description of this room, of the form:
+     * You are in the kitchen.
+     * Exits: north west
+     * 
+     * @return A description of the room, including exits.
+     */
+    public String getItemsString() {
+        String string_items = "Objets: \n";
+        for (int i = 0; i < items.size(); i++) {
+            string_items += items.get(i).getDescription() + "\n";
+        }
+        return string_items;
+
     }
 
 }
