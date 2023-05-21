@@ -1,3 +1,4 @@
+
 /**
  * This class is the main class of the "World of Zuul" application.
  * "World of Zuul" is a very simple, text based adventure game. Users
@@ -17,15 +18,16 @@
 
 public class Game {
     private Parser parser;
-    private Room currentRoom;
-    private Room previousRoom;
+    private Player player;
 
     /**
      * Create the game and initialise its internal map.
      */
     public Game() {
+        player = new Player();
         createRooms();
         parser = new Parser();
+
     }
 
     /**
@@ -125,7 +127,7 @@ public class Game {
         Item vase = new Item("un vase", 7.2, 27);
         grenier.addItem(vase);
 
-        currentRoom = outside; // start game outside
+        player.setCurrentRoom(outside); // start game outside
     }
 
     /**
@@ -217,13 +219,13 @@ public class Game {
 
         // Try to leave current room.
         // Room nextRoom = null;
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("Il n'y a pas de porte!");
         } else {
-            previousRoom = currentRoom;
-            currentRoom = nextRoom;
+            player.setPreviousRoom(player.getCurrentRoom());
+            player.setCurrentRoom(nextRoom);
 
             printLocationInfo();
         }
@@ -233,7 +235,7 @@ public class Game {
      * prints the information about the current location
      */
     private void printLocationInfo() {
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
     /**
@@ -255,14 +257,14 @@ public class Game {
      * "look" was entered.Print out the description of the room and the exits
      */
     private void look() {
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
     /**
      * "back" takes the player into the previous room he/she was in was entered
      */
     private void back() {
-        currentRoom = previousRoom;
+        player.setCurrentRoom(player.getPreviousRoom());
         printLocationInfo();
     }
 }
