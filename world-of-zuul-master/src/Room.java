@@ -103,18 +103,44 @@ public class Room {
     }
 
     /**
-     * Add a item in a room
+     * Add an item in a room
+     * 
+     * @param item to add
+     * 
      */
     public void addItem(Item item) {
         items.add(item);
     }
 
     /**
-     * Return a long description of this room, of the form:
-     * You are in the kitchen.
-     * Exits: north west
+     * Delete an item in a room
      * 
-     * @return A description of the room, including exits.
+     * @param item to remove
+     */
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+    /**
+     * returns the object in relation to the index of the object list
+     * 
+     * @param item_index index of the item to be returned
+     * @return the item or null if it does not exist
+     */
+    public Item getItem(int item_index) {
+        if (item_index >= items.size()) {
+            return null;
+        }
+
+        return items.get(item_index);
+    }
+
+    /**
+     * Return a long description of the items in the room:
+     * Objets :
+     * Un tableau (1)
+     * 
+     * @return A description of the item in the room
      */
     public String getItemsString() {
         String string_items = "Objets: \n";

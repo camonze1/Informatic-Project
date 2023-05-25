@@ -182,6 +182,12 @@ public class Game {
             look();
         } else if (commandWord.equals("back")) {
             back();
+        } else if (commandWord.equals("take")) {
+            take(command);
+        } else if (commandWord.equals("drop")) {
+            drop(command);
+        } else if (commandWord.equals("items")) {
+            items();
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
@@ -211,7 +217,7 @@ public class Game {
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
+            System.out.println("Aller où?");
             return;
         }
 
@@ -246,7 +252,7 @@ public class Game {
      */
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
-            System.out.println("Quit what?");
+            System.out.println("Quitter quoi?");
             return false;
         } else {
             return true; // signal that we want to quit
@@ -266,5 +272,64 @@ public class Game {
     private void back() {
         player.setCurrentRoom(player.getPreviousRoom());
         printLocationInfo();
+    }
+
+    /**
+     * "take" pick up the item that is in second word
+     */
+    private void take(Command command) {
+        if (!command.hasSecondWord()) {
+            // if there is no second word, we don't know xhat to take
+            System.out.println("Prendre quoi?\nQUOICOUBEH");
+            return;
+        }
+        String item_index = command.getSecondWord();
+        Item item = player.getCurrentRoom().getItem(Integer.parseInt(item_index) - 1);
+        if (item == null) {
+            System.out.println("Cet objet n'est pas dans la pièce");
+        } else {
+            if (player.CanTakeIt(item) == true) {
+                player.getCurrentRoom().removeItem(item);
+                player.addItem(item);
+                printLocationInfo();
+            } else {
+                System.out.println("Cet objet est trop lourd, vous ne pouvez pas le prendre");
+            }
+
+        }
+    }
+
+    /**
+     * "drop" drop the item that is in second word
+     */
+    private void drop(Command command) {
+        if (!command.hasSecondWord()) {
+            // if there is no second word, we don't know what to drop
+            System.out.println("Poser quoi?");
+            return;
+        }
+        String item_index = command.getSecondWord();
+        Item item = player.getItem(Integer.parseInt(item_index) - 1);
+        if (item == null) {
+            System.out.println("Cet objet n'est pas en votre possession");
+        } else {
+            player.getCurrentRoom().addItem(item);
+            player.removeItem(item);
+
+            printLocationInfo();
+        }
+
+    }
+
+    /**
+     * "items" prints out all items currently carried and their total weight
+     */
+    private void items() {
+        String string_items = "Vos objets: \n";
+        for (int i = 0; i < player.getItems().size(); i++) {
+            string_items += player.getItem(i).getDescription() + " (" + (i + 1) + ") " + "\n";
+        }
+        System.out.println(string_items);
+        System.out.println("Poids total : " + player.getTotalweight());
     }
 }
