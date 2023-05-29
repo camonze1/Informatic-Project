@@ -168,35 +168,33 @@ public class Game {
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
-        if (command.isUnknown()) {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
-
-        String commandWord = command.getCommandWord();
+        CommandWord commandWord = this.parser.getCommandWords().getTranslate(command.getCommandWord());
         switch (commandWord) {
-            case "help":
+        	case UNKNOWN:
+        		System.out.println("I don't know what you mean...");
+        		break;
+            case HELP:
                 printHelp();
                 break;
-            case "go":
+            case GO:
                 goRoom(command);
                 break;
-            case "look":
+            case LOOK:
                 look();
                 break;
-            case "back":
+            case BACK:
                 back();
                 break;
-            case "take":
+            case TAKE:
                 take(command);
                 break;
-            case "drop":
+            case DROP:
                 drop(command);
                 break;
-            case "items":
+            case ITEMS:
                 items();
                 break;
-            case "quit":
+            case QUIT:
                 wantToQuit = quit(command);
                 break;
             default:
@@ -343,4 +341,6 @@ public class Game {
         System.out.println(string_items);
         System.out.println("Poids total : " + player.getTotalweight());
     }
+    
+
 }
