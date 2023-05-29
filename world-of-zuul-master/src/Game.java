@@ -170,9 +170,9 @@ public class Game {
 
         CommandWord commandWord = this.parser.getCommandWords().getTranslate(command.getCommandWord());
         switch (commandWord) {
-        	case UNKNOWN:
-        		System.out.println("I don't know what you mean...");
-        		break;
+            case UNKNOWN:
+                System.out.println("Je ne comprends pas ce que tu veux dire... Tapes 'help' si tu as besoin d'aide.");
+                break;
             case HELP:
                 printHelp();
                 break;
@@ -341,6 +341,5 @@ public class Game {
         System.out.println(string_items);
         System.out.println("Poids total : " + player.getTotalweight());
     }
-    
 
 }
