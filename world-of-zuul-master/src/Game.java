@@ -152,10 +152,14 @@ public class Game {
      */
     private void printWelcome() {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
-        System.out.println();
+        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
+        System.out.println("   Bienvenue dans Dorobo !\n");
+        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
+        System.out.println(
+                "Dorobo est un jeu incroyable qui se joue en ligne de commande !\nTu joues le rôle d'un cambrioleur, qui vole des maisons pour gagner de l'argent.\nLe but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\navant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
+        System.out.println("------------------------------------\n");
+        System.out.println("Tapes 'help' si tu as besoin d'aide.\n");
+        System.out.println("------------------------------------");
         printLocationInfo();
     }
 
@@ -169,6 +173,7 @@ public class Game {
         boolean wantToQuit = false;
 
         CommandWord commandWord = this.parser.getCommandWords().getTranslate(command.getCommandWord());
+
         switch (commandWord) {
             case UNKNOWN:
                 System.out.println("Je ne comprends pas ce que tu veux dire... Tapes 'help' si tu as besoin d'aide.");
@@ -212,10 +217,8 @@ public class Game {
      * command words.
      */
     private void printHelp() {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
-        System.out.println("Your command words are:");
+        System.out.println("\nTu es perdu ? Tu ne sais plus quoi faire ?");
+        System.out.println("Tes commandes sont :\n");
         System.out.println(parser.showCommands());
     }
 

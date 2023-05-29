@@ -68,7 +68,7 @@ public class Room {
      * @return A description of the available exits.
      */
     public String getExitString() {
-        String string_exit = "Sorties: \n";
+        String string_exit = "Sorties: \n\n";
 
         if (this.exits.get("1") != null) {
             string_exit += ("Devant, " + this.exits.get("1").getDescription() + " (1) \n");
@@ -99,7 +99,8 @@ public class Room {
      * @return A description of the room, including exits.
      */
     public String getLongDescription() {
-        return "Tu es " + description + ".\n" + getExitString() + "\n" + getItemsString();
+        return "\nTu es " + description + ".\n\n- - - - - - - - - - - - - - - - -\n" + getExitString()
+                + "\n- - - - - - - - - - - - - - - - -\n" + getItemsString();
     }
 
     /**
@@ -143,12 +144,14 @@ public class Room {
      * @return A description of the item in the room
      */
     public String getItemsString() {
-        String string_items = "Objets: \n";
-        for (int i = 0; i < items.size(); i++) {
-            string_items += items.get(i).getDescription() + " (" + (i + 1) + ") " + "\n";
+        String string_items = "Objets: \n\n";
+        if (items.size() == 0) {
+            string_items += "Il n'y a aucun objet la où tu es.";
+        } else {
+            for (int i = 0; i < items.size(); i++) {
+                string_items += items.get(i).getDescription() + " (" + (i + 1) + ") " + "\n";
+            }
         }
         return string_items;
-
     }
-
 }
