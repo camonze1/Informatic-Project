@@ -14,18 +14,18 @@ import java.util.Map;
 
 public class CommandWords {
     // a constant array that holds all valid command words
-	
-	private HashMap<String, CommandWord> validCommands;
-	
-    //private static final String[] validCommands = {
-    //        "go", "quit", "help", "look", "back", "take", "drop", "items"
-    //};
+
+    private HashMap<String, CommandWord> validCommands;
+
+    // private static final String[] validCommands = {
+    // "go", "quit", "help", "look", "back", "take", "drop", "items"
+    // };
 
     /**
      * Constructor - initialise the command words.
      */
     public CommandWords() {
-    	validCommands = new HashMap<>();
+        validCommands = new HashMap<>();
         validCommands.put("go", CommandWord.GO);
         validCommands.put("quit", CommandWord.QUIT);
         validCommands.put("help", CommandWord.HELP);
@@ -35,7 +35,7 @@ public class CommandWords {
         validCommands.put("drop", CommandWord.DROP);
         validCommands.put("items", CommandWord.ITEMS);
         validCommands.put(null, CommandWord.UNKNOWN);
-    	
+
     }
 
     /**
@@ -45,12 +45,12 @@ public class CommandWords {
      *         false if it isn't.
      */
     public boolean isCommand(String aString) {
-    	for (Map.Entry entry : validCommands.entrySet()) {
-    		if(validCommands.containsKey(aString)) {
-    			return true;
-    		}
-    	}
-         //if we get here, the string was not found in the commands
+        for (Map.Entry entry : validCommands.entrySet()) {
+            if (validCommands.containsKey(aString)) {
+                return true;
+            }
+        }
+        // if we get here, the string was not found in the commands
         return false;
     }
 
@@ -60,19 +60,18 @@ public class CommandWords {
     public String getCommandList() {
         String command_list = "";
         for (Map.Entry<String, CommandWord> entry : validCommands.entrySet()) {
-            if(entry.getValue() != CommandWord.UNKNOWN) {
-            	command_list += entry.getValue() + " ";
-            }		
+            if (entry.getValue() != CommandWord.UNKNOWN) {
+                command_list += entry.getValue() + " ";
+            }
         }
         return command_list;
     }
 
+    public CommandWord getTranslate(String command) {
+        if (validCommands.containsKey(command)) {
+            return validCommands.get(command);
+        }
+        return CommandWord.UNKNOWN;
+    }
 
-	public CommandWord getTranslate(String command){
-		if(validCommands.containsKey(command)) {
-    		return validCommands.get(command);
-    	}
-		return CommandWord.UNKNOWN;
-	}
-	
 }
