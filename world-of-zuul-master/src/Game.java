@@ -172,35 +172,34 @@ public class Game {
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
-        if (command.isUnknown()) {
-            System.out.println("Je ne comprends pas ce que tu veux dire... Tapes 'help' si tu as besoin d'aide.");
-            return false;
-        }
+        CommandWord commandWord = this.parser.getCommandWords().getTranslate(command.getCommandWord());
 
-        String commandWord = command.getCommandWord();
         switch (commandWord) {
-            case "help":
+            case UNKNOWN:
+                System.out.println("Je ne comprends pas ce que tu veux dire... Tapes 'help' si tu as besoin d'aide.");
+                break;
+            case HELP:
                 printHelp();
                 break;
-            case "go":
+            case GO:
                 goRoom(command);
                 break;
-            case "look":
+            case LOOK:
                 look();
                 break;
-            case "back":
+            case BACK:
                 back();
                 break;
-            case "take":
+            case TAKE:
                 take(command);
                 break;
-            case "drop":
+            case DROP:
                 drop(command);
                 break;
-            case "items":
+            case ITEMS:
                 items();
                 break;
-            case "quit":
+            case QUIT:
                 wantToQuit = quit(command);
                 break;
             default:
@@ -293,7 +292,7 @@ public class Game {
     private void take(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know xhat to take
-            System.out.println("Prendre quoi?\nQUOICOUBEH");
+            System.out.println("Prendre quoi?\n");
             return;
         }
         String item_index = command.getSecondWord();
@@ -345,4 +344,5 @@ public class Game {
         System.out.println(string_items);
         System.out.println("Poids total : " + player.getTotalweight());
     }
+
 }

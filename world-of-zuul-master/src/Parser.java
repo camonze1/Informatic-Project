@@ -66,4 +66,7 @@ public class Parser {
         return commands.getCommandList();
     }
 
+    public CommandWords getCommandWords() {
+    	return this.commands;
+    }
 }
