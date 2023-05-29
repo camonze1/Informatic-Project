@@ -292,7 +292,7 @@ public class Game {
     private void take(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know xhat to take
-            System.out.println("Prendre quoi?\nQUOICOUBEH");
+            System.out.println("Prendre quoi?\n");
             return;
         }
         String item_index = command.getSecondWord();
