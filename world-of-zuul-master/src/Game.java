@@ -19,7 +19,7 @@
 public class Game extends Thread {
     private Parser parser;
     private Player player;
-    private static int timer = 0;
+    private static int timer = 120;
 
     /**
      * Create the game and initialise its internal map.
@@ -365,10 +365,12 @@ public class Game extends Thread {
             } catch (InterruptedException e) {
                 System.out.println("Thread interrupted");
             }
-            timer++;
-            if (timer == 5) {
-                System.out.println("\nLe temps est écoulé, vous avez perdu");
+            timer--;
+            if (timer == 0) {
+                System.out.println("\nLe temps est écoulé, tu as perdu");
                 System.exit(0);
+            } else if (timer == 30) {
+                System.out.println("\n*Il te reste 30 secondes, dépêche toi de sortir !");
             }
         }
     }
