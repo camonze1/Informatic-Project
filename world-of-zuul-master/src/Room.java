@@ -146,7 +146,7 @@ public class Room {
     public String getItemsString() {
         String string_items = "Objets: \n\n";
         if (items.size() == 0) {
-            string_items += "Il n'y a aucun objet la où tu es.";
+            string_items += "Il n'y a aucun objet là où tu es.";
         } else {
             for (int i = 0; i < items.size(); i++) {
                 string_items += items.get(i).getDescription() + " (" + (i + 1) + ") " + "\n";

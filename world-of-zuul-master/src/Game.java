@@ -159,7 +159,7 @@ public class Game extends Thread {
         System.out.println("   Bienvenue dans Dorobo !\n");
         System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
         System.out.println(
-                "Dorobo est un jeu incroyable qui se joue en lignes de commande !\nTu joues le rôle d'un cambrioleur, qui vole des maisons pour gagner de l'argent.\nLe but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\navant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
+                "Dorobo est un jeu incroyable qui se joue en lignes de commande !\nTu joues le rôle d'un cambrioleur, qui voles des maisons pour gagner de l'argent.\nLe but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\navant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
         System.out.println("------------------------------------\n");
         System.out.println("Tape 'help' si tu as besoin d'aide.\n");
         System.out.println("------------------------------------");
@@ -179,7 +179,7 @@ public class Game extends Thread {
 
         switch (commandWord) {
             case UNKNOWN:
-                System.out.println("Je ne comprends pas ce que tu veux dire... Tapes 'help' si tu as besoin d'aide.");
+                System.out.println("Je ne comprends pas ce que tu veux dire... Tape 'help' si tu as besoin d'aide.");
                 break;
             case HELP:
                 printHelp();
@@ -287,7 +287,7 @@ public class Game extends Thread {
     private void back() {
         Room lastRoom = player.getPreviousRoom();
         if (lastRoom == null) {
-            System.out.println("Vous ne pouvez pas retourner en arrière, vous êtes au début");
+            System.out.println("Vous ne pouvez pas retourner en arrière, vous êtes au début.");
         } else {
             player.setCurrentRoom(lastRoom);
             printLocationInfo();
@@ -307,14 +307,14 @@ public class Game extends Thread {
         String item_index = command.getSecondWord();
         Item item = player.getCurrentRoom().getItem(Integer.parseInt(item_index) - 1);
         if (item == null) {
-            System.out.println("Cet objet n'est pas dans la pièce");
+            System.out.println("Cet objet n'est pas dans la pièce.");
         } else {
             if (player.CanTakeIt(item) == true) {
                 player.getCurrentRoom().removeItem(item);
                 player.addItem(item);
                 printLocationInfo();
             } else {
-                System.out.println("Cet objet est trop lourd, vous ne pouvez pas le prendre");
+                System.out.println("Cet objet est trop lourd, vous ne pouvez pas le prendre.");
             }
 
         }
@@ -332,7 +332,7 @@ public class Game extends Thread {
         String item_index = command.getSecondWord();
         Item item = player.getItem(Integer.parseInt(item_index) - 1);
         if (item == null) {
-            System.out.println("Cet objet n'est pas en votre possession");
+            System.out.println("Cet objet n'est pas en votre possession.");
         } else {
             player.getCurrentRoom().addItem(item);
             player.removeItem(item);
@@ -367,7 +367,7 @@ public class Game extends Thread {
             }
             timer++;
             if (timer == 5) {
-                System.out.println("\nLe temps est écoulé, vous avez perdu");
+                System.out.println("\nLe temps est écoulé, vous avez perdu.");
                 System.exit(0);
             }
         }
