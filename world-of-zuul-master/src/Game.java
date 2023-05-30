@@ -371,7 +371,7 @@ public class Game extends Thread {
                 System.out.println("\nLe temps est écoulé, tu as perdu");
                 System.exit(0);
             } else if (timer == 30) {
-                System.out.println("\n*Il te reste 30 secondes, dépêche toi de sortir !");
+                System.out.println("\nIl te reste 30 secondes, dépêche toi de sortir !");
             }
         }
     }
