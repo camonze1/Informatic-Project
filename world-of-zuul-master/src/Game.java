@@ -282,8 +282,14 @@ public class Game {
      * "back" takes the player into the previous room he/she was in was entered
      */
     private void back() {
-        player.setCurrentRoom(player.getPreviousRoom());
-        printLocationInfo();
+        Room lastRoom = player.getPreviousRoom();
+        if (lastRoom == null) {
+            System.out.println("Vous ne pouvez pas retourner en arrière, vous êtes au début");
+        } else {
+            player.setCurrentRoom(lastRoom);
+            printLocationInfo();
+        }
+
     }
 
     /**

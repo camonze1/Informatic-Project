@@ -32,15 +32,20 @@ public class Player {
      * @return The last room.
      */
     public Room getPreviousRoom() {
-        Room lastRoom = previousRoom.peek();
-        previousRoom.pop();
-        return lastRoom;
+        if (previousRoom.size() == 0) {
+            return null;
+        } else {
+            Room lastRoom = previousRoom.peek();
+            previousRoom.pop();
+            return lastRoom;
+        }
     }
 
     /**
      * adds a room to the list of visited rooms
      * 
-     * @param The room to add
+     * 
+     * 
      */
     public void setPreviousRoom(Room currentRoom) {
         previousRoom.push(currentRoom);
