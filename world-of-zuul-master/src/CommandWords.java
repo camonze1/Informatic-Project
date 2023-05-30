@@ -25,16 +25,14 @@ public class CommandWords {
      * Constructor - initialise the command words.
      */
     public CommandWords() {
-        validCommands = new HashMap<>();
-        validCommands.put("go", CommandWord.GO);
-        validCommands.put("quit", CommandWord.QUIT);
-        validCommands.put("help", CommandWord.HELP);
-        validCommands.put("look", CommandWord.LOOK);
-        validCommands.put("back", CommandWord.BACK);
-        validCommands.put("take", CommandWord.TAKE);
-        validCommands.put("drop", CommandWord.DROP);
-        validCommands.put("items", CommandWord.ITEMS);
-        validCommands.put(null, CommandWord.UNKNOWN);
+        validCommands = new HashMap<String, CommandWord>();
+        for(CommandWord command : CommandWord.values()) {
+            if(command != CommandWord.UNKNOWN) {
+                validCommands.put(command.toString(), command);
+            } else {
+                validCommands.put(null, CommandWord.UNKNOWN);
+            }
+        }
 
     }
 
