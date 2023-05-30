@@ -16,9 +16,10 @@
  * @version 2016.02.29
  */
 
-public class Game {
+public class Game extends Thread {
     private Parser parser;
     private Player player;
+    private static int timer = 0;
 
     /**
      * Create the game and initialise its internal map.
@@ -27,7 +28,6 @@ public class Game {
         player = new Player();
         createRooms();
         parser = new Parser();
-
     }
 
     /**
@@ -134,17 +134,20 @@ public class Game {
      * Main play routine. Loops until end of play.
      */
     public void play() {
+        Game thread = new Game();
+        thread.start();
+
         printWelcome();
 
         // Enter the main command loop. Here we repeatedly read commands and
         // execute them until the game is over.
 
         boolean finished = false;
-        while (!finished) {
+        while (!finished || thread.isAlive()) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Merci d'avoir joué. Au revoir.");
     }
 
     /**
@@ -156,9 +159,9 @@ public class Game {
         System.out.println("   Bienvenue dans Dorobo !\n");
         System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
         System.out.println(
-                "Dorobo est un jeu incroyable qui se joue en ligne de commande !\nTu joues le rôle d'un cambrioleur, qui vole des maisons pour gagner de l'argent.\nLe but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\navant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
+                "Dorobo est un jeu incroyable qui se joue en lignes de commande !\nTu joues le rôle d'un cambrioleur, qui vole des maisons pour gagner de l'argent.\nLe but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\navant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
         System.out.println("------------------------------------\n");
-        System.out.println("Tapes 'help' si tu as besoin d'aide.\n");
+        System.out.println("Tape 'help' si tu as besoin d'aide.\n");
         System.out.println("------------------------------------");
         printLocationInfo();
     }
@@ -351,4 +354,22 @@ public class Game {
         System.out.println("Poids total : " + player.getTotalweight());
     }
 
+    /*
+     * public void run() start timer thread
+     */
+
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted");
+            }
+            timer++;
+            if (timer == 5) {
+                System.out.println("\nLe temps est écoulé, vous avez perdu");
+                System.exit(0);
+            }
+        }
+    }
 }
