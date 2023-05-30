@@ -143,7 +143,7 @@ public class Game extends Thread {
         // execute them until the game is over.
 
         boolean finished = false;
-        while (!finished || thread.isAlive()) {
+        while (!finished && thread.isAlive()) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
