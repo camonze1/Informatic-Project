@@ -148,6 +148,7 @@ public class Game extends Thread {
             finished = processCommand(command);
         }
         System.out.println("Merci d'avoir joué. Au revoir.");
+        System.exit(0);
     }
 
     /**
