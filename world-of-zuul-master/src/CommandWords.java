@@ -14,12 +14,7 @@ import java.util.Map;
 
 public class CommandWords {
     // a constant array that holds all valid command words
-
     private HashMap<String, CommandWord> validCommands;
-
-    // private static final String[] validCommands = {
-    // "go", "quit", "help", "look", "back", "take", "drop", "items"
-    // };
 
     /**
      * Constructor - initialise the command words.
@@ -33,7 +28,6 @@ public class CommandWords {
                 validCommands.put(null, CommandWord.UNKNOWN);
             }
         }
-
     }
 
     /**

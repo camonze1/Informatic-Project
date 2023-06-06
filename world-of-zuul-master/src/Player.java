@@ -44,8 +44,6 @@ public class Player {
     /**
      * adds a room to the list of visited rooms
      * 
-     * 
-     * 
      */
     public void setPreviousRoom(Room currentRoom) {
         previousRoom.push(currentRoom);
@@ -88,7 +86,6 @@ public class Player {
         if (item_index >= items.size()) {
             return null;
         }
-
         return items.get(item_index);
     }
 
@@ -103,13 +100,12 @@ public class Player {
             weight += items.get(item).getWeight();
         }
         return weight;
-
     }
 
     /**
      * returns true if the player can take the object else returns false
      */
-    public Boolean CanTakeIt(Item item) {
+    public Boolean canTakeIt(Item item) {
         Double total_weight = getTotalweight() + item.getWeight();
         if (total_weight <= max_weight) {
             return true;
