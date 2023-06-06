@@ -69,24 +69,12 @@ public class Room {
      */
     public String getExitString() {
         String string_exit = "Sorties: \n\n";
+        String [] exit_name = {"Devant", "A droite", "Derrière", "A gauche", "En haut", "En bas"};
 
-        if (this.exits.get("1") != null) {
-            string_exit += ("Devant, " + this.exits.get("1").getDescription() + " (1) \n");
-        }
-        if (this.exits.get("2") != null) {
-            string_exit += ("A droite, " + this.exits.get("2").getDescription() + " (2) \n");
-        }
-        if (this.exits.get("3") != null) {
-            string_exit += ("Derrière, " + this.exits.get("3").getDescription() + " (3) \n");
-        }
-        if (this.exits.get("4") != null) {
-            string_exit += ("A gauche, " + this.exits.get("4").getDescription() + " (4) \n");
-        }
-        if (this.exits.get("5") != null) {
-            string_exit += ("En haut, " + this.exits.get("5").getDescription() + " (5) \n");
-        }
-        if (this.exits.get("6") != null) {
-            string_exit += ("En bas, " + this.exits.get("6").getDescription() + " (6) \n");
+        for (int i = 0; i < exit_name.length; i++) {
+            if (this.exits.get(Integer.toString(i + 1)) != null) {
+                string_exit += (exit_name[i] + ", " + this.exits.get(Integer.toString(i + 1)).getDescription() + " (" + (i + 1) + ") \n");
+            }
         }
         return string_exit;
     }
@@ -107,7 +95,6 @@ public class Room {
      * Add an item in a room
      * 
      * @param item to add
-     * 
      */
     public void addItem(Item item) {
         items.add(item);
