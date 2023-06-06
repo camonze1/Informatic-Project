@@ -132,7 +132,6 @@ public class Room {
         if (item_index >= items.size()) {
             return null;
         }
-
         return items.get(item_index);
     }
 

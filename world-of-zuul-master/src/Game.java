@@ -180,7 +180,7 @@ public class Game extends Thread {
 
         switch (commandWord) {
             case UNKNOWN:
-                System.out.println("Je ne comprends pas ce que tu veux dire... Tape 'help' si tu as besoin d'aide.");
+                System.out.println("Je ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.");
                 break;
             case HELP:
                 printHelp();
@@ -310,7 +310,7 @@ public class Game extends Thread {
         if (item == null) {
             System.out.println("Cet objet n'est pas dans la pièce.");
         } else {
-            if (player.CanTakeIt(item) == true) {
+            if (player.canTakeIt(item) == true) {
                 player.getCurrentRoom().removeItem(item);
                 player.addItem(item);
                 printLocationInfo();
@@ -364,7 +364,7 @@ public class Game extends Thread {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                System.out.println("Thread interrupted");
+                System.out.println("Problème de timer");
             }
 
             timer--;
