@@ -337,10 +337,8 @@ public class Game extends Thread {
         } else {
             player.getCurrentRoom().addItem(item);
             player.removeItem(item);
-
             printLocationInfo();
         }
-
     }
 
     /**
