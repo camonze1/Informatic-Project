@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -14,13 +15,13 @@ import java.util.Map;
 
 public class CommandWords {
     // a constant array that holds all valid command words
-    private HashMap<String, CommandWord> validCommands;
+    private LinkedHashMap<String, CommandWord> validCommands;
 
     /**
      * Constructor - initialise the command words.
      */
     public CommandWords() {
-        validCommands = new HashMap<String, CommandWord>();
+        validCommands = new LinkedHashMap<String, CommandWord>();
         for(CommandWord command : CommandWord.values()) {
             if(command != CommandWord.UNKNOWN) {
                 validCommands.put(command.toString(), command);
@@ -37,11 +38,9 @@ public class CommandWords {
      *         false if it isn't.
      */
     public boolean isCommand(String aString) {
-        for (Map.Entry entry : validCommands.entrySet()) {
-            if (validCommands.containsKey(aString)) {
-                return true;
-            }
-        }
+        if (validCommands.containsKey(aString)) { 
+            return true;
+        } 
         // if we get here, the string was not found in the commands
         return false;
     }
