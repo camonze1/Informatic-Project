@@ -21,8 +21,8 @@ public class CommandWords {
      */
     public CommandWords() {
         validCommands = new HashMap<String, CommandWord>();
-        for(CommandWord command : CommandWord.values()) {
-            if(command != CommandWord.UNKNOWN) {
+            for(CommandWord command : CommandWord.values()) {
+                if(command != CommandWord.UNKNOWN) {
                 validCommands.put(command.toString(), command);
             } else {
                 validCommands.put(null, CommandWord.UNKNOWN);

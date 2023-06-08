@@ -77,6 +77,19 @@ public class Player {
     }
 
     /**
+     * Return the player's total value of items
+     * 
+     * @return total value
+     */
+    public int getTotalValue() {
+        int value = 0;
+        for (int item = 0; item < items.size(); item++) {
+            value += items.get(item).getValues();
+        }
+        return value;
+    }
+
+    /**
      * returns the object in relation to the index of the object list
      * 
      * @param item_index index of the item to be returned

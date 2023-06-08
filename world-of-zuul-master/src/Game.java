@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  * This class is the main class of the "World of Zuul" application.
  * "World of Zuul" is a very simple, text based adventure game. Users
@@ -20,6 +20,7 @@ public class Game extends Thread {
     private Parser parser;
     private Player player;
     private static int timer = 120;
+
 
     /**
      * Create the game and initialise its internal map.
@@ -206,6 +207,9 @@ public class Game extends Thread {
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            case FINISH:
+                finish();
+                break;
             default:
                 printHelp();
                 break;
@@ -248,7 +252,6 @@ public class Game extends Thread {
         } else {
             player.setPreviousRoom(player.getCurrentRoom());
             player.setCurrentRoom(nextRoom);
-
             printLocationInfo();
         }
     }
@@ -293,7 +296,6 @@ public class Game extends Thread {
             player.setCurrentRoom(lastRoom);
             printLocationInfo();
         }
-
     }
 
     /**
@@ -352,6 +354,34 @@ public class Game extends Thread {
         System.out.println(string_items);
         System.out.println("Poids total : " + player.getTotalweight());
     }
+
+    /**
+     *  "finish" when the player is outside, within the allotted time and wants to finish the game to keep the items he stole during the game and therefore win, this function ask if the player is sure to finish the game using parser using scanner
+     * 
+     */
+    private void finish() {
+        if (player.getCurrentRoom().getDescription().equals("dehors devant la maison")) {
+            if (timer > 0) {
+                System.out.println("Etes-vous sûr de vouloir finir le jeu ? (oui/non)");
+                Scanner scanner = new Scanner(System.in);
+                String answer = scanner.nextLine();
+                if (answer.equals("oui")) {
+                    System.out.println("Vous avez gagné !\nVous avez volé pour " + player.getTotalValue() + "€ d'objets.");
+                    System.exit(0);
+                } else if (answer.equals("non")) {
+                    System.out.println("Vous n'avez pas fini le jeu.");
+                } else {
+                    System.out.println("Je ne comprends pas ce que vous voulez dire.");
+                }
+            } else {
+                System.out.println("Vous avez perdu, le temps est écoulé.");
+                System.exit(0);
+            }
+        } else {
+            System.out.println("Vous ne pouvez pas finir le jeu ici.");
+        }
+    }
+
 
     /*
      * public void run() start timer thread
