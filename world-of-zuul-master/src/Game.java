@@ -86,7 +86,6 @@ public class Game extends Thread {
         // initialise items
 
         // hall 11
-        System.out.println("méthode create");
         ArrayList<Item> itemsRoomExpensive = new ArrayList();
         ArrayList<Item> itemsRoom = new ArrayList();
         Item tableau = new Item("un tableau", 5.0, 100);
@@ -113,202 +112,331 @@ public class Game extends Thread {
         itemsRoom.add(billet);
 
         for (int i = 0; i < 3; i++) {
-            System.out.println(itemsRoom.size());
             int random = (int) (Math.random() * (itemsRoom.size()));
-            System.out.println(random);
-            System.out.println(itemsRoom.get(random).getDescription());
             hall.addItem(itemsRoom.get(random));
             itemsRoom.remove(random);
         }
 
         for (int i = 0; i < 1; i++) {
-            System.out.println(itemsRoomExpensive.size());
             int random = (int) (Math.random() * (itemsRoomExpensive.size()));
-            System.out.println(random);
-            System.out.println(itemsRoomExpensive.get(random).getDescription());
             hall.addItem(itemsRoomExpensive.get(random));
             itemsRoomExpensive.remove(random);
         }
+        hall.Shuffle();
 
         // salon 8
-        ArrayList<Item> itemsRoomExpensive = new ArrayList();
-        ArrayList<Item> itemsRoom = new ArrayList();
+        ArrayList<Item> itemsRoomExpensive2 = new ArrayList();
+        ArrayList<Item> itemsRoom2 = new ArrayList();
         Item console = new Item("une console de jeux vidéos", 0.5, 300);
-        salon.addItem(console);
+        itemsRoomExpensive2.add(console);
         Item tele = new Item("une télé", 8.0, 700);
-        salon.addItem(tele);
+        itemsRoomExpensive2.add(tele);
         Item montre = new Item("une montre", 0.02, 150);
-        salon.addItem(montre);
+        itemsRoomExpensive2.add(montre);
         Item lecteurdvd = new Item("un lecteur DVD", 0.5, 80);
-        salon.addItem(lecteurdvd);
+        itemsRoom2.add(lecteurdvd);
         Item airpods = new Item("des airpods", 0.01, 160);
-        salon.addItem(airpods);
+        itemsRoomExpensive2.add(airpods);
         Item dolby = new Item("des enceintes dolby", 5.0, 320);
-        salon.addItem(dolby);
+        itemsRoomExpensive2.add(dolby);
         Item smartphone = new Item("un smartphone", 0.2, 800);
-        salon.addItem(smartphone);
+        itemsRoomExpensive2.add(smartphone);
         Item bouteille = new Item("une bouteille d'alcool", 1.0, 25);
-        salon.addItem(bouteille);
+        itemsRoom2.add(bouteille);
+        Item chandelier = new Item("un chandelier", 3.0, 25);
+        itemsRoom2.add(chandelier);
+
+        for (int i = 0; i < 3; i++) {
+            int random = (int) (Math.random() * (itemsRoom2.size()));
+            salon.addItem(itemsRoom2.get(random));
+            itemsRoom2.remove(random);
+
+        }
+
+        for (int i = 0; i < 1; i++) {
+            int random = (int) (Math.random() * (itemsRoomExpensive2.size()));
+            salon.addItem(itemsRoomExpensive2.get(random));
+            itemsRoomExpensive2.remove(random);
+        }
+
+        salon.Shuffle();
 
         // bedRoom 11
-        ArrayList<Item> itemsRoomExpensive = new ArrayList();
-        ArrayList<Item> itemsRoom = new ArrayList();
+        ArrayList<Item> itemsRoomExpensive3 = new ArrayList();
+        ArrayList<Item> itemsRoom3 = new ArrayList();
         Item reveil = new Item("un radio-réveil", 0.03, 13);
-        bedRoom.addItem(reveil);
+        itemsRoom3.add(reveil);
         Item coffre_fort = new Item("un coffre-fort fermé", 20.0, 110);
-        bedRoom.addItem(coffre_fort);
+        itemsRoomExpensive3.add(coffre_fort);
         Item lunettes = new Item("des lunettes", 0.01, 300);
-        bedRoom.addItem(lunettes);
+        itemsRoomExpensive3.add(lunettes);
         Item gourde = new Item("une gourde", 0.50, 15);
-        bedRoom.addItem(gourde);
+        itemsRoom3.add(gourde);
         Item casquette = new Item("une casquette", 0.2, 2);
-        bedRoom.addItem(casquette);
+        itemsRoom3.add(casquette);
         Item flute = new Item("une flute traversière", 0.6, 700);
-        bedRoom.addItem(flute);
+        itemsRoomExpensive3.add(flute);
         Item string = new Item("un string", 0.02, 35);
-        bedRoom.addItem(string);
+        itemsRoom3.add(string);
         Item polo = new Item("un polo Ralph Lauren", 0.4, 70);
-        bedRoom.addItem(polo);
+        itemsRoom3.add(polo);
         Item pupitre = new Item("un pupitre", 1.0, 20);
-        bedRoom.addItem(pupitre);
+        itemsRoom3.add(pupitre);
         Item gant_boxe = new Item("un gant de boxe", 0.5, 15);
-        bedRoom.addItem(gant_boxe);
+        itemsRoom3.add(gant_boxe);
         Item paire_chaussette = new Item("une paire de chaussette", 0.1, 5);
-        bedRoom.addItem(paire_chaussette);
+        itemsRoom3.add(paire_chaussette);
+
+        for (int i = 0; i < 3; i++) {
+            int random = (int) (Math.random() * (itemsRoom3.size()));
+            bedRoom.addItem(itemsRoom3.get(random));
+            itemsRoom3.remove(random);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            int random = (int) (Math.random() * (itemsRoomExpensive3.size()));
+            bedRoom.addItem(itemsRoomExpensive3.get(random));
+            itemsRoomExpensive3.remove(random);
+        }
+
+        bedRoom.Shuffle();
 
         // bathRoom 11
+        ArrayList<Item> itemsRoomExpensive4 = new ArrayList();
+        ArrayList<Item> itemsRoom4 = new ArrayList();
+
         Item collier = new Item("un collier en or", 0.2, 4000);
-        bathRoom.addItem(collier);
+        itemsRoomExpensive4.add(collier);
         Item bague = new Item("une bague en argent", 0.015, 90);
-        bathRoom.addItem(bague);
+        itemsRoom4.add(bague);
         Item enceinte = new Item("une enceinte JBL", 0.7, 250);
-        bathRoom.addItem(enceinte);
+        itemsRoomExpensive4.add(enceinte);
         Item lisseur = new Item("un lisseur", 0.6, 600);
-        bathRoom.addItem(lisseur);
+        itemsRoomExpensive4.add(lisseur);
         Item maquillage = new Item("une trousse de maquillage", 1.2, 150);
-        bathRoom.addItem(maquillage);
+        itemsRoomExpensive4.add(maquillage);
         Item parfum = new Item("un parfum", 0.8, 110);
-        bathRoom.addItem(parfum);
+        itemsRoomExpensive4.add(parfum);
         Item plante = new Item("une plante", 1.0, 50);
-        bathRoom.addItem(plante);
+        itemsRoom4.add(plante);
         Item miroirsdb = new Item("un miroir", 5.0, 20);
-        bathRoom.addItem(miroirsdb);
+        itemsRoom4.add(miroirsdb);
         Item serpent = new Item("un serpent", 15.0, 400);
-        bathRoom.addItem(serpent);
+        itemsRoomExpensive4.add(serpent);
         Item shampoing = new Item("un shampoing ", 0.3, 12);
-        bathRoom.addItem(shampoing);
+        itemsRoom4.add(shampoing);
         Item brosse_dent = new Item("une brosse à dent électrique ", 0.25, 20);
-        bathRoom.addItem(brosse_dent);
+        itemsRoom4.add(brosse_dent);
+
+        for (int i = 0; i < 3; i++) {
+            int random = (int) (Math.random() * (itemsRoom4.size()));
+            bathRoom.addItem(itemsRoom4.get(random));
+            itemsRoom4.remove(random);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            int random = (int) (Math.random() * (itemsRoomExpensive4.size()));
+            bathRoom.addItem(itemsRoomExpensive4.get(random));
+            itemsRoomExpensive4.remove(random);
+        }
+
+        bathRoom.Shuffle();
 
         // office 10
+        ArrayList<Item> itemsRoomExpensive5 = new ArrayList();
+        ArrayList<Item> itemsRoom5 = new ArrayList();
+
         Item appareil_photo = new Item("un appareil photo", 800.0, 350);
-        office.addItem(appareil_photo);
+        itemsRoomExpensive5.add(appareil_photo);
         Item ordinateur = new Item("un ordinateur portable", 1.4, 700);
-        office.addItem(ordinateur);
+        itemsRoomExpensive5.add(ordinateur);
         Item radio = new Item("une radio", 0.7, 40);
-        office.addItem(radio);
+        itemsRoom5.add(radio);
         Item casque = new Item("un casque de musique", 0.3, 150);
-        office.addItem(casque);
+        itemsRoomExpensive5.add(casque);
         Item pc = new Item("un pc", 4.0, 1012);
-        office.addItem(pc);
+        itemsRoomExpensive5.add(pc);
         Item clavier = new Item("un clavier", 0.4, 70);
-        office.addItem(clavier);
+        itemsRoom5.add(clavier);
         Item livre = new Item("un livre", 0.450, 22);
-        office.addItem(livre);
+        itemsRoom5.add(livre);
         Item tablette = new Item("une tablette ", 0.4, 550);
-        office.addItem(tablette);
+        itemsRoomExpensive5.add(tablette);
         Item imprimante = new Item("une imprimante ", 2.5, 50);
-        office.addItem(imprimante);
+        itemsRoom5.add(imprimante);
         Item chargeur = new Item("un chargeur sans fil ", 0.25, 60);
-        office.addItem(chargeur);
+        itemsRoom5.add(chargeur);
+
+        for (int i = 0; i < 3; i++) {
+
+            int random = (int) (Math.random() * (itemsRoom5.size()));
+            office.addItem(itemsRoom5.get(random));
+            itemsRoom5.remove(random);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            int random = (int) (Math.random() * (itemsRoomExpensive5.size()));
+            office.addItem(itemsRoomExpensive5.get(random));
+            itemsRoomExpensive5.remove(random);
+        }
+
+        office.Shuffle();
 
         // kitchen 12
+        ArrayList<Item> itemsRoomExpensive6 = new ArrayList();
+        ArrayList<Item> itemsRoom6 = new ArrayList();
+
         Item machine_cafe = new Item("une machine à café", 2.8, 499);
-        kitchen.addItem(machine_cafe);
+        itemsRoomExpensive6.add(machine_cafe);
         Item grille_pain = new Item("un grille pain", 0.4, 22);
-        kitchen.addItem(grille_pain);
+        itemsRoom6.add(grille_pain);
         Item thermomix = new Item("un thermomix", 5.0, 950);
-        kitchen.addItem(thermomix);
+        itemsRoomExpensive6.add(thermomix);
         Item vaisselle = new Item("un set de vaisselle", 8.0, 130);
-        kitchen.addItem(vaisselle);
+        itemsRoomExpensive6.add(vaisselle);
         Item bouilloire = new Item("une bouilloire", 0.3, 30);
-        kitchen.addItem(bouilloire);
+        itemsRoom6.add(bouilloire);
         Item chewings_gums = new Item("des chewings gums", 0.1, 2);
-        kitchen.addItem(chewings_gums);
+        itemsRoom6.add(chewings_gums);
         Item tele_c = new Item("une télé", 6.0, 250);
-        kitchen.addItem(tele_c);
+        itemsRoomExpensive6.add(tele_c);
         Item sodastream = new Item("une sodastream", 0.7, 60);
-        kitchen.addItem(sodastream);
+        itemsRoom6.add(sodastream);
         Item sirop = new Item("sirop la maison de guiot", 0.7, 4);
-        kitchen.addItem(sirop);
+        itemsRoom6.add(sirop);
         Item saladier = new Item("un saladier", 1.7, 25);
-        kitchen.addItem(saladier);
+        itemsRoom6.add(saladier);
         Item kinder = new Item("un kinder pingui", 0.07, 15);
-        kitchen.addItem(kinder);
+        itemsRoom6.add(kinder);
         Item panini = new Item("une machine a panini", 4.0, 50);
-        kitchen.addItem(panini);
+        itemsRoom6.add(panini);
+
+        for (int i = 0; i < 3; i++) {
+            int random = (int) (Math.random() * (itemsRoom6.size()));
+            kitchen.addItem(itemsRoom6.get(random));
+            itemsRoom6.remove(random);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            int random = (int) (Math.random() * (itemsRoomExpensive6.size()));
+            kitchen.addItem(itemsRoomExpensive6.get(random));
+            itemsRoomExpensive6.remove(random);
+        }
+
+        kitchen.Shuffle();
 
         // diningRoom 10
+        ArrayList<Item> itemsRoomExpensive7 = new ArrayList();
+        ArrayList<Item> itemsRoom7 = new ArrayList();
+
         Item argenterie = new Item("l’argenterie", 4.0, 350);
-        diningRoom.addItem(argenterie);
+        itemsRoomExpensive7.add(argenterie);
         Item statue = new Item("une statue", 150.0, 2400);
-        diningRoom.addItem(statue);
+        itemsRoomExpensive7.add(statue);
         Item miroir = new Item("un miroir", 6.0, 285);
-        diningRoom.addItem(miroir);
+        itemsRoomExpensive7.add(miroir);
         Item base_alexa = new Item("une base alexa", 0.45, 60);
-        diningRoom.addItem(base_alexa);
+        itemsRoom7.add(base_alexa);
         Item lampe2 = new Item("une lampe", 5.0, 60);
-        diningRoom.addItem(lampe2);
+        itemsRoom7.add(lampe2);
         Item horloge = new Item("une horloge", 3.0, 100);
-        diningRoom.addItem(horloge);
+        itemsRoom7.add(horloge);
         Item champagne = new Item("une bouteille de champagne", 0.75, 110);
-        diningRoom.addItem(champagne);
+        itemsRoomExpensive7.add(champagne);
         Item bougie = new Item("une bougie Jewel Candle", 1.0, 45);
-        diningRoom.addItem(champagne);
+        itemsRoom7.add(bougie);
         Item ventilateur = new Item("un ventilateur", 3.0, 33);
-        diningRoom.addItem(ventilateur);
+        itemsRoom7.add(ventilateur);
         Item bibelots = new Item("des bibelots", 10.0, 60);
-        diningRoom.addItem(bibelots);
+        itemsRoom7.add(bibelots);
+
+        for (int i = 0; i < 3; i++) {
+            int random = (int) (Math.random() * (itemsRoom7.size()));
+            diningRoom.addItem(itemsRoom7.get(random));
+            itemsRoom7.remove(random);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            int random = (int) (Math.random() * (itemsRoomExpensive7.size()));
+            diningRoom.addItem(itemsRoomExpensive7.get(random));
+            itemsRoomExpensive7.remove(random);
+        }
+
+        diningRoom.Shuffle();
 
         // gameRoom 11
+        ArrayList<Item> itemsRoomExpensive8 = new ArrayList();
+        ArrayList<Item> itemsRoom8 = new ArrayList();
+
         Item cartouches = new Item("des cartouches de jeux vidéos", 0.2, 50);
-        gameRoom.addItem(cartouches);
+        itemsRoom8.add(cartouches);
         Item billard = new Item("un billard", 100.0, 600);
-        gameRoom.addItem(billard);
+        itemsRoomExpensive8.add(billard);
         Item arcade = new Item("une arcade de jeu", 80.0, 70);
-        gameRoom.addItem(arcade);
+        itemsRoom8.add(arcade);
         Item flipper = new Item("un flipper", 120.0, 5000);
-        gameRoom.addItem(flipper);
+        itemsRoomExpensive8.add(flipper);
         Item jukebox = new Item("un jukebox", 35.0, 1400);
-        gameRoom.addItem(jukebox);
+        itemsRoomExpensive8.add(jukebox);
         Item manette = new Item("une manette de jeux vidéos", 0.2, 40);
-        gameRoom.addItem(manette);
+        itemsRoom8.add(manette);
         Item pouffe = new Item("un pouffe", 3.0, 150);
-        gameRoom.addItem(pouffe);
+        itemsRoomExpensive8.add(pouffe);
         Item uno = new Item("un jeu de uno", 0.75, 12);
-        gameRoom.addItem(uno);
+        itemsRoom8.add(uno);
         Item drone = new Item("un drone", 0.5, 220);
-        gameRoom.addItem(drone);
+        itemsRoomExpensive8.add(drone);
         Item playmobile = new Item("des playmobiles", 1.0, 12);
-        gameRoom.addItem(playmobile);
+        itemsRoom8.add(playmobile);
         Item rubiks = new Item("un rubiks cube", 0.1, 5);
-        gameRoom.addItem(rubiks);
+        itemsRoom8.add(rubiks);
+
+        for (int i = 0; i < 3; i++) {
+            int random = (int) (Math.random() * (itemsRoom8.size()));
+            gameRoom.addItem(itemsRoom8.get(random));
+            itemsRoom8.remove(random);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            int random = (int) (Math.random() * (itemsRoomExpensive8.size()));
+            gameRoom.addItem(itemsRoomExpensive8.get(random));
+            itemsRoomExpensive8.remove(random);
+        }
+
+        gameRoom.Shuffle();
 
         // grenier 7
+        ArrayList<Item> itemsRoomExpensive9 = new ArrayList();
+        ArrayList<Item> itemsRoom9 = new ArrayList();
+
         Item vase = new Item("un vase", 2.5, 15);
-        grenier.addItem(vase);
+        itemsRoom9.add(vase);
         Item peintureLV = new Item("une peinture", 1.2, 1200);
-        grenier.addItem(peintureLV);
+        itemsRoomExpensive9.add(peintureLV);
         Item peintureVG = new Item("une peinture", 1.2, 12);
-        grenier.addItem(peintureVG);
+        itemsRoom9.add(peintureVG);
         Item tourne_disque = new Item("un tourne disque", 4.0, 117);
-        grenier.addItem(tourne_disque);
+        itemsRoomExpensive9.add(tourne_disque);
         Item velo = new Item("un vélo", 7.0, 800);
-        grenier.addItem(velo);
+        itemsRoomExpensive9.add(velo);
         Item balle = new Item("une balle de tennis", 0.3, 450);
-        grenier.addItem(balle);
+        itemsRoomExpensive9.add(balle);
         Item vetements = new Item("des vetements", 1.2, 80);
-        grenier.addItem(vetements);
+        itemsRoom9.add(vetements);
+
+        for (int i = 0; i < 3; i++) {
+            int random = (int) (Math.random() * (itemsRoom9.size()));
+            grenier.addItem(itemsRoom9.get(random));
+            itemsRoom9.remove(random);
+        }
+
+        for (int i = 0; i < 1; i++) {
+            int random = (int) (Math.random() * (itemsRoomExpensive9.size()));
+            grenier.addItem(itemsRoomExpensive9.get(random));
+            itemsRoomExpensive9.remove(random);
+        }
+
+        grenier.Shuffle();
 
         player.setCurrentRoom(outside); // start game outside
     }
@@ -317,10 +445,7 @@ public class Game extends Thread {
      * Main play routine. Loops until end of play.
      */
     public void play() {
-        System.out.println("separé");
         Game thread = new Game();
-
-        System.out.print("fin");
         thread.start();
 
         printWelcome();
