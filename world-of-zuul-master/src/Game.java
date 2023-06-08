@@ -19,14 +19,14 @@ import java.util.Scanner;
 public class Game extends Thread {
     private Parser parser;
     private Player player;
-    private static int timer = 120;
-
+    private static int timer = 40;
+    private int stop = 0;
 
     /**
      * Create the game and initialise its internal map.
      */
-    public Game() {
-        player = new Player();
+    public Game(Player player) {
+        this.player = player;
         createRooms();
         parser = new Parser();
     }
@@ -135,7 +135,7 @@ public class Game extends Thread {
      * Main play routine. Loops until end of play.
      */
     public void play() {
-        Game thread = new Game();
+        Game thread = new Game(player);
         thread.start();
 
         printWelcome();
@@ -148,7 +148,6 @@ public class Game extends Thread {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Merci d'avoir joué. Au revoir.");
         System.exit(0);
     }
 
@@ -291,7 +290,7 @@ public class Game extends Thread {
     private void back() {
         Room lastRoom = player.getPreviousRoom();
         if (lastRoom == null) {
-            System.out.println("Vous ne pouvez pas retourner en arrière, vous êtes au début.");
+            System.out.println("Tu ne peux pas retourner en arrière, tu es au début.");
         } else {
             player.setCurrentRoom(lastRoom);
             printLocationInfo();
@@ -317,9 +316,8 @@ public class Game extends Thread {
                 player.addItem(item);
                 printLocationInfo();
             } else {
-                System.out.println("Cet objet est trop lourd, vous ne pouvez pas le prendre.");
+                System.out.println("Cet objet est trop lourd, tu ne peux pas le prendre.");
             }
-
         }
     }
 
@@ -357,36 +355,34 @@ public class Game extends Thread {
 
     /**
      *  "finish" when the player is outside, within the allotted time and wants to finish the game to keep the items he stole during the game and therefore win, this function ask if the player is sure to finish the game using parser using scanner
-     * 
      */
     private void finish() {
         if (player.getCurrentRoom().getDescription().equals("dehors devant la maison")) {
             if (timer > 0) {
-                System.out.println("Etes-vous sûr de vouloir finir le jeu ? (oui/non)");
+                System.out.println("Es-tu sûr de vouloir finir le jeu ? (oui/non)");
                 Scanner scanner = new Scanner(System.in);
                 String answer = scanner.nextLine();
                 if (answer.equals("oui")) {
-                    System.out.println("Vous avez gagné !\nVous avez volé pour " + player.getTotalValue() + "€ d'objets.");
+                    System.out.println("Tu as gagné !\nTu as volé pour " + player.getTotalValue() + "€ d'objets.");
                     System.exit(0);
                 } else if (answer.equals("non")) {
-                    System.out.println("Vous n'avez pas fini le jeu.");
+                    System.out.println("Ok continu à jouer.");
                 } else {
-                    System.out.println("Je ne comprends pas ce que vous voulez dire.");
+                    System.out.println("Je ne comprends pas ce que tu veux dire.");
                 }
             } else {
-                System.out.println("Vous avez perdu, le temps est écoulé.");
-                System.exit(0);
+                System.out.println("Tu as perdu, le temps est écoulé.");
+                stop = 1;
+
             }
         } else {
-            System.out.println("Vous ne pouvez pas finir le jeu ici.");
+            System.out.println("Tu ne peux pas finir le jeu ici.");
         }
     }
-
 
     /*
      * public void run() start timer thread
      */
-
     public void run() {
         while (true) {
             try {
@@ -394,13 +390,14 @@ public class Game extends Thread {
             } catch (InterruptedException e) {
                 System.out.println("Problème de timer");
             }
-
             timer--;
             if (timer == 0) {
                 System.out.println("\nLe temps est écoulé, tu as perdu");
                 System.exit(0);
-            } else if (timer == 30) {
-                System.out.println("\nIl te reste 30 secondes, dépêche toi de sortir !");
+            } else if (timer == 20) {
+                System.out.println("\nIl te reste 20 secondes, dépêche toi de sortir !");
+            } if(stop == 1){
+                thread.stop();
             }
         }
     }

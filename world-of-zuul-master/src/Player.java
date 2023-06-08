@@ -6,7 +6,8 @@ public class Player {
     private Room currentRoom;
     private Stack<Room> previousRoom = new Stack<Room>();
     private ArrayList<Item> items = new ArrayList();
-    private Double max_weight = 10.0;
+    private ArrayList<Integer> scores = new ArrayList();
+    private Double max_weight = 30.0;
 
     /**
      * return the current room
@@ -90,6 +91,21 @@ public class Player {
     }
 
     /**
+     * function that adds the total value of items of the current game to a list that matches the total value of all games played. Then display the highest score of the whole list
+     */
+    public void setHighScore() {
+        int value = getTotalValue();
+        scores.add(value);
+        int max_value = 0;
+        for (int i = 0; i < scores.size(); i++) {
+            if (scores.get(i) > max_value) {
+                max_value = scores.get(i);
+            }
+        }
+        System.out.println("Ton meilleur score est de " + max_value + " €.");
+    }
+
+    /**
      * returns the object in relation to the index of the object list
      * 
      * @param item_index index of the item to be returned
@@ -113,6 +129,13 @@ public class Player {
             weight += items.get(item).getWeight();
         }
         return weight;
+    }
+
+    /**
+     * return the maximum weight
+     */
+    public Double getMaxWeight() {
+        return max_weight;
     }
 
     /**
