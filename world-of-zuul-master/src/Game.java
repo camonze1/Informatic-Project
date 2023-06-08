@@ -472,6 +472,7 @@ public class Game extends Thread {
         System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
         System.out.println(
                 "Dorobo est un jeu incroyable qui se joue en lignes de commande !\nTu joues le rôle d'un cambrioleur, qui voles des maisons pour gagner de l'argent.\nLe but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\navant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
+        System.out.println("Ton sac a une capacité de " + player.getMaxWeight() + " kg.");
         System.out.println("------------------------------------\n");
         System.out.println("Tape 'help' si tu as besoin d'aide.\n");
         System.out.println("------------------------------------");
@@ -491,7 +492,8 @@ public class Game extends Thread {
 
         switch (commandWord) {
             case UNKNOWN:
-                System.out.println("Je ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.");
+                System.out.println(
+                        "Je ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.");
                 break;
             case HELP:
                 printHelp();
@@ -683,7 +685,8 @@ public class Game extends Thread {
                 System.out.println("\nLe temps est écoulé, tu as perdu");
                 System.exit(0);
             } else if (timer == 30) {
-                System.out.println("\n------------------------------------------------\nIl te reste 30 secondes, dépêche toi de sortir !\n------------------------------------------------\n");
+                System.out.println(
+                        "\n------------------------------------------------\nIl te reste 30 secondes, dépêche toi de sortir !\n------------------------------------------------\n");
             }
         }
     }
