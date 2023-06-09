@@ -24,6 +24,10 @@ public class Game extends Thread {
     private Parser parser;
     private Player player;
     private static int timer = 3000;
+    private String star_line = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n";
+    private String continuous_line = "_________________________________________________________________________________________________________________\n";
+    private String dotted_line = "-----------------------------------------------------------------------------------------------------------------\n";
+    private String middle_separation = "                           ------------------------------------------------\n";
 
 
     /**
@@ -439,7 +443,6 @@ public class Game extends Thread {
         }
 
         grenier.Shuffle();
-
         player.setCurrentRoom(outside); // start game outside
     }
 
@@ -467,15 +470,14 @@ public class Game extends Thread {
      */
     private void printWelcome() {
         System.out.println();
-        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
-        System.out.println("   Bienvenue dans Dorobo !\n");
-        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n");
-        System.out.println(
-                "Dorobo est un jeu incroyable qui se joue en lignes de commande !\nTu joues le rôle d'un cambrioleur, qui voles des maisons pour gagner de l'argent.\nLe but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\navant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
-        System.out.println("Ton sac a une capacité de " + player.getMaxWeight() + " kg.");
-        System.out.println("------------------------------------\n");
-        System.out.println("Tape 'help' si tu as besoin d'aide.\n");
-        System.out.println("------------------------------------");
+        System.out.println(star_line);
+        System.out.println("                                            Bienvenue dans Dorobo !\n");
+        System.out.println(star_line);
+        System.out.println("                        Dorobo est un jeu incroyable qui se joue en lignes de commande !\n              Tu joues le rôle d'un cambrioleur, qui voles des maisons pour gagner de l'argent.\n         Le but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\n                 avant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
+        System.out.println("                                      Ton sac a une capacité de " + player.getMaxWeight() + " kg.\n");
+        System.out.println(continuous_line);
+        System.out.println("                                        Tape 'help' si tu as besoin d'aide.\n");
+        System.out.println(continuous_line);
         printLocationInfo();
     }
 
@@ -491,13 +493,13 @@ public class Game extends Thread {
         switch (commandWord) {
             case UNKNOWN:
                 System.out.println(
-                        "Je ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.");
+                        "\nJe ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.\n");
                 break;
             case HELP:
-                printHelp();
+                help();
                 break;
             case GO:
-                goRoom(command);
+                go(command);
                 break;
             case LOOK:
                 look();
@@ -519,11 +521,12 @@ public class Game extends Thread {
                 break;
             case FINISH:
                 finish();
+                break;
             case MANUAL:
-                printManual();
+                manual();
                 break;
             default:
-                printHelp();
+                help();
                 break;
         }
         return wantToQuit;
@@ -536,20 +539,23 @@ public class Game extends Thread {
      * Here we print some stupid, cryptic message and a list of the
      * command words.
      */
-    private void printHelp() {
-        System.out.println("\nTu es perdu ? Tu ne sais plus quoi faire ?");
+    private void help() {
+        System.out.println("\nTu es perdu ? Tu ne sais plus quoi faire ?\n");
         System.out.println("Tes commandes sont :\n");
-        System.out.println(parser.showCommands());
+        System.out.println(dotted_line);
+        System.out.println(parser.showCommands() + "\n");
+        System.out.println(dotted_line);
+        System.out.println("Si tu ne sais pas comment les utiliser, tu peux utiliser la fonction 'manual'.\n");
     }
 
     /**
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
      */
-    private void goRoom(Command command) {
+    private void go(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
-            System.out.println("Aller où?");
+            System.out.println("Aller où ?\n");
             return;
         }
 
@@ -560,7 +566,7 @@ public class Game extends Thread {
         Room nextRoom = player.getCurrentRoom().getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("Il n'y a pas de porte!");
+            System.out.println("Il n'y a pas de porte !\n");
         } else {
             player.setPreviousRoom(player.getCurrentRoom());
             player.setCurrentRoom(nextRoom);
@@ -583,7 +589,7 @@ public class Game extends Thread {
      */
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
-            System.out.println("Quitter quoi?");
+            System.out.println("Quitter quoi ?\n");
             return false;
         } else {
             return true; // signal that we want to quit
@@ -603,7 +609,7 @@ public class Game extends Thread {
     private void back() {
         Room lastRoom = player.getPreviousRoom();
         if (lastRoom == null) {
-            System.out.println("Tu ne peux pas retourner en arrière, tu es au début.");
+            System.out.println("\nTu ne peux pas retourner en arrière, tu es au début.\n");
         } else {
             player.setCurrentRoom(lastRoom);
             printLocationInfo();
@@ -616,20 +622,21 @@ public class Game extends Thread {
     private void take(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know xhat to take
-            System.out.println("Prendre quoi?\n");
+            System.out.println("\nPrendre quoi ? \n");
             return;
         }
         String item_index = command.getSecondWord();
         Item item = player.getCurrentRoom().getItem(Integer.parseInt(item_index) - 1);
         if (item == null) {
-            System.out.println("Cet objet n'est pas dans la pièce.");
+            System.out.println("\nCet objet n'est pas dans la pièce.\n");
         } else {
             if (player.canTakeIt(item) == true) {
                 player.getCurrentRoom().removeItem(item);
                 player.addItem(item);
+                System.out.println("\nTu as pris " + item.getDescription() + ".\n");
                 printLocationInfo();
             } else {
-                System.out.println("Cet objet est trop lourd, tu ne peux pas le prendre.");
+                System.out.println("\nCet objet est trop lourd, tu ne peux pas le prendre.\n");
             }
         }
     }
@@ -640,16 +647,17 @@ public class Game extends Thread {
     private void drop(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know what to drop
-            System.out.println("Poser quoi?");
+            System.out.println("\nPoser quoi ?\n");
             return;
         }
         String item_index = command.getSecondWord();
         Item item = player.getItem(Integer.parseInt(item_index) - 1);
         if (item == null) {
-            System.out.println("Cet objet n'est pas en votre possession.");
+            System.out.println("\nTu n'as pas cet objet sur toi.\n");
         } else {
             player.getCurrentRoom().addItem(item);
             player.removeItem(item);
+            System.out.println("\nTu as posé " + item.getDescription() + ".\n");
             printLocationInfo();
         }
     }
@@ -658,12 +666,18 @@ public class Game extends Thread {
      * "items" prints out all items currently carried and their total weight
      */
     private void items() {
-        String string_items = "Vos objets: \n";
-        for (int i = 0; i < player.getItems().size(); i++) {
-            string_items += player.getItem(i).getDescription() + " (" + (i + 1) + ") " + "\n";
+        String string_items = "\nLes objets que tu as volé :\n\n";
+        if(player.getItems().size() == 0){
+            System.out.println("\nTu n'as pas d'objets dans ton inventaire.\n");
+            return;
+        } else {
+            System.out.println("\nTu as " + player.getItems().size() + " objets dans ton inventaire.\n");
+            for (int i = 0; i < player.getItems().size(); i++) {
+            string_items += "- " + player.getItem(i).getDescription() + " (" + (i + 1) + ") " + "\n";
+            }
         }
         System.out.println(string_items);
-        System.out.println("Poids total : " + player.getTotalweight());
+        System.out.println("Poids total : " + player.getTotalweight() + " kg.\n");
     }
 
     /**
@@ -671,49 +685,49 @@ public class Game extends Thread {
      */
     private void finish() {
         if (player.getCurrentRoom().getDescription().equals("dehors devant la maison")) {
-            if (timer > 0) {
-                System.out.println("Es-tu sûr de vouloir finir le jeu ? (oui/non)");
-                Scanner scanner = new Scanner(System.in);
-                String answer = scanner.nextLine();
-                if (answer.equals("oui")) {
-                    System.out.println(
-                            "Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\nTu as volé pour "
-                                    + player.getTotalValue() + "€ d'objets.");
-                    System.exit(0);
-                } else if (answer.equals("non")) {
-                    System.out.println("Ok continu à jouer.");
-                } else {
-                    System.out.println("Je ne comprends pas ce que tu veux dire.");
-                }
-            } else {
-                System.out.println("Tu as perdu, le temps est écoulé.");
+            System.out.println("\nEs-tu sûr de vouloir quitter le jeu ? (oui/non)\n");
+            System.out.print("> ");
+            Scanner sc = new Scanner(System.in);
+            String answer = sc.nextLine();
+            while (!answer.equals("oui") && !answer.equals("non")) {
+                System.out.println("\nJe ne comprends pas ce que tu veux dire... (oui/non)\n");
+                System.out.print("> ");
+                answer = sc.nextLine();
+            }
+            if (answer.equals("oui")) { 
+                System.out.println("\n" + star_line);
+                System.out.println("\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour " + player.getTotalValue() + " € d'objets.\n");
+                System.out.println("\n" + star_line + "\n");                
+                System.exit(0);
+            } else if (answer.equals("non")) {
+                System.out.println("\nTu as décidé de continuer le jeu.\n");
             }
         } else {
-            System.out.println("Tu ne peux pas finir le jeu ici.");
+            System.out.println("\nTu ne peux pas finir le jeu ici.\n");
         }
     }
 
-    private void printManual(){
-        System.out.println("\nRègles du jeu :\n");
-        System.out.println("Ton but est de cambrioler des maisons. Récupère autant d'argents que possible en volant\n" +
-        "les différents objets que tu pourras repérer dans les pièces de la maison. \n!Attention! n'oublie pas que tu ne peux " +
-        "transporter qu'un certain poids d'objets. \nHave Fun and Good Luck !!\n");
-        System.out.println("Voici les différentes commandes à ta disposition et leur utilité: \n");
-        System.out.println("help       --->  présente les différentes commandes que tu peux utiliser");
-        System.out.println("manual     --->  présente les règles du jeu et comment utiliser les différentes commandes");
-        System.out.println("look       --->  présente l'endroit où tu te trouves, les différentes sorties où tu peux" +
-                        "\n                 aller et les objets présents autour de toi");
-        System.out.println("items      --->  présente les objets qui sont en ta possession");
-        System.out.println("go choix   --->  permet de te déplacer dans la maison, indique ton choix avec les chiffres" +
-                        "\n                 qui apparaîssent à côté des sorties");
-        System.out.println("back       --->  permet de retourner dans l'endroit précédent");
-        System.out.println("take choix --->  permet de prendre un objet, indique ton choix avec les chiffres qui" +
-                            "\n                 apparaîssent à côtés des objets présents autour de toi");
-        System.out.println("drop choix --->  permet de déposer un objet de ton inventaire à l'endroit où tu te" +
-                            "\n                 trouves, indique ton choix avec les chiffres qui apparaîssent à côtés des" +
-                            "\n                 objets de ton inventaire");
-        System.out.println("quit       --->  permet de sortir du jeu"); //à modifier
+    /**
+     * "manual" prints out the rules of the game and the commands
+     */
+    private void manual(){
+        System.out.println(continuous_line);
+        System.out.println("                                            Règles du jeu :\n");
+        System.out.println("        Ton but est de cambrioler des maisons. Récupère le plus d'argent possible en volant les\n           objets qui te paraissent les plus cher dans les différentes pièces de la maison.\n\n                                            ! Attention !\n                   N'oublie pas ! Tu ne peux transporter qu'un certain poids d'objets.\n                                       !! Have fun and good luck !!\n\n");
+        System.out.println(middle_separation);
+        System.out.println("Voici les différentes commandes à ta disposition et leur utilité :\n");
+        System.out.println("help         --->  Liste les différentes commandes que tu peux utiliser dans le jeu.\n");
+        System.out.println("manual       --->  Présente les règles du jeu et l'utilisation des différentes commandes.\n");
+        System.out.println("look         --->  Présente l'endroit où tu te trouves, les différentes pièces où tu peux\n                   aller et les objets présents autour de toi.\n");
+        System.out.println("items        --->  Liste les objets qui sont en ta possession.\n");
+        System.out.println("go 'choix'   --->  Permet de te déplacer dans la maison. Indique ton choix avec le chiffre\n                   qui correspond à la sortie que tu souhaites.\n");
+        System.out.println("back         --->  Permet de retourner dans l'endroit précédent.\n");
+        System.out.println("take 'choix' --->  Permet de prendre un objet. Indique ton choix avec le chiffre qui\n                   correspond à l'objet que tu souhaites voler.\n");
+        System.out.println("drop 'choix' --->  Permet de déposer un objet de ton inventaire à l'endroit où tu te\n                   trouves. Indique ton choix avec le chiffre qui correspond à l'objet\n                   que tu veux supprimer de ton inventaire.\n");
+        System.out.println("finish       --->  Permet, losque tu es en dehors de la maison, de finir ta partie afin\n                   de remporter tous les objets que tu as volé, et de connaître\n                   la valeur de ton butin.\n");
+        System.out.println("quit         --->  Permet de quitter le jeu définitivement. Attention si tu quittes le jeu,\n                   tu perdras tous les scores des parties que tu as gagnées !");
         System.out.println("\n");
+        System.out.println(continuous_line);
     }
 
     /*
@@ -736,5 +750,4 @@ public class Game extends Thread {
             }
         }
     }
-
 }

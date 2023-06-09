@@ -141,13 +141,6 @@ public class Player {
     }
 
     /**
-     * return the maximum weight
-     */
-    public Double getMaxWeight() {
-        return max_weight;
-    }
-
-    /**
      * returns true if the player can take the object else returns false
      */
     public Boolean canTakeIt(Item item) {
