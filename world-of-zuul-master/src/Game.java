@@ -443,7 +443,6 @@ public class Game extends Thread {
         }
 
         grenier.Shuffle();
-
         player.setCurrentRoom(outside); // start game outside
     }
 
@@ -522,6 +521,7 @@ public class Game extends Thread {
                 break;
             case FINISH:
                 finish();
+                break;
             case MANUAL:
                 manual();
                 break;
@@ -685,29 +685,31 @@ public class Game extends Thread {
      */
     private void finish() {
         if (player.getCurrentRoom().getDescription().equals("dehors devant la maison")) {
-            if (timer > 0) {
-                System.out.println("\nEs-tu sûr de vouloir finir ta partie ? (oui/non)\n");                
+            System.out.println("\nEs-tu sûr de vouloir quitter le jeu ? (oui/non)\n");
+            System.out.print("> ");
+            Scanner sc = new Scanner(System.in);
+            String answer = sc.nextLine();
+            while (!answer.equals("oui") && !answer.equals("non")) {
+                System.out.println("\nJe ne comprends pas ce que tu veux dire... (oui/non)\n");
                 System.out.print("> ");
-                Scanner scanner = new Scanner(System.in);
-                String answer = scanner.nextLine();
-                if (answer.equals("oui")) {
-                    System.out.println("\n" + star_line);
-                    System.out.println(
-                            "\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour "
-                                    + player.getTotalValue() + " € d'objets.\n");
-                    System.out.println("\n" + star_line + "\n");
-                    System.exit(0);
-                } else if (answer.equals("non")) {
-                    System.out.println("\nOk continu à jouer.\n");
-                } else {
-                    System.out.println("\nJe ne comprends pas ce que tu veux dire.\n");
-                }
-            } 
+                answer = sc.nextLine();
+            }
+            if (answer.equals("oui")) { 
+                System.out.println("\n" + star_line);
+                System.out.println("\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour " + player.getTotalValue() + " € d'objets.\n");
+                System.out.println("\n" + star_line + "\n");                
+                System.exit(0);
+            } else if (answer.equals("non")) {
+                System.out.println("\nTu as décidé de continuer le jeu.\n");
+            }
         } else {
             System.out.println("\nTu ne peux pas finir le jeu ici.\n");
         }
     }
 
+    /**
+     * "manual" prints out the rules of the game and the commands
+     */
     private void manual(){
         System.out.println(continuous_line);
         System.out.println("                                            Règles du jeu :\n");
