@@ -519,6 +519,9 @@ public class Game extends Thread {
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            case MANUAL:
+                printManual();
+                break;
             default:
                 printHelp();
                 break;
@@ -668,6 +671,29 @@ public class Game extends Thread {
         System.out.println("Poids total : " + player.getTotalweight());
     }
 
+    private void printManual(){
+        System.out.println("\nRègles du jeu :\n");
+        System.out.println("Ton but est de cambrioler des maisons. Récupère autant d'argents que possible en volant\n" +
+        "les différents objets que tu pourras repérer dans les pièces de la maison. \n!Attention! n'oublie pas que tu ne peux " +
+        "transporter qu'un certain poids d'objets. \nHave Fun and Good Luck !!\n");
+        System.out.println("Voici les différentes commandes à ta disposition et leur utilité: \n");
+        System.out.println("help       --->  présente les différentes commandes que tu peux utiliser");
+        System.out.println("manual     --->  présente les règles du jeu et comment utiliser les différentes commandes");
+        System.out.println("look       --->  présente l'endroit où tu te trouves, les différentes sorties où tu peux" +
+                        "\n                 aller et les objets présents autour de toi");
+        System.out.println("items      --->  présente les objets qui sont en ta possession");
+        System.out.println("go choix   --->  permet de te déplacer dans la maison, indique ton choix avec les chiffres" +
+                        "\n                 qui apparaîssent à côté des sorties");
+        System.out.println("back       --->  permet de retourner dans l'endroit précédent");
+        System.out.println("take choix --->  permet de prendre un objet, indique ton choix avec les chiffres qui" +
+                            "\n                 apparaîssent à côtés des objets présents autour de toi");
+        System.out.println("drop choix --->  permet de déposer un objet de ton inventaire à l'endroit où tu te" +
+                            "\n                 trouves, indique ton choix avec les chiffres qui apparaîssent à côtés des" +
+                            "\n                 objets de ton inventaire");
+        System.out.println("quit       --->  permet de sortir du jeu"); //à modifier
+        System.out.println("\n");
+    }
+
     /*
      * public void run() start timer thread
      */
@@ -690,4 +716,5 @@ public class Game extends Thread {
             }
         }
     }
+
 }
