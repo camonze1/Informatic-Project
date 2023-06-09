@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class Game extends Thread {
     private Parser parser;
     private Player player;
-    private static int timer = 40;
+    private static int timer = 3000;
 
     /**
      * Create the game and initialise its internal map.
