@@ -69,6 +69,15 @@ public class Player {
     }
 
     /**
+     * return the max weight
+     * 
+     * @return the max weight
+     */
+    public double getMaxWeight() {
+        return max_weight;
+    }
+
+    /**
      * Return the player's item list
      * 
      * @return items list

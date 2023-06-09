@@ -16,6 +16,7 @@
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Room {
     private String description;
@@ -140,4 +141,9 @@ public class Room {
         }
         return string_items;
     }
+
+    public void Shuffle() {
+        Collections.shuffle(items);
+    }
+
 }
