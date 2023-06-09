@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 /**
  * This class is the main class of the "World of Zuul" application.
  * "World of Zuul" is a very simple, text based adventure game. Users
@@ -20,7 +21,6 @@ public class Game extends Thread {
     private Parser parser;
     private Player player;
     private static int timer = 40;
-    private int stop = 0;
 
     /**
      * Create the game and initialise its internal map.
@@ -137,7 +137,6 @@ public class Game extends Thread {
     public void play() {
         Game thread = new Game(player);
         thread.start();
-
         printWelcome();
 
         // Enter the main command loop. Here we repeatedly read commands and
@@ -175,12 +174,11 @@ public class Game extends Thread {
      */
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
-
         CommandWord commandWord = this.parser.getCommandWords().getTranslate(command.getCommandWord());
-
         switch (commandWord) {
             case UNKNOWN:
-                System.out.println("Je ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.");
+                System.out.println(
+                        "Je ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.");
                 break;
             case HELP:
                 printHelp();
@@ -354,7 +352,7 @@ public class Game extends Thread {
     }
 
     /**
-     *  "finish" when the player is outside, within the allotted time and wants to finish the game to keep the items he stole during the game and therefore win, this function ask if the player is sure to finish the game using parser using scanner
+     * "finish" when the player is outside the house, he can finish the game
      */
     private void finish() {
         if (player.getCurrentRoom().getDescription().equals("dehors devant la maison")) {
@@ -363,7 +361,9 @@ public class Game extends Thread {
                 Scanner scanner = new Scanner(System.in);
                 String answer = scanner.nextLine();
                 if (answer.equals("oui")) {
-                    System.out.println("Tu as gagné !\nTu as volé pour " + player.getTotalValue() + "€ d'objets.");
+                    System.out.println(
+                            "Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\nTu as volé pour "
+                                    + player.getTotalValue() + "€ d'objets.");
                     System.exit(0);
                 } else if (answer.equals("non")) {
                     System.out.println("Ok continu à jouer.");
@@ -372,13 +372,29 @@ public class Game extends Thread {
                 }
             } else {
                 System.out.println("Tu as perdu, le temps est écoulé.");
-                stop = 1;
-
             }
         } else {
             System.out.println("Tu ne peux pas finir le jeu ici.");
         }
     }
+
+    // /**
+    //  * "replay"
+    //  */
+    // private void replay() {
+    //     System.out.println("Veux-tu rejouer ? (oui/non)");
+    //     Scanner scanner = new Scanner(System.in);
+    //     String answer = scanner.nextLine();
+    //     if (answer.equals("oui")) {
+    //         Game game = new Game(player);
+    //         game.play();
+    //     } else if (answer.equals("non")) {
+    //         System.out.println("Ok, à bientôt !");
+    //         System.exit(0);
+    //     } else {
+    //         System.out.println("Je ne comprends pas ce que tu veux dire.");
+    //     }
+    // }
 
     /*
      * public void run() start timer thread
@@ -396,8 +412,6 @@ public class Game extends Thread {
                 System.exit(0);
             } else if (timer == 20) {
                 System.out.println("\nIl te reste 20 secondes, dépêche toi de sortir !");
-            } if(stop == 1){
-                thread.stop();
             }
         }
     }
