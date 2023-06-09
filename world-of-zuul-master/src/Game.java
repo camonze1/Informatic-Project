@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 import java.util.ArrayList;
 
@@ -22,13 +23,14 @@ import java.util.ArrayList;
 public class Game extends Thread {
     private Parser parser;
     private Player player;
-    private static int timer = 60;
+    private static int timer = 3000;
+
 
     /**
      * Create the game and initialise its internal map.
      */
-    public Game() {
-        player = new Player();
+    public Game(Player player) {
+        this.player = player;
         createRooms();
         parser = new Parser();
     }
@@ -445,9 +447,8 @@ public class Game extends Thread {
      * Main play routine. Loops until end of play.
      */
     public void play() {
-        Game thread = new Game();
+        Game thread = new Game(player);
         thread.start();
-
         printWelcome();
 
         // Enter the main command loop. Here we repeatedly read commands and
@@ -458,7 +459,6 @@ public class Game extends Thread {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Merci d'avoir joué. Au revoir.");
         System.exit(0);
     }
 
@@ -487,9 +487,7 @@ public class Game extends Thread {
      */
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
-
         CommandWord commandWord = this.parser.getCommandWords().getTranslate(command.getCommandWord());
-
         switch (commandWord) {
             case UNKNOWN:
                 System.out.println(
@@ -519,6 +517,8 @@ public class Game extends Thread {
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            case FINISH:
+                finish();
             case MANUAL:
                 printManual();
                 break;
@@ -564,7 +564,6 @@ public class Game extends Thread {
         } else {
             player.setPreviousRoom(player.getCurrentRoom());
             player.setCurrentRoom(nextRoom);
-
             printLocationInfo();
         }
     }
@@ -604,12 +603,11 @@ public class Game extends Thread {
     private void back() {
         Room lastRoom = player.getPreviousRoom();
         if (lastRoom == null) {
-            System.out.println("Vous ne pouvez pas retourner en arrière, vous êtes au début.");
+            System.out.println("Tu ne peux pas retourner en arrière, tu es au début.");
         } else {
             player.setCurrentRoom(lastRoom);
             printLocationInfo();
         }
-
     }
 
     /**
@@ -631,9 +629,8 @@ public class Game extends Thread {
                 player.addItem(item);
                 printLocationInfo();
             } else {
-                System.out.println("Cet objet est trop lourd, vous ne pouvez pas le prendre.");
+                System.out.println("Cet objet est trop lourd, tu ne peux pas le prendre.");
             }
-
         }
     }
 
@@ -653,10 +650,8 @@ public class Game extends Thread {
         } else {
             player.getCurrentRoom().addItem(item);
             player.removeItem(item);
-
             printLocationInfo();
         }
-
     }
 
     /**
@@ -669,6 +664,33 @@ public class Game extends Thread {
         }
         System.out.println(string_items);
         System.out.println("Poids total : " + player.getTotalweight());
+    }
+
+    /**
+     * "finish" when the player is outside the house, he can finish the game
+     */
+    private void finish() {
+        if (player.getCurrentRoom().getDescription().equals("dehors devant la maison")) {
+            if (timer > 0) {
+                System.out.println("Es-tu sûr de vouloir finir le jeu ? (oui/non)");
+                Scanner scanner = new Scanner(System.in);
+                String answer = scanner.nextLine();
+                if (answer.equals("oui")) {
+                    System.out.println(
+                            "Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\nTu as volé pour "
+                                    + player.getTotalValue() + "€ d'objets.");
+                    System.exit(0);
+                } else if (answer.equals("non")) {
+                    System.out.println("Ok continu à jouer.");
+                } else {
+                    System.out.println("Je ne comprends pas ce que tu veux dire.");
+                }
+            } else {
+                System.out.println("Tu as perdu, le temps est écoulé.");
+            }
+        } else {
+            System.out.println("Tu ne peux pas finir le jeu ici.");
+        }
     }
 
     private void printManual(){
@@ -697,7 +719,6 @@ public class Game extends Thread {
     /*
      * public void run() start timer thread
      */
-
     public void run() {
         while (true) {
             try {
@@ -705,7 +726,6 @@ public class Game extends Thread {
             } catch (InterruptedException e) {
                 System.out.println("Problème de timer");
             }
-
             timer--;
             if (timer == 0) {
                 System.out.println("\nLe temps est écoulé, tu as perdu");
