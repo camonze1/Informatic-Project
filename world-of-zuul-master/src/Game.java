@@ -494,7 +494,7 @@ public class Game extends Thread {
         switch (commandWord) {
             case UNKNOWN:
                 System.out.println(
-                        "Je ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.\n");
+                        "\nJe ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.\n");
                 break;
             case HELP:
                 help();
@@ -546,7 +546,6 @@ public class Game extends Thread {
         System.out.println(parser.showCommands() + "\n");
         System.out.println(dotted_line);
         System.out.println("Si tu ne sais pas comment les utiliser, tu peux utiliser la fonction 'manual'.\n");
-
     }
 
     /**
@@ -610,7 +609,7 @@ public class Game extends Thread {
     private void back() {
         Room lastRoom = player.getPreviousRoom();
         if (lastRoom == null) {
-            System.out.println("Tu ne peux pas retourner en arrière, tu es au début.\n");
+            System.out.println("\nTu ne peux pas retourner en arrière, tu es au début.\n");
         } else {
             player.setCurrentRoom(lastRoom);
             printLocationInfo();
@@ -623,7 +622,7 @@ public class Game extends Thread {
     private void take(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know xhat to take
-            System.out.println("Prendre quoi ? \n");
+            System.out.println("\nPrendre quoi ? \n");
             return;
         }
         String item_index = command.getSecondWord();
@@ -634,6 +633,7 @@ public class Game extends Thread {
             if (player.canTakeIt(item) == true) {
                 player.getCurrentRoom().removeItem(item);
                 player.addItem(item);
+                System.out.println("\nTu as pris " + item.getDescription() + ".\n");
                 printLocationInfo();
             } else {
                 System.out.println("\nCet objet est trop lourd, tu ne peux pas le prendre.\n");
@@ -647,16 +647,17 @@ public class Game extends Thread {
     private void drop(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know what to drop
-            System.out.println("Poser quoi ?\n");
+            System.out.println("\nPoser quoi ?\n");
             return;
         }
         String item_index = command.getSecondWord();
         Item item = player.getItem(Integer.parseInt(item_index) - 1);
         if (item == null) {
-            System.out.println("\nCet objet n'est pas en votre possession.");
+            System.out.println("\nTu n'as pas cet objet sur toi.\n");
         } else {
             player.getCurrentRoom().addItem(item);
             player.removeItem(item);
+            System.out.println("\nTu as posé " + item.getDescription() + ".\n");
             printLocationInfo();
         }
     }
@@ -665,9 +666,15 @@ public class Game extends Thread {
      * "items" prints out all items currently carried and their total weight
      */
     private void items() {
-        String string_items = "\nVos objets :\n\n";
-        for (int i = 0; i < player.getItems().size(); i++) {
+        String string_items = "\nLes objets que tu as volé :\n\n";
+        if(player.getItems().size() == 0){
+            System.out.println("\nTu n'as pas d'objets dans ton inventaire.\n");
+            return;
+        } else {
+            System.out.println("\nTu as " + player.getItems().size() + " objets dans ton inventaire.\n");
+            for (int i = 0; i < player.getItems().size(); i++) {
             string_items += "- " + player.getItem(i).getDescription() + " (" + (i + 1) + ") " + "\n";
+            }
         }
         System.out.println(string_items);
         System.out.println("Poids total : " + player.getTotalweight() + " kg.\n");
@@ -679,22 +686,25 @@ public class Game extends Thread {
     private void finish() {
         if (player.getCurrentRoom().getDescription().equals("dehors devant la maison")) {
             if (timer > 0) {
-                System.out.println("Es-tu sûr de vouloir finir le jeu ? (oui/non)");
+                System.out.println("\nEs-tu sûr de vouloir finir ta partie ? (oui/non)\n");                
+                System.out.print("> ");
                 Scanner scanner = new Scanner(System.in);
                 String answer = scanner.nextLine();
                 if (answer.equals("oui")) {
+                    System.out.println("\n" + star_line);
                     System.out.println(
-                            "Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\nTu as volé pour "
-                                    + player.getTotalValue() + "€ d'objets.");
+                            "\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour "
+                                    + player.getTotalValue() + " € d'objets.\n");
+                    System.out.println("\n" + star_line + "\n");
                     System.exit(0);
                 } else if (answer.equals("non")) {
-                    System.out.println("Ok continu à jouer.\n");
+                    System.out.println("\nOk continu à jouer.\n");
                 } else {
-                    System.out.println("Je ne comprends pas ce que tu veux dire.\n");
+                    System.out.println("\nJe ne comprends pas ce que tu veux dire.\n");
                 }
             } 
         } else {
-            System.out.println("Tu ne peux pas finir le jeu ici.\n");
+            System.out.println("\nTu ne peux pas finir le jeu ici.\n");
         }
     }
 
