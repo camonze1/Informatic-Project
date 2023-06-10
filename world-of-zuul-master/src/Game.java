@@ -29,7 +29,6 @@ public class Game {
     private String dotted_line = "-----------------------------------------------------------------------------------------------------------------\n";
     private String middle_separation = "                           ------------------------------------------------\n";
 
-
     /**
      * Create the game and initialise its internal map.
      */
@@ -471,8 +470,10 @@ public class Game {
         System.out.println(star_line);
         System.out.println("                                            Bienvenue dans Dorobo !\n");
         System.out.println(star_line);
-        System.out.println("                        Dorobo est un jeu incroyable qui se joue en lignes de commande !\n              Tu joues le rôle d'un cambrioleur, qui voles des maisons pour gagner de l'argent.\n         Le but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\n                 avant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
-        System.out.println("                                      Ton sac a une capacité de " + player.getMaxWeight() + " kg.\n");
+        System.out.println(
+                "                        Dorobo est un jeu incroyable qui se joue en lignes de commande !\n              Tu joues le rôle d'un cambrioleur, qui voles des maisons pour gagner de l'argent.\n         Le but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\n                 avant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
+        System.out.println(
+                "                                      Ton sac a une capacité de " + player.getMaxWeight() + " kg.\n");
         System.out.println(continuous_line);
         System.out.println("                                        Tape 'help' si tu as besoin d'aide.\n");
         System.out.println(continuous_line);
@@ -557,6 +558,7 @@ public class Game {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Aller où ?\n");
+            System.out.println(player.getCurrentRoom().getExitString());
             return;
         }
 
@@ -568,6 +570,7 @@ public class Game {
 
         if (nextRoom == null) {
             System.out.println("Il n'y a pas de porte !\n");
+            System.out.println(player.getCurrentRoom().getExitString());
         } else {
             player.setPreviousRoom(player.getCurrentRoom());
             player.setCurrentRoom(nextRoom);
@@ -624,6 +627,8 @@ public class Game {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know xhat to take
             System.out.println("\nPrendre quoi ? \n");
+            System.out.println(player.getCurrentRoom().getItemsString());
+
             return;
         }
         String item_index = command.getSecondWord();
@@ -649,6 +654,8 @@ public class Game {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know what to drop
             System.out.println("\nPoser quoi ?\n");
+            String string_items = player.getItemsString();
+            System.out.println(string_items + "\n");
             return;
         }
         String item_index = command.getSecondWord();
@@ -668,14 +675,12 @@ public class Game {
      */
     private void items() {
         String string_items = "\nLes objets que tu as volé :\n\n";
-        if(player.getItems().size() == 0){
+        if (player.getItems().size() == 0) {
             System.out.println("\nTu n'as pas d'objets dans ton inventaire.\n");
             return;
         } else {
             System.out.println("\nTu as " + player.getItems().size() + " objets dans ton inventaire.\n");
-            for (int i = 0; i < player.getItems().size(); i++) {
-            string_items += "- " + player.getItem(i).getDescription() + " (" + (i + 1) + ") " + "\n";
-            }
+            string_items += player.getItemsString();
         }
         System.out.println(string_items);
         System.out.println("Poids total : " + player.getTotalweight() + " kg.\n");
@@ -718,17 +723,21 @@ public class Game {
     /**
      * "manual" prints out the rules of the game and the commands
      */
-    private void manual(){
+    private void manual() {
         System.out.println(continuous_line);
         System.out.println("                                            Règles du jeu :\n");
-        System.out.println("        Ton but est de cambrioler des maisons. Récupère le plus d'argent possible en volant les\n           objets qui te paraissent les plus cher dans les différentes pièces de la maison.\n\n                                            ! Attention !\n                   N'oublie pas ! Tu ne peux transporter qu'un certain poids d'objets.\n                                       !! Have fun and good luck !!\n\n");
+        System.out.println(
+                "        Ton but est de cambrioler des maisons. Récupère le plus d'argent possible en volant les\n           objets qui te paraissent les plus cher dans les différentes pièces de la maison.\n\n                                            ! Attention !\n                   N'oublie pas ! Tu ne peux transporter qu'un certain poids d'objets.\n                                       !! Have fun and good luck !!\n\n");
         System.out.println(middle_separation);
         System.out.println("Voici les différentes commandes à ta disposition et leur utilité :\n");
         System.out.println("help         --->  Liste les différentes commandes que tu peux utiliser dans le jeu.\n");
-        System.out.println("manual       --->  Présente les règles du jeu et l'utilisation des différentes commandes.\n");
-        System.out.println("look         --->  Présente l'endroit où tu te trouves, les différentes pièces où tu peux\n                   aller et les objets présents autour de toi.\n");
+        System.out
+                .println("manual       --->  Présente les règles du jeu et l'utilisation des différentes commandes.\n");
+        System.out.println(
+                "look         --->  Présente l'endroit où tu te trouves, les différentes pièces où tu peux\n                   aller et les objets présents autour de toi.\n");
         System.out.println("items        --->  Liste les objets qui sont en ta possession.\n");
-        System.out.println("go 'choix'   --->  Permet de te déplacer dans la maison. Indique ton choix avec le chiffre\n                   qui correspond à la sortie que tu souhaites.\n");
+        System.out.println(
+                "go 'choix'   --->  Permet de te déplacer dans la maison. Indique ton choix avec le chiffre\n                   qui correspond à la sortie que tu souhaites.\n");
         System.out.println("back         --->  Permet de retourner dans l'endroit précédent.\n");
         System.out.println("take 'choix' --->  Permet de prendre un objet. Indique ton choix avec le chiffre qui\n                   correspond à l'objet que tu souhaites voler.\n");
         System.out.println("drop 'choix' --->  Permet de déposer un objet de ton inventaire à l'endroit où tu te\n                   trouves. Indique ton choix avec le chiffre qui correspond à l'objet\n                   que tu veux supprimer de ton inventaire.\n");

@@ -100,7 +100,9 @@ public class Player {
     }
 
     /**
-     * function that adds the total value of items of the current game to a list that matches the total value of all games played. Then display the highest score of the whole list
+     * function that adds the total value of items of the current game to a list
+     * that matches the total value of all games played. Then display the highest
+     * score of the whole list
      */
     public void setHighScore() {
         int value = getTotalValue();
@@ -149,5 +151,17 @@ public class Player {
             return true;
         } else
             return false;
+    }
+
+    /**
+     * returns
+     */
+    public String getItemsString() {
+        String string_items = "";
+        for (int i = 0; i < this.items.size(); i++) {
+            string_items += "- " + this.items.get(i).getDescription() + " (" + (i + 1) + ") " + "\n";
+        }
+        return string_items;
+
     }
 }
