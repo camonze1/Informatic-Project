@@ -35,7 +35,7 @@ public class Game {
     public Game(Player player) {
         this.player = player;
         createRooms();
-        this.timer = new Timer(60000);
+        this.timer = new Timer(40000);
         this.parser = new Parser();
     }
 
@@ -769,7 +769,7 @@ public class Game {
         System.out.println(
                 "look         --->  Présente l'endroit où tu te trouves, les différentes pièces où tu peux\n                   aller et les objets présents autour de toi.\n");
         System.out.println("items        --->  Liste les objets qui sont en ta possession.\n");
-        System.out.println("timer         --->  Affiche le temps qu'il te reste avant la fin de la partie.\n");
+        System.out.println("timer        --->  Affiche le temps qu'il te reste avant la fin de la partie.\n");
         System.out.println(
                 "go 'choix'   --->  Permet de te déplacer dans la maison. Indique ton choix avec le chiffre\n                   qui correspond à la sortie que tu souhaites.\n");
         System.out.println("back         --->  Permet de retourner dans l'endroit précédent.\n");
