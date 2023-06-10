@@ -452,14 +452,13 @@ public class Game {
     public void play() {
         printWelcome();
         boolean finished = false;
-        if (!timer.isRunning()) {
-            timer.start();
-        }
+        timer.start();
         while (!finished && timer.isRunning()) {
+            System.out.println("il te reste " + timer.getRemainingTime() / 1000 + " secondes.");
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.exit(0);
+        replay();
     }
 
     /**
@@ -696,7 +695,7 @@ public class Game {
     /**
      * "finish" when the player is outside the house, he can finish the game
      */
-        private void finish() {
+    private void finish() {
         if (player.getCurrentRoom().getDescription().equals("dehors devant la maison") && timer.isRunning()) {
             System.out.println("\nEs-tu sûr de vouloir quitter le jeu ? (oui/non)\n");
             System.out.print("> ");
@@ -717,6 +716,27 @@ public class Game {
             }
         } else {
             System.out.println("\nTu ne peux pas finir le jeu ici.\n");
+        }
+    }
+
+    /**
+     * "rejouer" when the player finish the game he can play again
+     */
+    private void replay() {
+        System.out.println("\nVeux tu rejouer ? (oui/non)\n");
+        System.out.print("> ");
+        Scanner sc = new Scanner(System.in);
+        String answer = sc.nextLine();
+        while (!answer.equals("oui") && !answer.equals("non")) {
+            System.out.println("\nJe ne comprends pas ce que tu veux dire... (oui/non)\n");
+            System.out.print("> ");
+            answer = sc.nextLine();
+        }
+        if (answer.equals("oui")) {
+            play();
+        } else if (answer.equals("non")) {
+            System.out.println("\nMerci d'avoir jouer ! À la prochaine !\n");
+            System.exit(0);
         }
     }
 

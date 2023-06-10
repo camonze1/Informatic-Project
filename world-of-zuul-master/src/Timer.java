@@ -3,8 +3,6 @@ public class Timer {
     private long remainingTime; // Temps restant du timer en millisecondes
     private boolean isRunning; // Indicateur si le timer est en cours d'exécution
     private Thread timerThread; // Thread du timer
-    private Parser parser;
-    private boolean finished = false;
 
     public Timer(long totalTime) {
         this.totalTime = totalTime;
