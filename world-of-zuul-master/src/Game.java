@@ -631,8 +631,15 @@ public class Game {
 
             return;
         }
-        String item_index = command.getSecondWord();
-        Item item = player.getCurrentRoom().getItem(Integer.parseInt(item_index) - 1);
+        String item_index_str = command.getSecondWord();
+        int item_index = 0;
+        try {
+            item_index = Integer.parseInt(item_index_str);
+        } catch (Exception e) {
+            System.out.println("La commande n'est pas valide\n");
+            return;
+        }
+        Item item = player.getCurrentRoom().getItem(item_index - 1);
         if (item == null) {
             System.out.println("\nCet objet n'est pas dans la pièce.\n");
         } else {
@@ -658,8 +665,15 @@ public class Game {
             System.out.println(string_items + "\n");
             return;
         }
-        String item_index = command.getSecondWord();
-        Item item = player.getItem(Integer.parseInt(item_index) - 1);
+        String item_index_str = command.getSecondWord();
+        int item_index = 0;
+        try {
+            item_index = Integer.parseInt(item_index_str);
+        } catch (Exception e) {
+            System.out.println("La commande n'est pas valide\n");
+            return;
+        }
+        Item item = player.getItem(item_index - 1);
         if (item == null) {
             System.out.println("\nTu n'as pas cet objet sur toi.\n");
         } else {

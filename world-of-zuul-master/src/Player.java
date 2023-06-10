@@ -154,7 +154,7 @@ public class Player {
     }
 
     /**
-     * returns
+     * return the list of items
      */
     public String getItemsString() {
         String string_items = "";
