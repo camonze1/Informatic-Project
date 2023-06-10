@@ -20,10 +20,10 @@ import java.util.ArrayList;
  * @version 2016.02.29
  */
 
-public class Game extends Thread {
+public class Game {
     private Parser parser;
     private Player player;
-    private static int timer = 3000;
+    private Timer timer;
     private String star_line = "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n";
     private String continuous_line = "_________________________________________________________________________________________________________________\n";
     private String dotted_line = "-----------------------------------------------------------------------------------------------------------------\n";
@@ -35,7 +35,8 @@ public class Game extends Thread {
     public Game(Player player) {
         this.player = player;
         createRooms();
-        parser = new Parser();
+        this.timer = new Timer(60000);
+        this.parser = new Parser();
     }
 
     private void createRooms() {
@@ -449,15 +450,12 @@ public class Game extends Thread {
      * Main play routine. Loops until end of play.
      */
     public void play() {
-        Game thread = new Game(player);
-        thread.start();
         printWelcome();
-
-        // Enter the main command loop. Here we repeatedly read commands and
-        // execute them until the game is over.
-
         boolean finished = false;
-        while (!finished && thread.isAlive()) {
+        if (!timer.isRunning()) {
+            timer.start();
+        }
+        while (!finished && timer.isRunning()) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
@@ -516,6 +514,9 @@ public class Game extends Thread {
                 break;
             case ITEMS:
                 items();
+                break;
+            case TIMER:
+                timer();
                 break;
             case QUIT:
                 wantToQuit = quit(command);
@@ -686,10 +687,17 @@ public class Game extends Thread {
     }
 
     /**
+     * "timer" prints out the remaining time
+     */
+    private void timer() {
+        System.out.println("\nIl te reste " + timer.getRemainingTime() / 1000 + " secondes pour finir le jeu.\n");
+    }
+
+    /**
      * "finish" when the player is outside the house, he can finish the game
      */
-    private void finish() {
-        if (player.getCurrentRoom().getDescription().equals("dehors devant la maison")) {
+        private void finish() {
+        if (player.getCurrentRoom().getDescription().equals("dehors devant la maison") && timer.isRunning()) {
             System.out.println("\nEs-tu sûr de vouloir quitter le jeu ? (oui/non)\n");
             System.out.print("> ");
             Scanner sc = new Scanner(System.in);
@@ -699,13 +707,11 @@ public class Game extends Thread {
                 System.out.print("> ");
                 answer = sc.nextLine();
             }
-            if (answer.equals("oui")) {
+            if (answer.equals("oui")) { 
+                timer.stop();
                 System.out.println("\n" + star_line);
-                System.out.println(
-                        "\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour "
-                                + player.getTotalValue() + " € d'objets.\n");
-                System.out.println("\n" + star_line + "\n");
-                System.exit(0);
+                System.out.println("\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour " + player.getTotalValue() + " € d'objets.\n\n                                       Il te restait " + timer.getRemainingTime() / 1000 + " secondes.\n");
+                System.out.println("\n" + star_line + "\n");                
             } else if (answer.equals("non")) {
                 System.out.println("\nTu as décidé de continuer le jeu.\n");
             }
@@ -733,36 +739,10 @@ public class Game extends Thread {
         System.out.println(
                 "go 'choix'   --->  Permet de te déplacer dans la maison. Indique ton choix avec le chiffre\n                   qui correspond à la sortie que tu souhaites.\n");
         System.out.println("back         --->  Permet de retourner dans l'endroit précédent.\n");
-        System.out.println(
-                "take 'choix' --->  Permet de prendre un objet. Indique ton choix avec le chiffre qui\n                   correspond à l'objet que tu souhaites voler.\n");
-        System.out.println(
-                "drop 'choix' --->  Permet de déposer un objet de ton inventaire à l'endroit où tu te\n                   trouves. Indique ton choix avec le chiffre qui correspond à l'objet\n                   que tu veux supprimer de ton inventaire.\n");
-        System.out.println(
-                "finish       --->  Permet, losque tu es en dehors de la maison, de finir ta partie afin\n                   de remporter tous les objets que tu as volé, et de connaître\n                   la valeur de ton butin.\n");
-        System.out.println(
-                "quit         --->  Permet de quitter le jeu définitivement. Attention si tu quittes le jeu,\n                   tu perdras tous les scores des parties que tu as gagnées !");
-        System.out.println("\n");
+        System.out.println("take 'choix' --->  Permet de prendre un objet. Indique ton choix avec le chiffre qui\n                   correspond à l'objet que tu souhaites voler.\n");
+        System.out.println("drop 'choix' --->  Permet de déposer un objet de ton inventaire à l'endroit où tu te\n                   trouves. Indique ton choix avec le chiffre qui correspond à l'objet\n                   que tu veux supprimer de ton inventaire.\n");
+        System.out.println("finish       --->  Permet, losque tu es en dehors de la maison, de finir ta partie afin\n                   de remporter tous les objets que tu as volé, et de connaître\n                   la valeur de ton butin.\n");
+        System.out.println("quit         --->  Permet de quitter le jeu définitivement. Attention si tu quittes le jeu,\n                   tu perdras tous les scores des parties que tu as gagnées !");
         System.out.println(continuous_line);
-    }
-
-    /*
-     * public void run() start timer thread
-     */
-    public void run() {
-        while (true) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                System.out.println("Problème de timer");
-            }
-            timer--;
-            if (timer == 0) {
-                System.out.println("\nLe temps est écoulé, tu as perdu");
-                System.exit(0);
-            } else if (timer == 30) {
-                System.out.println(
-                        "\n------------------------------------------------\nIl te reste 30 secondes, dépêche toi de sortir !\n------------------------------------------------\n");
-            }
-        }
     }
 }
