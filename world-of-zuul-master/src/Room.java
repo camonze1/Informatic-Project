@@ -70,11 +70,12 @@ public class Room {
      */
     public String getExitString() {
         String string_exit = "\nSorties : \n\n";
-        String [] exit_name = {"Devant", "A droite", "Derrière", "A gauche", "En haut", "En bas"};
+        String[] exit_name = { "Devant", "A droite", "Derrière", "A gauche", "En haut", "En bas" };
 
         for (int i = 0; i < exit_name.length; i++) {
             if (this.exits.get(Integer.toString(i + 1)) != null) {
-                string_exit += (exit_name[i] + ", " + this.exits.get(Integer.toString(i + 1)).getDescription() + " (" + (i + 1) + ") \n");
+                string_exit += (exit_name[i] + ", " + this.exits.get(Integer.toString(i + 1)).getDescription() + " ("
+                        + (i + 1) + ") \n");
             }
         }
         return string_exit;
@@ -91,6 +92,7 @@ public class Room {
         return "\n-----------------------------------------------------------------------------------------------------------------\n\nTu es " + description + ".\n\n-----------------------------------------------------------------------------------------------------------------\n" + getExitString()
                 + "\n-----------------------------------------------------------------------------------------------------------------\n" + getItemsString();
     }
+
 
     /**
      * Add an item in a room
