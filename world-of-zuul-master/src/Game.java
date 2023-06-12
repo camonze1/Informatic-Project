@@ -738,7 +738,7 @@ public class Game {
     }
 
     /**
-     * "rejouer" when the player finish the game he can play again
+     * "replay" when the player finish the game he can play again
      */
     private void replay() {
         System.out.println("\nVeux tu rejouer ? (oui/non)\n");
