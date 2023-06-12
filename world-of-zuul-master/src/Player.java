@@ -164,4 +164,12 @@ public class Player {
         return string_items;
 
     }
+
+    /**
+     * deletes variables which are renitialised at each game
+     */
+    public void clear() {
+        items.clear();
+        previousRoom.clear();
+    }
 }

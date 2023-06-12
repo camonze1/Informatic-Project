@@ -21,8 +21,8 @@ public class CommandWords {
      */
     public CommandWords() {
         validCommands = new LinkedHashMap<String, CommandWord>();
-        for(CommandWord command : CommandWord.values()) {
-            if(command != CommandWord.UNKNOWN) {
+        for (CommandWord command : CommandWord.values()) {
+            if (command != CommandWord.UNKNOWN) {
                 validCommands.put(command.toString(), command);
             } else {
                 validCommands.put(null, CommandWord.UNKNOWN);
@@ -37,9 +37,9 @@ public class CommandWords {
      *         false if it isn't.
      */
     public boolean isCommand(String aString) {
-        if (validCommands.containsKey(aString)) { 
+        if (validCommands.containsKey(aString)) {
             return true;
-        } 
+        }
         // if we get here, the string was not found in the commands
         return false;
     }

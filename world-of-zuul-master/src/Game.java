@@ -34,6 +34,7 @@ public class Game {
      */
     public Game(Player player) {
         this.player = player;
+        player.clear();
         createRooms();
         this.timer = new Timer(120000);
         this.parser = new Parser();
@@ -479,10 +480,12 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        if(timer.isElapsed()){
-            System.out.println("_______________________________________________________________________________________________________________\n");
+        if (timer.getLost() == true) {
+            System.out.println(
+                    "_______________________________________________________________________________________________________________\n");
             System.out.println("                              Le temps est écoulé, tu as perdu !");
-            System.out.println("_________________________________________________________________________________________________________________\n");
+            System.out.println(
+                    "_________________________________________________________________________________________________________________\n");
         }
         replay();
     }
@@ -783,7 +786,8 @@ public class Game {
             answer = sc.nextLine();
         }
         if (answer.equals("oui")) {
-            play();
+            Game game = new Game(player);
+            game.play();
         } else if (answer.equals("non")) {
             System.out.println("\nMerci d'avoir jouer ! À la prochaine !\n");
             System.exit(0);
