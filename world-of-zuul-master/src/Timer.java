@@ -3,6 +3,7 @@ public class Timer {
     private long remainingTime; // Temps restant du timer en millisecondes
     private boolean isRunning; // Indicateur si le timer est en cours d'exécution
     private Thread timerThread; // Thread du timer
+    private boolean elapsed; // Indicateur si le timer est terminé
 
     public Timer(long totalTime) {
         this.totalTime = totalTime;
@@ -12,45 +13,56 @@ public class Timer {
     }
 
     public void start() {
-        if (!isRunning) {
-            isRunning = true;
-            timerThread = new Thread(new TimerTask());
+        if (!this.isRunning) {
+            this.isRunning = true;
+            this.timerThread = new Thread(new TimerTask());
             timerThread.start();
         }
     }
 
     public void pause() {
-        if (isRunning) {
-            isRunning = false;
+        if (this.isRunning) {
+            this.isRunning = false;
         }
     }
 
     public void stop() {
-        if (isRunning) {
-            isRunning = false;
-            timerThread.interrupt();
+        if (this.isRunning) {
+            this.isRunning = false;
+            this.timerThread.interrupt();
         }
     }
 
     public void decreaseTime(long time) {
-        if (isRunning) {
-            remainingTime -= time;
-            if (remainingTime <= 0) {
+        if (this.isRunning) {
+            this.remainingTime -= time;
+            if (this.remainingTime <= 0) {
                 stop();
             }
         }
     }
 
     public long getTotalTime() {
-        return totalTime;
+        return this.totalTime;
     }
 
     public long getRemainingTime() {
-        return remainingTime;
+        return this.remainingTime;
     }
 
     public boolean isRunning() {
-        return isRunning;
+        return this.isRunning;
+    }
+
+    public boolean isElapsed() {
+        return this.elapsed;
+    }
+
+    public void reset() {
+        this.remainingTime = this.totalTime;
+        this.isRunning = false;
+        this.timerThread = null;
+        this.elapsed = false;
     }
 
     public void alarm() {
@@ -82,18 +94,13 @@ public class Timer {
         public void run() {
             while (remainingTime > 0) {
                 try {
+                    elapsed = false;
                     Thread.sleep(1000); // Attendre 1 seconde
                     if (isRunning) {
                         remainingTime -= 1000; // Décrémenter le temps restant de 1 seconde
                         if (remainingTime == 0) {
                             stop();
-                            System.out.println(
-                                    "_________________________________________________________________________________________________________________\n");
-                            System.out.println(
-                                    "                                      Le temps est écoulé, tu as perdu...");
-                            System.out.println(
-                                    "_________________________________________________________________________________________________________________\n");
-                            // System.exit(0);
+                            elapsed = true;
                         } else {
                             if (remainingTime == 30000) {
                                 System.out.println(
@@ -110,6 +117,7 @@ public class Timer {
                     break;
                 }
             }
+            reset();
         }
     }
 

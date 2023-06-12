@@ -35,7 +35,7 @@ public class Game {
     public Game(Player player) {
         this.player = player;
         createRooms();
-        this.timer = new Timer(60000);
+        this.timer = new Timer(120000);
         this.parser = new Parser();
     }
 
@@ -479,6 +479,11 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
+        if(timer.isElapsed()){
+            System.out.println("_______________________________________________________________________________________________________________\n");
+            System.out.println("                              Le temps est écoulé, tu as perdu !");
+            System.out.println("_________________________________________________________________________________________________________________\n");
+        }
         replay();
     }
 
@@ -765,7 +770,7 @@ public class Game {
     }
 
     /**
-     * "rejouer" when the player finish the game he can play again
+     * "replay" when the player finish the game he can play again
      */
     private void replay() {
         System.out.println("\nVeux tu rejouer ? (oui/non)\n");
@@ -801,7 +806,7 @@ public class Game {
         System.out.println(
                 "look         --->  Présente l'endroit où tu te trouves, les différentes pièces où tu peux\n                   aller et les objets présents autour de toi.\n");
         System.out.println("items        --->  Liste les objets qui sont en ta possession.\n");
-        System.out.println("timer         --->  Affiche le temps qu'il te reste avant la fin de la partie.\n");
+        System.out.println("timer        --->  Affiche le temps qu'il te reste avant la fin de la partie.\n");
         System.out.println(
                 "go 'choix'   --->  Permet de te déplacer dans la maison. Indique ton choix avec le chiffre\n                   qui correspond à la sortie que tu souhaites.\n");
         System.out.println("back         --->  Permet de retourner dans l'endroit précédent.\n");
