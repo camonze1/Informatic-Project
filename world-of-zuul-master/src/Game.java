@@ -151,16 +151,21 @@ public class Game {
         itemsRoom2.add(bouteille);
         Item chandelier = new Item("un chandelier", 3.0, 25);
         itemsRoom2.add(chandelier);
+        Item vase2 = new Item("un vase", 4.0, 50);
+        itemsRoom2.add(vase2);
+
+        int random = (int) (Math.random() * (itemsRoomExpensive2.size()));
+        itemsRoomExpensive2.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
-            int random = (int) (Math.random() * (itemsRoom2.size()));
+            random = (int) (Math.random() * (itemsRoom2.size()));
             salon.addItem(itemsRoom2.get(random));
             itemsRoom2.remove(random);
 
         }
 
         for (int i = 0; i < 1; i++) {
-            int random = (int) (Math.random() * (itemsRoomExpensive2.size()));
+            random = (int) (Math.random() * (itemsRoomExpensive2.size()));
             salon.addItem(itemsRoomExpensive2.get(random));
             itemsRoomExpensive2.remove(random);
         }
@@ -194,13 +199,13 @@ public class Game {
         itemsRoom3.add(paire_chaussette);
 
         for (int i = 0; i < 3; i++) {
-            int random = (int) (Math.random() * (itemsRoom3.size()));
+            random = (int) (Math.random() * (itemsRoom3.size()));
             bedRoom.addItem(itemsRoom3.get(random));
             itemsRoom3.remove(random);
         }
 
         for (int i = 0; i < 1; i++) {
-            int random = (int) (Math.random() * (itemsRoomExpensive3.size()));
+            random = (int) (Math.random() * (itemsRoomExpensive3.size()));
             bedRoom.addItem(itemsRoomExpensive3.get(random));
             itemsRoomExpensive3.remove(random);
         }
@@ -234,14 +239,17 @@ public class Game {
         Item brosse_dent = new Item("une brosse à dent électrique ", 0.25, 20);
         itemsRoom4.add(brosse_dent);
 
+        random = (int) (Math.random() * (itemsRoomExpensive4.size()));
+        itemsRoomExpensive4.get(random).setAlarm(true);
+
         for (int i = 0; i < 3; i++) {
-            int random = (int) (Math.random() * (itemsRoom4.size()));
+            random = (int) (Math.random() * (itemsRoom4.size()));
             bathRoom.addItem(itemsRoom4.get(random));
             itemsRoom4.remove(random);
         }
 
         for (int i = 0; i < 1; i++) {
-            int random = (int) (Math.random() * (itemsRoomExpensive4.size()));
+            random = (int) (Math.random() * (itemsRoomExpensive4.size()));
             bathRoom.addItem(itemsRoomExpensive4.get(random));
             itemsRoomExpensive4.remove(random);
         }
@@ -252,7 +260,7 @@ public class Game {
         ArrayList<Item> itemsRoomExpensive5 = new ArrayList();
         ArrayList<Item> itemsRoom5 = new ArrayList();
 
-        Item appareil_photo = new Item("un appareil photo", 800.0, 350);
+        Item appareil_photo = new Item("un appareil photo", 0.80, 350);
         itemsRoomExpensive5.add(appareil_photo);
         Item ordinateur = new Item("un ordinateur portable", 1.4, 700);
         itemsRoomExpensive5.add(ordinateur);
@@ -273,15 +281,18 @@ public class Game {
         Item chargeur = new Item("un chargeur sans fil ", 0.25, 60);
         itemsRoom5.add(chargeur);
 
+        random = (int) (Math.random() * (itemsRoomExpensive5.size()));
+        itemsRoomExpensive5.get(random).setAlarm(true);
+
         for (int i = 0; i < 3; i++) {
 
-            int random = (int) (Math.random() * (itemsRoom5.size()));
+            random = (int) (Math.random() * (itemsRoom5.size()));
             office.addItem(itemsRoom5.get(random));
             itemsRoom5.remove(random);
         }
 
         for (int i = 0; i < 1; i++) {
-            int random = (int) (Math.random() * (itemsRoomExpensive5.size()));
+            random = (int) (Math.random() * (itemsRoomExpensive5.size()));
             office.addItem(itemsRoomExpensive5.get(random));
             itemsRoomExpensive5.remove(random);
         }
@@ -317,14 +328,17 @@ public class Game {
         Item panini = new Item("une machine a panini", 4.0, 50);
         itemsRoom6.add(panini);
 
+        random = (int) (Math.random() * (itemsRoomExpensive6.size()));
+        itemsRoomExpensive6.get(random).setAlarm(true);
+
         for (int i = 0; i < 3; i++) {
-            int random = (int) (Math.random() * (itemsRoom6.size()));
+            random = (int) (Math.random() * (itemsRoom6.size()));
             kitchen.addItem(itemsRoom6.get(random));
             itemsRoom6.remove(random);
         }
 
         for (int i = 0; i < 1; i++) {
-            int random = (int) (Math.random() * (itemsRoomExpensive6.size()));
+            random = (int) (Math.random() * (itemsRoomExpensive6.size()));
             kitchen.addItem(itemsRoomExpensive6.get(random));
             itemsRoomExpensive6.remove(random);
         }
@@ -356,14 +370,17 @@ public class Game {
         Item bibelots = new Item("des bibelots", 10.0, 60);
         itemsRoom7.add(bibelots);
 
+        random = (int) (Math.random() * (itemsRoomExpensive7.size()));
+        itemsRoomExpensive7.get(random).setAlarm(true);
+
         for (int i = 0; i < 3; i++) {
-            int random = (int) (Math.random() * (itemsRoom7.size()));
+            random = (int) (Math.random() * (itemsRoom7.size()));
             diningRoom.addItem(itemsRoom7.get(random));
             itemsRoom7.remove(random);
         }
 
         for (int i = 0; i < 1; i++) {
-            int random = (int) (Math.random() * (itemsRoomExpensive7.size()));
+            random = (int) (Math.random() * (itemsRoomExpensive7.size()));
             diningRoom.addItem(itemsRoomExpensive7.get(random));
             itemsRoomExpensive7.remove(random);
         }
@@ -397,14 +414,17 @@ public class Game {
         Item rubiks = new Item("un rubiks cube", 0.1, 5);
         itemsRoom8.add(rubiks);
 
+        random = (int) (Math.random() * (itemsRoomExpensive8.size()));
+        itemsRoomExpensive8.get(random).setAlarm(true);
+
         for (int i = 0; i < 3; i++) {
-            int random = (int) (Math.random() * (itemsRoom8.size()));
+            random = (int) (Math.random() * (itemsRoom8.size()));
             gameRoom.addItem(itemsRoom8.get(random));
             itemsRoom8.remove(random);
         }
 
         for (int i = 0; i < 1; i++) {
-            int random = (int) (Math.random() * (itemsRoomExpensive8.size()));
+            random = (int) (Math.random() * (itemsRoomExpensive8.size()));
             gameRoom.addItem(itemsRoomExpensive8.get(random));
             itemsRoomExpensive8.remove(random);
         }
@@ -429,15 +449,17 @@ public class Game {
         itemsRoomExpensive9.add(balle);
         Item vetements = new Item("des vetements", 1.2, 80);
         itemsRoom9.add(vetements);
+        Item livres = new Item("des livres", 1.2, 27);
+        itemsRoom9.add(livres);
 
         for (int i = 0; i < 3; i++) {
-            int random = (int) (Math.random() * (itemsRoom9.size()));
+            random = (int) (Math.random() * (itemsRoom9.size()));
             grenier.addItem(itemsRoom9.get(random));
             itemsRoom9.remove(random);
         }
 
         for (int i = 0; i < 1; i++) {
-            int random = (int) (Math.random() * (itemsRoomExpensive9.size()));
+            random = (int) (Math.random() * (itemsRoomExpensive9.size()));
             grenier.addItem(itemsRoomExpensive9.get(random));
             itemsRoomExpensive9.remove(random);
         }
@@ -649,7 +671,13 @@ public class Game {
             if (player.canTakeIt(item) == true) {
                 player.getCurrentRoom().removeItem(item);
                 player.addItem(item);
-                System.out.println("\nTu as pris " + item.getDescription() + ".\n");
+                if (item.getAlarm() == true) {
+                    timer.alarm();
+                    return;
+
+                } else {
+                    System.out.println("\nTu as pris " + item.getDescription() + ".\n");
+                }
                 printLocationInfo();
             } else {
                 System.out.println("\nCet objet est trop lourd, tu ne peux pas le prendre.\n");
@@ -724,11 +752,15 @@ public class Game {
                 System.out.print("> ");
                 answer = sc.nextLine();
             }
-            if (answer.equals("oui")) { 
+            if (answer.equals("oui")) {
                 timer.stop();
                 System.out.println("\n" + star_line);
-                System.out.println("\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour " + player.getTotalValue() + " € d'objets.\n\n                                       Il te restait " + timer.getRemainingTime() / 1000 + " secondes.\n");
-                System.out.println("\n" + star_line + "\n");                
+                System.out.println(
+                        "\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour "
+                                + player.getTotalValue()
+                                + " € d'objets.\n\n                                       Il te restait "
+                                + timer.getRemainingTime() / 1000 + " secondes.\n");
+                System.out.println("\n" + star_line + "\n");
             } else if (answer.equals("non")) {
                 System.out.println("\nTu as décidé de continuer le jeu.\n");
             }
@@ -778,10 +810,14 @@ public class Game {
         System.out.println(
                 "go 'choix'   --->  Permet de te déplacer dans la maison. Indique ton choix avec le chiffre\n                   qui correspond à la sortie que tu souhaites.\n");
         System.out.println("back         --->  Permet de retourner dans l'endroit précédent.\n");
-        System.out.println("take 'choix' --->  Permet de prendre un objet. Indique ton choix avec le chiffre qui\n                   correspond à l'objet que tu souhaites voler.\n");
-        System.out.println("drop 'choix' --->  Permet de déposer un objet de ton inventaire à l'endroit où tu te\n                   trouves. Indique ton choix avec le chiffre qui correspond à l'objet\n                   que tu veux supprimer de ton inventaire.\n");
-        System.out.println("finish       --->  Permet, losque tu es en dehors de la maison, de finir ta partie afin\n                   de remporter tous les objets que tu as volé, et de connaître\n                   la valeur de ton butin.\n");
-        System.out.println("quit         --->  Permet de quitter le jeu définitivement. Attention si tu quittes le jeu,\n                   tu perdras tous les scores des parties que tu as gagnées !");
+        System.out.println(
+                "take 'choix' --->  Permet de prendre un objet. Indique ton choix avec le chiffre qui\n                   correspond à l'objet que tu souhaites voler.\n");
+        System.out.println(
+                "drop 'choix' --->  Permet de déposer un objet de ton inventaire à l'endroit où tu te\n                   trouves. Indique ton choix avec le chiffre qui correspond à l'objet\n                   que tu veux supprimer de ton inventaire.\n");
+        System.out.println(
+                "finish       --->  Permet, losque tu es en dehors de la maison, de finir ta partie afin\n                   de remporter tous les objets que tu as volé, et de connaître\n                   la valeur de ton butin.\n");
+        System.out.println(
+                "quit         --->  Permet de quitter le jeu définitivement. Attention si tu quittes le jeu,\n                   tu perdras tous les scores des parties que tu as gagnées !");
         System.out.println(continuous_line);
     }
 }
