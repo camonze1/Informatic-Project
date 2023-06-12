@@ -58,16 +58,26 @@ public class Timer {
         return this.elapsed;
     }
 
+    public void reset() {
+        this.remainingTime = this.totalTime;
+        this.isRunning = false;
+        this.timerThread = null;
+        this.elapsed = false;
+    }
+
     private class TimerTask implements Runnable {
         @Override
         public void run() {
             while (remainingTime > 0) {
                 try {
+                    elapsed = false;
                     Thread.sleep(1000); // Attendre 1 seconde
                     if (isRunning) {
                         remainingTime -= 1000; // Décrémenter le temps restant de 1 seconde
                         if (remainingTime == 0) {
+                            elapsed = true;
                             stop();
+                            reset();
                         } else {
                             if (remainingTime == 30000) {
                                 System.out.println("_______________________________________________________________________________________________________________\n");

@@ -35,7 +35,7 @@ public class Game {
     public Game(Player player) {
         this.player = player;
         createRooms();
-        this.timer = new Timer(40000);
+        this.timer = new Timer(120000);
         this.parser = new Parser();
     }
 
