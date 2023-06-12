@@ -118,14 +118,17 @@ public class Game {
         Item billet = new Item("un billet", 0.1, 5);
         itemsRoom.add(billet);
 
+        int random = (int) (Math.random() * (itemsRoomExpensive.size()));
+        itemsRoomExpensive.get(random).setAlarm(true);
+
         for (int i = 0; i < 3; i++) {
-            int random = (int) (Math.random() * (itemsRoom.size()));
+            random = (int) (Math.random() * (itemsRoom.size()));
             hall.addItem(itemsRoom.get(random));
             itemsRoom.remove(random);
         }
 
         for (int i = 0; i < 1; i++) {
-            int random = (int) (Math.random() * (itemsRoomExpensive.size()));
+            random = (int) (Math.random() * (itemsRoomExpensive.size()));
             hall.addItem(itemsRoomExpensive.get(random));
             itemsRoomExpensive.remove(random);
         }
@@ -155,7 +158,7 @@ public class Game {
         Item vase2 = new Item("un vase", 4.0, 50);
         itemsRoom2.add(vase2);
 
-        int random = (int) (Math.random() * (itemsRoomExpensive2.size()));
+        random = (int) (Math.random() * (itemsRoomExpensive2.size()));
         itemsRoomExpensive2.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
@@ -453,6 +456,9 @@ public class Game {
         Item livres = new Item("des livres", 1.2, 27);
         itemsRoom9.add(livres);
 
+        random = (int) (Math.random() * (itemsRoomExpensive9.size()));
+        itemsRoomExpensive9.get(random).setAlarm(true);
+
         for (int i = 0; i < 3; i++) {
             random = (int) (Math.random() * (itemsRoom9.size()));
             grenier.addItem(itemsRoom9.get(random));
@@ -745,7 +751,8 @@ public class Game {
      * "finish" when the player is outside the house, he can finish the game
      */
     private void finish() {
-        if (player.getCurrentRoom().getDescription().equals("dehors devant la maison") && timer.isRunning()) {
+        timer.pause();
+        if (player.getCurrentRoom().getDescription().equals("dehors devant la maison")) {
             System.out.println("\nEs-tu sûr de vouloir quitter le jeu ? (oui/non)\n");
             System.out.print("> ");
             Scanner sc = new Scanner(System.in);
@@ -757,6 +764,7 @@ public class Game {
             }
             if (answer.equals("oui")) {
                 timer.stop();
+                timer.setLost(false);
                 System.out.println("\n" + star_line);
                 System.out.println(
                         "\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour "
@@ -766,9 +774,11 @@ public class Game {
                 System.out.println("\n" + star_line + "\n");
             } else if (answer.equals("non")) {
                 System.out.println("\nTu as décidé de continuer le jeu.\n");
+                timer.restart();
             }
         } else {
             System.out.println("\nTu ne peux pas finir le jeu ici.\n");
+            timer.restart();
         }
     }
 
