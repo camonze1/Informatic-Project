@@ -35,7 +35,7 @@ public class Game {
     public Game(Player player) {
         this.player = player;
         createRooms();
-        this.timer = new Timer(40000);
+        this.timer = new Timer(120000);
         this.parser = new Parser();
     }
 
@@ -738,7 +738,7 @@ public class Game {
     }
 
     /**
-     * "rejouer" when the player finish the game he can play again
+     * "replay" when the player finish the game he can play again
      */
     private void replay() {
         System.out.println("\nVeux tu rejouer ? (oui/non)\n");
