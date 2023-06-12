@@ -75,9 +75,8 @@ public class Timer {
                     if (isRunning) {
                         remainingTime -= 1000; // Décrémenter le temps restant de 1 seconde
                         if (remainingTime == 0) {
-                            elapsed = true;
                             stop();
-                            reset();
+                            elapsed = true;
                         } else {
                             if (remainingTime == 30000) {
                                 System.out.println("_______________________________________________________________________________________________________________\n");
@@ -91,6 +90,7 @@ public class Timer {
                     break;
                 }
             }
+            reset();
         }
     }
 }
