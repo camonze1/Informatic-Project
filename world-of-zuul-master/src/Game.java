@@ -457,6 +457,11 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
+        if(timer.isElapsed()){
+            System.out.println("_______________________________________________________________________________________________________________\n");
+            System.out.println("                              Le temps est écoulé, tu as perdu !");
+            System.out.println("_________________________________________________________________________________________________________________\n");
+        }
         replay();
     }
 
