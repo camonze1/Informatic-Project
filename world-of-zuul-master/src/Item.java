@@ -14,6 +14,7 @@ public class Item {
     private String description;
     private Double weight;
     private Integer value;
+    private Boolean alarm;
 
     /**
      * Create a item
@@ -28,6 +29,7 @@ public class Item {
         this.description = description;
         this.weight = weight;
         this.value = value;
+        this.alarm = false;
     }
 
     /**
@@ -49,6 +51,20 @@ public class Item {
      */
     public Integer getValues() {
         return this.value;
+    }
+
+    /**
+     * @return The alarm of the item.
+     */
+    public Boolean getAlarm() {
+        return this.alarm;
+    }
+
+    /**
+     * @param The value of the alarm.
+     */
+    public void setAlarm(Boolean alarm) {
+        this.alarm = alarm;
     }
 
 }

@@ -53,6 +53,30 @@ public class Timer {
         return isRunning;
     }
 
+    public void alarm() {
+
+        if (this.remainingTime <= 15000) {
+            stop();
+            System.out.println(
+                    "_________________________________________________________________________________________________________________\n");
+            System.out.println(
+                    "                   L'objet que tu veux prendre a declenché une alarme, le temps est écoulé, tu n'as pas le temps de sortir, tu as perdu...");
+            System.out.println(
+                    "_________________________________________________________________________________________________________________\n");
+
+        } else {
+            long time = remainingTime - 15000;
+            decreaseTime(time);
+            System.out.println(
+                    "_________________________________________________________________________________________________________________\n");
+            System.out.println(
+                    "             L'objet que tu veux prendre a declenché une alarme, tu as 15 secondes pour sortir de la maison !");
+            System.out.println(
+                    "_________________________________________________________________________________________________________________\n");
+        }
+
+    }
+
     private class TimerTask implements Runnable {
         @Override
         public void run() {
@@ -63,15 +87,21 @@ public class Timer {
                         remainingTime -= 1000; // Décrémenter le temps restant de 1 seconde
                         if (remainingTime == 0) {
                             stop();
-                            System.out.println("_________________________________________________________________________________________________________________\n");
-                            System.out.println("                                      Le temps est écoulé, tu as perdu...");
-                            System.out.println("_________________________________________________________________________________________________________________\n");
-                            System.exit(0);
+                            System.out.println(
+                                    "_________________________________________________________________________________________________________________\n");
+                            System.out.println(
+                                    "                                      Le temps est écoulé, tu as perdu...");
+                            System.out.println(
+                                    "_________________________________________________________________________________________________________________\n");
+                            // System.exit(0);
                         } else {
                             if (remainingTime == 30000) {
-                                System.out.println("_______________________________________________________________________________________________________________\n");
-                                System.out.println("                              Il te reste 30 secondes, dépêche toi de sortir !");
-                                System.out.println("_________________________________________________________________________________________________________________\n");
+                                System.out.println(
+                                        "_______________________________________________________________________________________________________________\n");
+                                System.out.println(
+                                        "                              Il te reste 30 secondes, dépêche toi de sortir !");
+                                System.out.println(
+                                        "_________________________________________________________________________________________________________________\n");
                             }
                         }
                     }
@@ -82,4 +112,5 @@ public class Timer {
             }
         }
     }
+
 }
