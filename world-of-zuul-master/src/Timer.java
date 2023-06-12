@@ -3,7 +3,6 @@ public class Timer {
     private long remainingTime; // Temps restant du timer en millisecondes
     private boolean isRunning; // Indicateur si le timer est en cours d'exécution
     private Thread timerThread; // Thread du timer
-    private boolean elapsed; // Indicateur si le timer est terminé
     private boolean lost; // Indicateur si le joueur a perdu par manque de temps
 
     public Timer(long totalTime) {
@@ -25,6 +24,10 @@ public class Timer {
         if (this.isRunning) {
             this.isRunning = false;
         }
+    }
+
+    public void restart() {
+        this.isRunning = true;
     }
 
     public void stop() {
@@ -55,12 +58,8 @@ public class Timer {
         return this.isRunning;
     }
 
-    public boolean isElapsed() {
-        return this.elapsed;
-    }
-
-    public void lost() {
-        this.lost = true;
+    public void setLost(Boolean b) {
+        this.lost = b;
     }
 
     public Boolean getLost() {
@@ -71,7 +70,7 @@ public class Timer {
 
         if (this.remainingTime <= 15000) {
             stop();
-            lost();
+            setLost(true);
             System.out.println(
                     "_________________________________________________________________________________________________________________\n");
             System.out.println(
@@ -97,13 +96,12 @@ public class Timer {
         public void run() {
             while (remainingTime > 0) {
                 try {
-                    elapsed = false;
                     Thread.sleep(1000); // Attendre 1 seconde
                     if (isRunning) {
                         remainingTime -= 1000; // Décrémenter le temps restant de 1 seconde
                         if (remainingTime == 0) {
                             stop();
-                            lost();
+                            setLost(true);
                         } else {
                             if (remainingTime == 30000) {
                                 System.out.println(
