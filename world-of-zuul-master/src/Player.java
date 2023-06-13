@@ -6,7 +6,7 @@ public class Player {
     private Stack<Room> previousRoom = new Stack<Room>();
     private ArrayList<Item> items = new ArrayList();
     private ArrayList<Integer> scores = new ArrayList();
-    private Double max_weight = 20.0;
+    private float max_weight = 20.0f;
 
     /**
      * return the current room
@@ -72,7 +72,7 @@ public class Player {
      * 
      * @return the max weight
      */
-    public Double getMaxWeight() {
+    public float getMaxWeight() {
         return max_weight;
     }
 
@@ -132,8 +132,8 @@ public class Player {
      * 
      * @return weight total
      */
-    public Double getTotalweight() {
-        Double weight = 0.0;
+    public float getTotalweight() {
+        float weight = 0.0f;
         for (int item = 0; item < items.size(); item++) {
             weight += items.get(item).getWeight();
         }
@@ -144,7 +144,7 @@ public class Player {
      * returns true if the player can take the object else returns false
      */
     public Boolean canTakeIt(Item item) {
-        Double total_weight = getTotalweight() + item.getWeight();
+        float total_weight = getTotalweight() + item.getWeight();
         if (total_weight <= max_weight) {
             return true;
         } else
