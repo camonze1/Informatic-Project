@@ -71,7 +71,6 @@ public class Timer {
     }
 
     public void alarm() {
-
         if (this.remainingTime <= 15000) {
             stop();
             setLost(true);
@@ -92,7 +91,6 @@ public class Timer {
             System.out.println(
                     "_________________________________________________________________________________________________________________\n");
         }
-
     }
 
     private class TimerTask implements Runnable {
@@ -101,7 +99,7 @@ public class Timer {
             while (remainingTime > 0) {
                 try {
                     Thread.sleep(1000); // Attendre 1 seconde
-                    if (isRunning && pause == false) {
+                    if (!(isRunning && pause)) {
                         remainingTime -= 1000; // Décrémenter le temps restant de 1 seconde
                         if (remainingTime == 0) {
                             stop();
@@ -114,6 +112,7 @@ public class Timer {
                                         "                              Il te reste 30 secondes, dépêche toi de sortir !");
                                 System.out.println(
                                         "_________________________________________________________________________________________________________________\n");
+                                System.out.print("> ");                            
                             }
                         }
                     }
@@ -122,8 +121,6 @@ public class Timer {
                     break;
                 }
             }
-
         }
     }
-
 }

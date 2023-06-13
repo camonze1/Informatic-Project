@@ -1,19 +1,3 @@
-
-/**
- * Class Room - a room in an adventure game.
- *
- * This class is part of the "World of Zuul" application.
- * "World of Zuul" is a very simple, text based adventure game.
- *
- * A "Room" represents one location in the scenery of the game. It is
- * connected to other rooms via exits. The exits are labelled north,
- * east, south, west. For each direction, the room stores a reference
- * to the neighboring room, or null if there is no exit in that direction.
- * 
- * @author Michael Kölling and David J. Barnes
- * @version 2016.02.29
- */
-
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -74,7 +58,7 @@ public class Room {
 
         for (int i = 0; i < exit_name.length; i++) {
             if (this.exits.get(Integer.toString(i + 1)) != null) {
-                string_exit += (exit_name[i] + ", " + this.exits.get(Integer.toString(i + 1)).getDescription() + " ("
+                string_exit += "- " + (exit_name[i] + ", " + this.exits.get(Integer.toString(i + 1)).getDescription() + " ("
                         + (i + 1) + ") \n");
             }
         }
@@ -138,7 +122,7 @@ public class Room {
             string_items += "Il n'y a aucun objet là où tu es.\n";
         } else {
             for (int i = 0; i < items.size(); i++) {
-                string_items += items.get(i).getDescription() + " (" + (i + 1) + ") " + "\n";
+                string_items += "- " + items.get(i).getDescription() + " (" + (i + 1) + ") " + "\n";
             }
         }
         return string_items;

@@ -1,15 +1,3 @@
-/**
- * Class Item - a item in an adventure game.
- *
- * This class is part of the "World of Zuul" application.
- * "World of Zuul" is a very simple, text based adventure game.
- *
- * An "Item" represents an object in the game scenario.
- * There can be several objects in a room.
- * An object is characterised by a description and a weight
- * 
- */
-
 public class Item {
     private String description;
     private Double weight;
@@ -66,5 +54,4 @@ public class Item {
     public void setAlarm(Boolean alarm) {
         this.alarm = alarm;
     }
-
 }
