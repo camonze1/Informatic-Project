@@ -1,6 +1,6 @@
 public class Item {
     private String description;
-    private Double weight;
+    private float weight;
     private Integer value;
     private Boolean alarm;
 
@@ -13,7 +13,7 @@ public class Item {
      * @param weight      The item's weight.
      * @param value       The item's value.
      */
-    public Item(String description, Double weight, Integer value) {
+    public Item(String description, float weight, Integer value) {
         this.description = description;
         this.weight = weight;
         this.value = value;
@@ -23,7 +23,7 @@ public class Item {
     /**
      * @return The weight of the item.
      */
-    public Double getWeight() {
+    public float getWeight() {
         return this.weight;
     }
 
