@@ -54,7 +54,7 @@ public class Room {
      */
     public String getExitString() {
         String string_exit = "\nSorties : \n\n";
-        String[] exit_name = { "Devant", "A droite", "Derrière", "A gauche", "En haut", "En bas" };
+        String[] exit_name = { "Devant", "À droite", "Derrière", "À gauche", "En haut", "En bas" };
 
         for (int i = 0; i < exit_name.length; i++) {
             if (this.exits.get(Integer.toString(i + 1)) != null) {
