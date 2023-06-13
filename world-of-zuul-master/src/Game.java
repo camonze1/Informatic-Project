@@ -92,9 +92,9 @@ public class Game {
         expensiveItemsRoom.add(trotinette);
         Item lampe = new Item("une lampe", 0.4f, 20);
         itemsRoom.add(lampe);
-        Item nike = new Item("une paire de nike", 0.5f, 120);
+        Item nike = new Item("une paire de Nike", 0.5f, 120);
         expensiveItemsRoom.add(nike);
-        Item diffuseur = new Item("des bâtonnets diffuseur Rituals", 0.5f, 30);
+        Item diffuseur = new Item("des bâtonnets diffuseurs Rituals", 0.5f, 30);
         itemsRoom.add(diffuseur);
         Item billet = new Item("un billet", 0.1f, 5);
         itemsRoom.add(billet);
@@ -128,7 +128,7 @@ public class Game {
         itemsRoom2.add(lecteurdvd);
         Item airpods = new Item("des airpods", 0.01f, 160);
         expensiveItemsRoom2.add(airpods);
-        Item dolby = new Item("des enceintes dolby", 5.0f, 320);
+        Item dolby = new Item("des enceintes Dolby", 5.0f, 320);
         expensiveItemsRoom2.add(dolby);
         Item smartphone = new Item("un smartphone", 0.2f, 800);
         expensiveItemsRoom2.add(smartphone);
@@ -170,7 +170,7 @@ public class Game {
         itemsRoom3.add(gourde);
         Item casquette = new Item("une casquette", 0.2f, 2);
         itemsRoom3.add(casquette);
-        Item flute = new Item("une flute traversière", 0.6f, 700);
+        Item flute = new Item("une flûte traversière", 0.6f, 700);
         expensiveItemsRoom3.add(flute);
         Item string = new Item("un string", 0.02f, 35);
         itemsRoom3.add(string);
@@ -180,7 +180,7 @@ public class Game {
         itemsRoom3.add(pupitre);
         Item gant_boxe = new Item("un gant de boxe", 0.5f, 15);
         itemsRoom3.add(gant_boxe);
-        Item paire_chaussette = new Item("une paire de chaussette", 0.1f, 5);
+        Item paire_chaussette = new Item("une paire de chaussettes", 0.1f, 5);
         itemsRoom3.add(paire_chaussette);
 
         for (int i = 0; i < 3; i++) {
@@ -221,7 +221,7 @@ public class Game {
         expensiveItemsRoom4.add(serpent);
         Item shampoing = new Item("un shampoing ", 0.3f, 12);
         itemsRoom4.add(shampoing);
-        Item brosse_dent = new Item("une brosse à dent électrique ", 0.25f, 20);
+        Item brosse_dent = new Item("une brosse à dents électrique ", 0.25f, 20);
         itemsRoom4.add(brosse_dent);
 
         random = (int) (Math.random() * (expensiveItemsRoom4.size()));
@@ -290,27 +290,27 @@ public class Game {
 
         Item machine_cafe = new Item("une machine à café", 2.8f, 499);
         expensiveItemsRoom6.add(machine_cafe);
-        Item grille_pain = new Item("un grille pain", 0.4f, 22);
+        Item grille_pain = new Item("un grille-pain", 0.4f, 22);
         itemsRoom6.add(grille_pain);
-        Item thermomix = new Item("un thermomix", 5.0f, 950);
+        Item thermomix = new Item("un Thermomix", 5.0f, 950);
         expensiveItemsRoom6.add(thermomix);
         Item vaisselle = new Item("un set de vaisselle", 8.0f, 130);
         expensiveItemsRoom6.add(vaisselle);
         Item bouilloire = new Item("une bouilloire", 0.3f, 30);
         itemsRoom6.add(bouilloire);
-        Item chewings_gums = new Item("des chewings gums", 0.1f, 2);
+        Item chewings_gums = new Item("des chewing-gums", 0.1f, 2);
         itemsRoom6.add(chewings_gums);
         Item tele_c = new Item("une télé", 6.0f, 250);
         expensiveItemsRoom6.add(tele_c);
-        Item sodastream = new Item("une sodastream", 0.7f, 60);
+        Item sodastream = new Item("une Sodastream", 0.7f, 60);
         itemsRoom6.add(sodastream);
-        Item sirop = new Item("sirop la maison de guiot", 0.7f, 4);
+        Item sirop = new Item("sirop La Maison Guiot", 0.7f, 4);
         itemsRoom6.add(sirop);
         Item saladier = new Item("un saladier", 1.7f, 25);
         itemsRoom6.add(saladier);
-        Item kinder = new Item("un kinder pingui", 0.07f, 15);
+        Item kinder = new Item("un Kinder Pingui", 0.07f, 15);
         itemsRoom6.add(kinder);
-        Item panini = new Item("une machine a panini", 4.0f, 50);
+        Item panini = new Item("une machine à panini", 4.0f, 50);
         itemsRoom6.add(panini);
 
         random = (int) (Math.random() * (expensiveItemsRoom6.size()));
@@ -340,7 +340,7 @@ public class Game {
         expensiveItemsRoom7.add(statue);
         Item miroir = new Item("un miroir", 6.0f, 285);
         expensiveItemsRoom7.add(miroir);
-        Item base_alexa = new Item("une base alexa", 0.45f, 60);
+        Item base_alexa = new Item("une base Alexa", 0.45f, 60);
         itemsRoom7.add(base_alexa);
         Item lampe2 = new Item("une lampe", 5.0f, 60);
         itemsRoom7.add(lampe2);
@@ -392,11 +392,11 @@ public class Game {
         expensiveItemsRoom8.add(pouffe);
         Item uno = new Item("un jeu de uno", 0.75f, 12);
         itemsRoom8.add(uno);
-        Item drone = new Item("un drone", 0.5f, 220);
+        Item drone = new Item("un drône", 0.5f, 220);
         expensiveItemsRoom8.add(drone);
-        Item playmobile = new Item("des playmobiles", 1.0f, 12);
+        Item playmobile = new Item("des Playmobils", 1.0f, 12);
         itemsRoom8.add(playmobile);
-        Item rubiks = new Item("un rubiks cube", 0.1f, 5);
+        Item rubiks = new Item("un Rubik's cube", 0.1f, 5);
         itemsRoom8.add(rubiks);
 
         random = (int) (Math.random() * (expensiveItemsRoom8.size()));
@@ -432,7 +432,7 @@ public class Game {
         expensiveItemsRoom9.add(velo);
         Item balle = new Item("une balle de tennis", 0.3f, 450);
         expensiveItemsRoom9.add(balle);
-        Item vetements = new Item("des vetements", 1.2f, 80);
+        Item vetements = new Item("des vêtements", 1.2f, 80);
         itemsRoom9.add(vetements);
         Item livres = new Item("des livres", 1.2f, 27);
         itemsRoom9.add(livres);
@@ -664,7 +664,7 @@ public class Game {
         try {
             item_index = Integer.parseInt(item_index_str);
         } catch (Exception e) {
-            System.out.println("La commande n'est pas valide\n");
+            System.out.println("La commande n'est pas valide.\n");
             return;
         }
         Item item = player.getCurrentRoom().getItem(item_index - 1);
@@ -706,7 +706,7 @@ public class Game {
         try {
             item_index = Integer.parseInt(item_index_str);
         } catch (Exception e) {
-            System.out.println("La commande n'est pas valide\n");
+            System.out.println("La commande n'est pas valide.\n");
             return;
         }
         Item item = player.getItem(item_index - 1);
@@ -768,7 +768,7 @@ public class Game {
                 timer.stop();
                 timer.setLost(false);
                 System.out.println("\n" + star_line);
-                System.out.println("\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour "
+                System.out.println("\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitations !\n\n                                     Tu as volé pour "
                                 + player.getTotalValue()
                                 + " € d'objets.\n\n                                       Il te restait "
                                 + timer.getRemainingTime() / 1000 + " secondes.\n");
@@ -788,7 +788,7 @@ public class Game {
      */
     private void replay() {
         timer.stop();
-        System.out.println("\nVeux tu rejouer ? (oui/non)\n");
+        System.out.println("\nVeux-tu rejouer ? (oui/non)\n");
         System.out.print("> ");
         Scanner sc = new Scanner(System.in);
         String answer = sc.nextLine();
@@ -801,7 +801,7 @@ public class Game {
             Game game = new Game(player);
             game.play();
         } else if (answer.equals("non")) {
-            System.out.println("\nMerci d'avoir jouer ! À la prochaine !\n");
+            System.out.println("\nMerci d'avoir joué ! À la prochaine !\n");
             System.exit(0);
         }
     }
@@ -816,7 +816,7 @@ public class Game {
         System.out.println(continuous_line);
         System.out.println("                                            Règles du jeu :\n");
         System.out.println(
-                "        Ton but est de cambrioler des maisons. Récupère le plus d'argent possible en volant les\n           objets qui te paraissent les plus cher dans les différentes pièces de la maison.\n\n                                            ! Attention !\n                   N'oublie pas ! Tu ne peux transporter qu'un certain poids d'objets.\n                                       !! Have fun and good luck !!\n\n");
+                "        Ton but est de cambrioler des maisons. Récupère le plus d'argent possible en volant les\n           objets qui te paraissent les plus chers dans les différentes pièces de la maison.\n\n                                            ! Attention !\n                   N'oublie pas ! Tu ne peux transporter qu'un certain poids d'objets.\n                                       !! Have fun and good luck !!\n\n");
         System.out.println(middle_separation);
         System.out.println("Voici les différentes commandes à ta disposition et leur utilité :\n");
         System.out.println("help         --->  Liste les différentes commandes que tu peux utiliser dans le jeu.\n");
@@ -836,7 +836,7 @@ public class Game {
         System.out.println(
                 "finish       --->  Permet, losque tu es en dehors de la maison, de finir ta partie afin\n                   de remporter tous les objets que tu as volé, et de connaître\n                   la valeur de ton butin.\n");
         System.out.println(
-                "quit         --->  Permet de quitter le jeu définitivement. Attention si tu quittes le jeu,\n                   tu perdras tous les scores des parties que tu as gagnées !");
+                "quit         --->  Permet de quitter le jeu définitivement. Attention si tu quittes le jeu,\n                   tu perdras tous les scores des parties que tu as gagnés !");
         System.out.println(continuous_line);
     }
 }
