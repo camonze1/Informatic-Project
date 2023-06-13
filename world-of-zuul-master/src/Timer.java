@@ -4,6 +4,7 @@ public class Timer {
     private boolean isRunning; // Indicateur si le timer est en cours d'exécution
     private Thread timerThread; // Thread du timer
     private boolean lost; // Indicateur si le joueur a perdu par manque de temps
+    private boolean pause; // si le jeu est en pause
 
     public Timer(long totalTime) {
         this.totalTime = totalTime;
@@ -21,13 +22,12 @@ public class Timer {
     }
 
     public void pause() {
-        if (this.isRunning) {
-            this.isRunning = false;
-        }
+        this.pause = true;
+
     }
 
     public void restart() {
-        this.isRunning = true;
+        this.pause = false;
     }
 
     public void stop() {
@@ -66,6 +66,10 @@ public class Timer {
         return this.lost;
     }
 
+    public Boolean getPause() {
+        return pause;
+    }
+
     public void alarm() {
 
         if (this.remainingTime <= 15000) {
@@ -97,7 +101,7 @@ public class Timer {
             while (remainingTime > 0) {
                 try {
                     Thread.sleep(1000); // Attendre 1 seconde
-                    if (isRunning) {
+                    if (isRunning && pause == false) {
                         remainingTime -= 1000; // Décrémenter le temps restant de 1 seconde
                         if (remainingTime == 0) {
                             stop();
