@@ -72,7 +72,7 @@ public class Player {
      * 
      * @return the max weight
      */
-    public double getMaxWeight() {
+    public Double getMaxWeight() {
         return max_weight;
     }
 
