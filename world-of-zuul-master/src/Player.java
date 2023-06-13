@@ -2,12 +2,11 @@ import java.util.*;
 import java.util.ArrayList;
 
 public class Player {
-
     private Room currentRoom;
     private Stack<Room> previousRoom = new Stack<Room>();
     private ArrayList<Item> items = new ArrayList();
     private ArrayList<Integer> scores = new ArrayList();
-    private Double max_weight = 30.0;
+    private Double max_weight = 20.0;
 
     /**
      * return the current room
@@ -101,8 +100,7 @@ public class Player {
 
     /**
      * function that adds the total value of items of the current game to a list
-     * that matches the total value of all games played. Then display the highest
-     * score of the whole list
+     * that matches the total value of all games played.
      */
     public void setHighScore() {
         int value = getTotalValue();
@@ -162,7 +160,6 @@ public class Player {
             string_items += "- " + this.items.get(i).getDescription() + " (" + (i + 1) + ") " + "\n";
         }
         return string_items;
-
     }
 
     /**

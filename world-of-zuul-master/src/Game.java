@@ -1,24 +1,5 @@
 import java.util.Scanner;
-
 import java.util.ArrayList;
-
-/**
- * 
- * This class is the main class of the "World of Zuul" application.
- * "World of Zuul" is a very simple, text based adventure game. Users
- * can walk around some scenery. That's all. It should really be extended
- * to make it more interesting!
- * 
- * To play this game, create an instance of this class and call the "play"
- * method.
- * 
- * This main class creates and initialises all the others: it creates all
- * rooms, creates the parser and starts the game. It also evaluates and
- * executes the commands that the parser returns.
- * 
- * @author Michael Kölling and David J. Barnes
- * @version 2016.02.29
- */
 
 public class Game {
     private Parser parser;
@@ -93,7 +74,7 @@ public class Game {
         // initialise items
 
         // hall 11
-        ArrayList<Item> itemsRoomExpensive = new ArrayList();
+        ArrayList<Item> expensiveItemsRoom = new ArrayList();
         ArrayList<Item> itemsRoom = new ArrayList();
         Item tableau = new Item("un tableau", 5.0, 100);
         itemsRoom.add(tableau);
@@ -101,25 +82,25 @@ public class Game {
         itemsRoom.add(portefeuille);
         Item parapluie = new Item("un parapluie", 0.30, 3);
         itemsRoom.add(parapluie);
-        Item veste = new Item("une veste", 0.800, 60);
+        Item veste = new Item("une veste", 0.8, 60);
         itemsRoom.add(veste);
-        Item chaussures = new Item("des chaussures", 0.70, 70);
+        Item chaussures = new Item("des chaussures", 0.7, 70);
         itemsRoom.add(chaussures);
         Item sac = new Item("un sac à main", 1.2, 50);
         itemsRoom.add(sac);
-        Item trotinette = new Item("une  trotinette", 4.0, 240);
-        itemsRoomExpensive.add(trotinette);
-        Item lampe = new Item("une  lampe", 0.4, 20);
+        Item trotinette = new Item("une trotinette", 4.0, 240);
+        expensiveItemsRoom.add(trotinette);
+        Item lampe = new Item("une lampe", 0.4, 20);
         itemsRoom.add(lampe);
-        Item nike = new Item("une  paire de nike", 0.5, 120);
-        itemsRoomExpensive.add(nike);
+        Item nike = new Item("une paire de nike", 0.5, 120);
+        expensiveItemsRoom.add(nike);
         Item diffuseur = new Item("des bâtonnets diffuseur Rituals", 0.5, 30);
         itemsRoom.add(diffuseur);
         Item billet = new Item("un billet", 0.1, 5);
         itemsRoom.add(billet);
 
-        int random = (int) (Math.random() * (itemsRoomExpensive.size()));
-        itemsRoomExpensive.get(random).setAlarm(true);
+        int random = (int) (Math.random() * (expensiveItemsRoom.size()));
+        expensiveItemsRoom.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
             random = (int) (Math.random() * (itemsRoom.size()));
@@ -128,29 +109,29 @@ public class Game {
         }
 
         for (int i = 0; i < 1; i++) {
-            random = (int) (Math.random() * (itemsRoomExpensive.size()));
-            hall.addItem(itemsRoomExpensive.get(random));
-            itemsRoomExpensive.remove(random);
+            random = (int) (Math.random() * (expensiveItemsRoom.size()));
+            hall.addItem(expensiveItemsRoom.get(random));
+            expensiveItemsRoom.remove(random);
         }
         hall.Shuffle();
 
         // salon 8
-        ArrayList<Item> itemsRoomExpensive2 = new ArrayList();
+        ArrayList<Item> expensiveItemsRoom2 = new ArrayList();
         ArrayList<Item> itemsRoom2 = new ArrayList();
         Item console = new Item("une console de jeux vidéos", 0.5, 300);
-        itemsRoomExpensive2.add(console);
+        expensiveItemsRoom2.add(console);
         Item tele = new Item("une télé", 8.0, 700);
-        itemsRoomExpensive2.add(tele);
+        expensiveItemsRoom2.add(tele);
         Item montre = new Item("une montre", 0.02, 150);
-        itemsRoomExpensive2.add(montre);
+        expensiveItemsRoom2.add(montre);
         Item lecteurdvd = new Item("un lecteur DVD", 0.5, 80);
         itemsRoom2.add(lecteurdvd);
         Item airpods = new Item("des airpods", 0.01, 160);
-        itemsRoomExpensive2.add(airpods);
+        expensiveItemsRoom2.add(airpods);
         Item dolby = new Item("des enceintes dolby", 5.0, 320);
-        itemsRoomExpensive2.add(dolby);
+        expensiveItemsRoom2.add(dolby);
         Item smartphone = new Item("un smartphone", 0.2, 800);
-        itemsRoomExpensive2.add(smartphone);
+        expensiveItemsRoom2.add(smartphone);
         Item bouteille = new Item("une bouteille d'alcool", 1.0, 25);
         itemsRoom2.add(bouteille);
         Item chandelier = new Item("un chandelier", 3.0, 25);
@@ -158,8 +139,8 @@ public class Game {
         Item vase2 = new Item("un vase", 4.0, 50);
         itemsRoom2.add(vase2);
 
-        random = (int) (Math.random() * (itemsRoomExpensive2.size()));
-        itemsRoomExpensive2.get(random).setAlarm(true);
+        random = (int) (Math.random() * (expensiveItemsRoom2.size()));
+        expensiveItemsRoom2.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
             random = (int) (Math.random() * (itemsRoom2.size()));
@@ -169,28 +150,28 @@ public class Game {
         }
 
         for (int i = 0; i < 1; i++) {
-            random = (int) (Math.random() * (itemsRoomExpensive2.size()));
-            salon.addItem(itemsRoomExpensive2.get(random));
-            itemsRoomExpensive2.remove(random);
+            random = (int) (Math.random() * (expensiveItemsRoom2.size()));
+            salon.addItem(expensiveItemsRoom2.get(random));
+            expensiveItemsRoom2.remove(random);
         }
 
         salon.Shuffle();
 
         // bedRoom 11
-        ArrayList<Item> itemsRoomExpensive3 = new ArrayList();
+        ArrayList<Item> expensiveItemsRoom3 = new ArrayList();
         ArrayList<Item> itemsRoom3 = new ArrayList();
         Item reveil = new Item("un radio-réveil", 0.03, 13);
         itemsRoom3.add(reveil);
         Item coffre_fort = new Item("un coffre-fort fermé", 20.0, 110);
-        itemsRoomExpensive3.add(coffre_fort);
+        expensiveItemsRoom3.add(coffre_fort);
         Item lunettes = new Item("des lunettes", 0.01, 300);
-        itemsRoomExpensive3.add(lunettes);
+        expensiveItemsRoom3.add(lunettes);
         Item gourde = new Item("une gourde", 0.50, 15);
         itemsRoom3.add(gourde);
         Item casquette = new Item("une casquette", 0.2, 2);
         itemsRoom3.add(casquette);
         Item flute = new Item("une flute traversière", 0.6, 700);
-        itemsRoomExpensive3.add(flute);
+        expensiveItemsRoom3.add(flute);
         Item string = new Item("un string", 0.02, 35);
         itemsRoom3.add(string);
         Item polo = new Item("un polo Ralph Lauren", 0.4, 70);
@@ -209,42 +190,42 @@ public class Game {
         }
 
         for (int i = 0; i < 1; i++) {
-            random = (int) (Math.random() * (itemsRoomExpensive3.size()));
-            bedRoom.addItem(itemsRoomExpensive3.get(random));
-            itemsRoomExpensive3.remove(random);
+            random = (int) (Math.random() * (expensiveItemsRoom3.size()));
+            bedRoom.addItem(expensiveItemsRoom3.get(random));
+            expensiveItemsRoom3.remove(random);
         }
 
         bedRoom.Shuffle();
 
         // bathRoom 11
-        ArrayList<Item> itemsRoomExpensive4 = new ArrayList();
+        ArrayList<Item> expensiveItemsRoom4 = new ArrayList();
         ArrayList<Item> itemsRoom4 = new ArrayList();
 
         Item collier = new Item("un collier en or", 0.2, 4000);
-        itemsRoomExpensive4.add(collier);
+        expensiveItemsRoom4.add(collier);
         Item bague = new Item("une bague en argent", 0.015, 90);
         itemsRoom4.add(bague);
         Item enceinte = new Item("une enceinte JBL", 0.7, 250);
-        itemsRoomExpensive4.add(enceinte);
+        expensiveItemsRoom4.add(enceinte);
         Item lisseur = new Item("un lisseur", 0.6, 600);
-        itemsRoomExpensive4.add(lisseur);
+        expensiveItemsRoom4.add(lisseur);
         Item maquillage = new Item("une trousse de maquillage", 1.2, 150);
-        itemsRoomExpensive4.add(maquillage);
+        expensiveItemsRoom4.add(maquillage);
         Item parfum = new Item("un parfum", 0.8, 110);
-        itemsRoomExpensive4.add(parfum);
+        expensiveItemsRoom4.add(parfum);
         Item plante = new Item("une plante", 1.0, 50);
         itemsRoom4.add(plante);
         Item miroirsdb = new Item("un miroir", 5.0, 20);
         itemsRoom4.add(miroirsdb);
         Item serpent = new Item("un serpent", 15.0, 400);
-        itemsRoomExpensive4.add(serpent);
+        expensiveItemsRoom4.add(serpent);
         Item shampoing = new Item("un shampoing ", 0.3, 12);
         itemsRoom4.add(shampoing);
         Item brosse_dent = new Item("une brosse à dent électrique ", 0.25, 20);
         itemsRoom4.add(brosse_dent);
 
-        random = (int) (Math.random() * (itemsRoomExpensive4.size()));
-        itemsRoomExpensive4.get(random).setAlarm(true);
+        random = (int) (Math.random() * (expensiveItemsRoom4.size()));
+        expensiveItemsRoom4.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
             random = (int) (Math.random() * (itemsRoom4.size()));
@@ -253,40 +234,40 @@ public class Game {
         }
 
         for (int i = 0; i < 1; i++) {
-            random = (int) (Math.random() * (itemsRoomExpensive4.size()));
-            bathRoom.addItem(itemsRoomExpensive4.get(random));
-            itemsRoomExpensive4.remove(random);
+            random = (int) (Math.random() * (expensiveItemsRoom4.size()));
+            bathRoom.addItem(expensiveItemsRoom4.get(random));
+            expensiveItemsRoom4.remove(random);
         }
 
         bathRoom.Shuffle();
 
         // office 10
-        ArrayList<Item> itemsRoomExpensive5 = new ArrayList();
+        ArrayList<Item> expensiveItemsRoom5 = new ArrayList();
         ArrayList<Item> itemsRoom5 = new ArrayList();
 
-        Item appareil_photo = new Item("un appareil photo", 0.80, 350);
-        itemsRoomExpensive5.add(appareil_photo);
+        Item appareil_photo = new Item("un appareil photo", 0.8, 350);
+        expensiveItemsRoom5.add(appareil_photo);
         Item ordinateur = new Item("un ordinateur portable", 1.4, 700);
-        itemsRoomExpensive5.add(ordinateur);
+        expensiveItemsRoom5.add(ordinateur);
         Item radio = new Item("une radio", 0.7, 40);
         itemsRoom5.add(radio);
         Item casque = new Item("un casque de musique", 0.3, 150);
-        itemsRoomExpensive5.add(casque);
+        expensiveItemsRoom5.add(casque);
         Item pc = new Item("un pc", 4.0, 1012);
-        itemsRoomExpensive5.add(pc);
+        expensiveItemsRoom5.add(pc);
         Item clavier = new Item("un clavier", 0.4, 70);
         itemsRoom5.add(clavier);
-        Item livre = new Item("un livre", 0.450, 22);
+        Item livre = new Item("un livre", 0.45, 22);
         itemsRoom5.add(livre);
         Item tablette = new Item("une tablette ", 0.4, 550);
-        itemsRoomExpensive5.add(tablette);
+        expensiveItemsRoom5.add(tablette);
         Item imprimante = new Item("une imprimante ", 2.5, 50);
         itemsRoom5.add(imprimante);
         Item chargeur = new Item("un chargeur sans fil ", 0.25, 60);
         itemsRoom5.add(chargeur);
 
-        random = (int) (Math.random() * (itemsRoomExpensive5.size()));
-        itemsRoomExpensive5.get(random).setAlarm(true);
+        random = (int) (Math.random() * (expensiveItemsRoom5.size()));
+        expensiveItemsRoom5.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
 
@@ -296,31 +277,31 @@ public class Game {
         }
 
         for (int i = 0; i < 1; i++) {
-            random = (int) (Math.random() * (itemsRoomExpensive5.size()));
-            office.addItem(itemsRoomExpensive5.get(random));
-            itemsRoomExpensive5.remove(random);
+            random = (int) (Math.random() * (expensiveItemsRoom5.size()));
+            office.addItem(expensiveItemsRoom5.get(random));
+            expensiveItemsRoom5.remove(random);
         }
 
         office.Shuffle();
 
         // kitchen 12
-        ArrayList<Item> itemsRoomExpensive6 = new ArrayList();
+        ArrayList<Item> expensiveItemsRoom6 = new ArrayList();
         ArrayList<Item> itemsRoom6 = new ArrayList();
 
         Item machine_cafe = new Item("une machine à café", 2.8, 499);
-        itemsRoomExpensive6.add(machine_cafe);
+        expensiveItemsRoom6.add(machine_cafe);
         Item grille_pain = new Item("un grille pain", 0.4, 22);
         itemsRoom6.add(grille_pain);
         Item thermomix = new Item("un thermomix", 5.0, 950);
-        itemsRoomExpensive6.add(thermomix);
+        expensiveItemsRoom6.add(thermomix);
         Item vaisselle = new Item("un set de vaisselle", 8.0, 130);
-        itemsRoomExpensive6.add(vaisselle);
+        expensiveItemsRoom6.add(vaisselle);
         Item bouilloire = new Item("une bouilloire", 0.3, 30);
         itemsRoom6.add(bouilloire);
         Item chewings_gums = new Item("des chewings gums", 0.1, 2);
         itemsRoom6.add(chewings_gums);
         Item tele_c = new Item("une télé", 6.0, 250);
-        itemsRoomExpensive6.add(tele_c);
+        expensiveItemsRoom6.add(tele_c);
         Item sodastream = new Item("une sodastream", 0.7, 60);
         itemsRoom6.add(sodastream);
         Item sirop = new Item("sirop la maison de guiot", 0.7, 4);
@@ -332,8 +313,8 @@ public class Game {
         Item panini = new Item("une machine a panini", 4.0, 50);
         itemsRoom6.add(panini);
 
-        random = (int) (Math.random() * (itemsRoomExpensive6.size()));
-        itemsRoomExpensive6.get(random).setAlarm(true);
+        random = (int) (Math.random() * (expensiveItemsRoom6.size()));
+        expensiveItemsRoom6.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
             random = (int) (Math.random() * (itemsRoom6.size()));
@@ -342,23 +323,23 @@ public class Game {
         }
 
         for (int i = 0; i < 1; i++) {
-            random = (int) (Math.random() * (itemsRoomExpensive6.size()));
-            kitchen.addItem(itemsRoomExpensive6.get(random));
-            itemsRoomExpensive6.remove(random);
+            random = (int) (Math.random() * (expensiveItemsRoom6.size()));
+            kitchen.addItem(expensiveItemsRoom6.get(random));
+            expensiveItemsRoom6.remove(random);
         }
 
         kitchen.Shuffle();
 
         // diningRoom 10
-        ArrayList<Item> itemsRoomExpensive7 = new ArrayList();
+        ArrayList<Item> expensiveItemsRoom7 = new ArrayList();
         ArrayList<Item> itemsRoom7 = new ArrayList();
 
         Item argenterie = new Item("l’argenterie", 4.0, 350);
-        itemsRoomExpensive7.add(argenterie);
+        expensiveItemsRoom7.add(argenterie);
         Item statue = new Item("une statue", 150.0, 2400);
-        itemsRoomExpensive7.add(statue);
+        expensiveItemsRoom7.add(statue);
         Item miroir = new Item("un miroir", 6.0, 285);
-        itemsRoomExpensive7.add(miroir);
+        expensiveItemsRoom7.add(miroir);
         Item base_alexa = new Item("une base alexa", 0.45, 60);
         itemsRoom7.add(base_alexa);
         Item lampe2 = new Item("une lampe", 5.0, 60);
@@ -366,7 +347,7 @@ public class Game {
         Item horloge = new Item("une horloge", 3.0, 100);
         itemsRoom7.add(horloge);
         Item champagne = new Item("une bouteille de champagne", 0.75, 110);
-        itemsRoomExpensive7.add(champagne);
+        expensiveItemsRoom7.add(champagne);
         Item bougie = new Item("une bougie Jewel Candle", 1.0, 45);
         itemsRoom7.add(bougie);
         Item ventilateur = new Item("un ventilateur", 3.0, 33);
@@ -374,8 +355,8 @@ public class Game {
         Item bibelots = new Item("des bibelots", 10.0, 60);
         itemsRoom7.add(bibelots);
 
-        random = (int) (Math.random() * (itemsRoomExpensive7.size()));
-        itemsRoomExpensive7.get(random).setAlarm(true);
+        random = (int) (Math.random() * (expensiveItemsRoom7.size()));
+        expensiveItemsRoom7.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
             random = (int) (Math.random() * (itemsRoom7.size()));
@@ -384,42 +365,42 @@ public class Game {
         }
 
         for (int i = 0; i < 1; i++) {
-            random = (int) (Math.random() * (itemsRoomExpensive7.size()));
-            diningRoom.addItem(itemsRoomExpensive7.get(random));
-            itemsRoomExpensive7.remove(random);
+            random = (int) (Math.random() * (expensiveItemsRoom7.size()));
+            diningRoom.addItem(expensiveItemsRoom7.get(random));
+            expensiveItemsRoom7.remove(random);
         }
 
         diningRoom.Shuffle();
 
         // gameRoom 11
-        ArrayList<Item> itemsRoomExpensive8 = new ArrayList();
+        ArrayList<Item> expensiveItemsRoom8 = new ArrayList();
         ArrayList<Item> itemsRoom8 = new ArrayList();
 
         Item cartouches = new Item("des cartouches de jeux vidéos", 0.2, 50);
         itemsRoom8.add(cartouches);
         Item billard = new Item("un billard", 100.0, 600);
-        itemsRoomExpensive8.add(billard);
+        expensiveItemsRoom8.add(billard);
         Item arcade = new Item("une arcade de jeu", 80.0, 70);
         itemsRoom8.add(arcade);
         Item flipper = new Item("un flipper", 120.0, 5000);
-        itemsRoomExpensive8.add(flipper);
+        expensiveItemsRoom8.add(flipper);
         Item jukebox = new Item("un jukebox", 35.0, 1400);
-        itemsRoomExpensive8.add(jukebox);
+        expensiveItemsRoom8.add(jukebox);
         Item manette = new Item("une manette de jeux vidéos", 0.2, 40);
         itemsRoom8.add(manette);
         Item pouffe = new Item("un pouffe", 3.0, 150);
-        itemsRoomExpensive8.add(pouffe);
+        expensiveItemsRoom8.add(pouffe);
         Item uno = new Item("un jeu de uno", 0.75, 12);
         itemsRoom8.add(uno);
         Item drone = new Item("un drone", 0.5, 220);
-        itemsRoomExpensive8.add(drone);
+        expensiveItemsRoom8.add(drone);
         Item playmobile = new Item("des playmobiles", 1.0, 12);
         itemsRoom8.add(playmobile);
         Item rubiks = new Item("un rubiks cube", 0.1, 5);
         itemsRoom8.add(rubiks);
 
-        random = (int) (Math.random() * (itemsRoomExpensive8.size()));
-        itemsRoomExpensive8.get(random).setAlarm(true);
+        random = (int) (Math.random() * (expensiveItemsRoom8.size()));
+        expensiveItemsRoom8.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
             random = (int) (Math.random() * (itemsRoom8.size()));
@@ -428,36 +409,36 @@ public class Game {
         }
 
         for (int i = 0; i < 1; i++) {
-            random = (int) (Math.random() * (itemsRoomExpensive8.size()));
-            gameRoom.addItem(itemsRoomExpensive8.get(random));
-            itemsRoomExpensive8.remove(random);
+            random = (int) (Math.random() * (expensiveItemsRoom8.size()));
+            gameRoom.addItem(expensiveItemsRoom8.get(random));
+            expensiveItemsRoom8.remove(random);
         }
 
         gameRoom.Shuffle();
 
         // grenier 7
-        ArrayList<Item> itemsRoomExpensive9 = new ArrayList();
+        ArrayList<Item> expensiveItemsRoom9 = new ArrayList();
         ArrayList<Item> itemsRoom9 = new ArrayList();
 
         Item vase = new Item("un vase", 2.5, 15);
         itemsRoom9.add(vase);
         Item peintureLV = new Item("une peinture", 1.2, 1200);
-        itemsRoomExpensive9.add(peintureLV);
+        expensiveItemsRoom9.add(peintureLV);
         Item peintureVG = new Item("une peinture", 1.2, 12);
         itemsRoom9.add(peintureVG);
         Item tourne_disque = new Item("un tourne disque", 4.0, 117);
-        itemsRoomExpensive9.add(tourne_disque);
+        expensiveItemsRoom9.add(tourne_disque);
         Item velo = new Item("un vélo", 7.0, 800);
-        itemsRoomExpensive9.add(velo);
+        expensiveItemsRoom9.add(velo);
         Item balle = new Item("une balle de tennis", 0.3, 450);
-        itemsRoomExpensive9.add(balle);
+        expensiveItemsRoom9.add(balle);
         Item vetements = new Item("des vetements", 1.2, 80);
         itemsRoom9.add(vetements);
         Item livres = new Item("des livres", 1.2, 27);
         itemsRoom9.add(livres);
 
-        random = (int) (Math.random() * (itemsRoomExpensive9.size()));
-        itemsRoomExpensive9.get(random).setAlarm(true);
+        random = (int) (Math.random() * (expensiveItemsRoom9.size()));
+        expensiveItemsRoom9.get(random).setAlarm(true);
 
         for (int i = 0; i < 3; i++) {
             random = (int) (Math.random() * (itemsRoom9.size()));
@@ -466,9 +447,9 @@ public class Game {
         }
 
         for (int i = 0; i < 1; i++) {
-            random = (int) (Math.random() * (itemsRoomExpensive9.size()));
-            grenier.addItem(itemsRoomExpensive9.get(random));
-            itemsRoomExpensive9.remove(random);
+            random = (int) (Math.random() * (expensiveItemsRoom9.size()));
+            grenier.addItem(expensiveItemsRoom9.get(random));
+            expensiveItemsRoom9.remove(random);
         }
 
         grenier.Shuffle();
@@ -483,17 +464,14 @@ public class Game {
         timer.pause();
         printWelcome();
         boolean finished = false;
-
         while (!finished && timer.isRunning()) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        if (timer.getLost() == true) {
-            System.out.println(
-                    "_______________________________________________________________________________________________________________\n");
-            System.out.println("                              Le temps est écoulé, tu as perdu !");
-            System.out.println(
-                    "_________________________________________________________________________________________________________________\n");
+        if (timer.getLost()) {
+            System.out.println(continuous_line);
+            System.out.println("                                Le temps est écoulé, tu as perdu !");
+            System.out.println(continuous_line);
         }
         replay();
     }
@@ -506,10 +484,8 @@ public class Game {
         System.out.println(star_line);
         System.out.println("                                            Bienvenue dans Dorobo !\n");
         System.out.println(star_line);
-        System.out.println(
-                "                        Dorobo est un jeu incroyable qui se joue en lignes de commande !\n              Tu joues le rôle d'un cambrioleur, qui voles des maisons pour gagner de l'argent.\n         Le but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\n                 avant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
-        System.out.println(
-                "                                      Ton sac a une capacité de " + player.getMaxWeight() + " kg.\n");
+        System.out.println("                        Dorobo est un jeu incroyable qui se joue en lignes de commande !\n              Tu joues le rôle d'un cambrioleur, qui voles des maisons pour gagner de l'argent.\n         Le but du jeu est de t'infiltrer dans des maisons et de collecter autant d'argent que possible\n                 avant de t'échapper sans te faire attraper par les propriétaires ou la police...\n");
+        System.out.println("                                      Ton sac a une capacité de " + player.getMaxWeight() + " kg.\n");
         System.out.println(continuous_line);
         System.out.println("                                        Tape 'help' si tu as besoin d'aide.\n");
         System.out.println(continuous_line);
@@ -527,8 +503,7 @@ public class Game {
         CommandWord commandWord = this.parser.getCommandWords().getTranslate(command.getCommandWord());
         switch (commandWord) {
             case UNKNOWN:
-                System.out.println(
-                        "\nJe ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.\n");
+                System.out.println("\nJe ne comprends pas ce que tu veux dire... Tape 'help' ou 'manual' si tu as besoin d'aide.\n");
                 break;
             case HELP:
                 help();
@@ -578,7 +553,7 @@ public class Game {
      * command words.
      */
     private void help() {
-        if (timer.getPause() == false) {
+        if (!timer.getPause()) {
             timer.pause();
         }
         System.out.println("\nTu es perdu ? Tu ne sais plus quoi faire ?\n");
@@ -596,17 +571,16 @@ public class Game {
     private void go(Command command) {
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
-            System.out.println("Aller où ?\n");
+            System.out.println("\nAller où ?\n");
             System.out.println(player.getCurrentRoom().getExitString());
             return;
         }
 
-        if (timer.getPause() == true) {
+        if (timer.getPause()) {
             timer.restart();
         }
 
         String direction = command.getSecondWord();
-
         // Try to leave current room.
         // Room nextRoom = null;
         Room nextRoom = player.getCurrentRoom().getExit(direction);
@@ -649,7 +623,7 @@ public class Game {
      * "look" was entered.Print out the description of the room and the exits
      */
     private void look() {
-        if (timer.getPause() == true) {
+        if (timer.getPause()) {
             timer.restart();
         }
         System.out.println(player.getCurrentRoom().getLongDescription());
@@ -659,7 +633,7 @@ public class Game {
      * "back" takes the player into the previous room he/she was in was entered
      */
     private void back() {
-        if (timer.getPause() == true) {
+        if (timer.getPause()) {
             timer.restart();
         }
         Room lastRoom = player.getPreviousRoom();
@@ -675,7 +649,7 @@ public class Game {
      * "take" pick up the item that is in second word
      */
     private void take(Command command) {
-        if (timer.getPause() == true) {
+        if (timer.getPause()) {
             timer.restart();
         }
         if (!command.hasSecondWord()) {
@@ -697,13 +671,12 @@ public class Game {
         if (item == null) {
             System.out.println("\nCet objet n'est pas dans la pièce.\n");
         } else {
-            if (player.canTakeIt(item) == true) {
+            if (player.canTakeIt(item)) {
                 player.getCurrentRoom().removeItem(item);
                 player.addItem(item);
-                if (item.getAlarm() == true) {
+                if (item.getAlarm()) {
                     timer.alarm();
                     return;
-
                 } else {
                     System.out.println("\nTu as pris " + item.getDescription() + ".\n");
                 }
@@ -718,7 +691,7 @@ public class Game {
      * "drop" drop the item that is in second word
      */
     private void drop(Command command) {
-        if (timer.getPause() == true) {
+        if (timer.getPause()) {
             timer.restart();
         }
         if (!command.hasSecondWord()) {
@@ -751,7 +724,7 @@ public class Game {
      * "items" prints out all items currently carried and their total weight
      */
     private void items() {
-        if (timer.getPause() == true) {
+        if (timer.getPause()) {
             timer.restart();
         }
         String string_items = "\nLes objets que tu as volé :\n\n";
@@ -770,7 +743,7 @@ public class Game {
      * "timer" prints out the remaining time
      */
     private void timer() {
-        if (timer.getPause() == true) {
+        if (timer.getPause()) {
             timer.restart();
         }
         System.out.println("\nIl te reste " + timer.getRemainingTime() / 1000 + " secondes pour finir le jeu.\n");
@@ -795,8 +768,7 @@ public class Game {
                 timer.stop();
                 timer.setLost(false);
                 System.out.println("\n" + star_line);
-                System.out.println(
-                        "\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour "
+                System.out.println("\n             Tu as réussi à sortir de la maison avec ton butin sans te faire attraper, félicitation !\n\n                                     Tu as volé pour "
                                 + player.getTotalValue()
                                 + " € d'objets.\n\n                                       Il te restait "
                                 + timer.getRemainingTime() / 1000 + " secondes.\n");
@@ -812,7 +784,7 @@ public class Game {
     }
 
     /**
-     * "replay" when the player finish the game he can play again
+     * "replay" when the player finish or loose the game he can play again
      */
     private void replay() {
         timer.stop();
@@ -838,7 +810,7 @@ public class Game {
      * "manual" prints out the rules of the game and the commands
      */
     private void manual() {
-        if (timer.getPause() == false) {
+        if (!timer.getPause()) {
             timer.pause();
         }
         System.out.println(continuous_line);
