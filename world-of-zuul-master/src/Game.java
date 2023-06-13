@@ -479,9 +479,11 @@ public class Game {
      * Main play routine. Loops until end of play.
      */
     public void play() {
+        timer.start();
+        timer.pause();
         printWelcome();
         boolean finished = false;
-        timer.start();
+
         while (!finished && timer.isRunning()) {
             Command command = parser.getCommand();
             finished = processCommand(command);
@@ -576,6 +578,9 @@ public class Game {
      * command words.
      */
     private void help() {
+        if (timer.getPause() == false) {
+            timer.pause();
+        }
         System.out.println("\nTu es perdu ? Tu ne sais plus quoi faire ?\n");
         System.out.println("Tes commandes sont :\n");
         System.out.println(dotted_line);
@@ -594,6 +599,10 @@ public class Game {
             System.out.println("Aller où ?\n");
             System.out.println(player.getCurrentRoom().getExitString());
             return;
+        }
+
+        if (timer.getPause() == true) {
+            timer.restart();
         }
 
         String direction = command.getSecondWord();
@@ -626,8 +635,10 @@ public class Game {
      * @return true, if this command quits the game, false otherwise.
      */
     private boolean quit(Command command) {
+        timer.pause();
         if (command.hasSecondWord()) {
             System.out.println("Quitter quoi ?\n");
+            timer.restart();
             return false;
         } else {
             return true; // signal that we want to quit
@@ -638,6 +649,9 @@ public class Game {
      * "look" was entered.Print out the description of the room and the exits
      */
     private void look() {
+        if (timer.getPause() == true) {
+            timer.restart();
+        }
         System.out.println(player.getCurrentRoom().getLongDescription());
     }
 
@@ -645,6 +659,9 @@ public class Game {
      * "back" takes the player into the previous room he/she was in was entered
      */
     private void back() {
+        if (timer.getPause() == true) {
+            timer.restart();
+        }
         Room lastRoom = player.getPreviousRoom();
         if (lastRoom == null) {
             System.out.println("\nTu ne peux pas retourner en arrière, tu es au début.\n");
@@ -658,6 +675,9 @@ public class Game {
      * "take" pick up the item that is in second word
      */
     private void take(Command command) {
+        if (timer.getPause() == true) {
+            timer.restart();
+        }
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know xhat to take
             System.out.println("\nPrendre quoi ? \n");
@@ -698,6 +718,9 @@ public class Game {
      * "drop" drop the item that is in second word
      */
     private void drop(Command command) {
+        if (timer.getPause() == true) {
+            timer.restart();
+        }
         if (!command.hasSecondWord()) {
             // if there is no second word, we don't know what to drop
             System.out.println("\nPoser quoi ?\n");
@@ -728,6 +751,9 @@ public class Game {
      * "items" prints out all items currently carried and their total weight
      */
     private void items() {
+        if (timer.getPause() == true) {
+            timer.restart();
+        }
         String string_items = "\nLes objets que tu as volé :\n\n";
         if (player.getItems().size() == 0) {
             System.out.println("\nTu n'as pas d'objets dans ton inventaire.\n");
@@ -744,6 +770,9 @@ public class Game {
      * "timer" prints out the remaining time
      */
     private void timer() {
+        if (timer.getPause() == true) {
+            timer.restart();
+        }
         System.out.println("\nIl te reste " + timer.getRemainingTime() / 1000 + " secondes pour finir le jeu.\n");
     }
 
@@ -786,6 +815,7 @@ public class Game {
      * "replay" when the player finish the game he can play again
      */
     private void replay() {
+        timer.stop();
         System.out.println("\nVeux tu rejouer ? (oui/non)\n");
         System.out.print("> ");
         Scanner sc = new Scanner(System.in);
@@ -808,6 +838,9 @@ public class Game {
      * "manual" prints out the rules of the game and the commands
      */
     private void manual() {
+        if (timer.getPause() == false) {
+            timer.pause();
+        }
         System.out.println(continuous_line);
         System.out.println("                                            Règles du jeu :\n");
         System.out.println(
